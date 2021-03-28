@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication
 {
@@ -25,6 +27,8 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDatabaseContext>
+                (c => c.UseSqlServer($"Data Source=localhost;Initial Catalog={nameof(AppDatabaseContext)};Integrated Security=True"));
             services.AddControllers();
         }
 
