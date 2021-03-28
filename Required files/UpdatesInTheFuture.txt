@@ -1,0 +1,2 @@
+1. Update name user table columns GuidId => GuidIdUsers
+				  MiddleMame => MiddleName 

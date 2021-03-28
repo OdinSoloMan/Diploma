@@ -17,5 +17,40 @@ namespace WebApplication.DataAccess
         public string Position { get; set; }
         public string TypeOfEnterprise { get; set; }
         public string Password { get; set; }
+
+        public Users()
+        {
+            GuidId = new Guid();
+            SecondName = "";
+            FirstName = "";
+            MiddleMame = "";
+            Telephone = 0;
+            Position = "";
+            TypeOfEnterprise = "";
+            Password = "";
+        }
+
+        public Users(string _SecondName, string _FirstName, string _MiddleMame, int _Telephone, string _Position, string _TypeOfEnterprise, string _Password)
+        {
+            SecondName = _SecondName;
+            FirstName = _FirstName;
+            MiddleMame = _MiddleMame;
+            Telephone = _Telephone;
+            Position = _Position;
+            TypeOfEnterprise = _TypeOfEnterprise;
+            Password = _Password;
+        }
+
+        public void Recording(string _SecondName, string _FirstName, string _MiddleMame, int _Telephone, string _Position, string _TypeOfEnterprise, string _Password)
+        {
+            GuidId = Guid.NewGuid();
+            SecondName = _SecondName;
+            FirstName = _FirstName;
+            MiddleMame = _MiddleMame;
+            Telephone = _Telephone;
+            Position = _Position;
+            TypeOfEnterprise = _TypeOfEnterprise;
+            Password = _Password;
+        }
     }
 }
