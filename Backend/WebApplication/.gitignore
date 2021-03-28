@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MineSweeper/.vs/MineSweeper/v15/Server/sqlite3
+.vs
+obj
+bin
+*.merge_file*
