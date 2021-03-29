@@ -23,8 +23,6 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult<string> registrationGet([FromBody] Users users)
         {
-            Users Users = new Users();
-            Users.GuidId = Guid.NewGuid();
             users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Password, users.TypeOfEnterprise, users.Password);
             db.Create(users);
             return new OkObjectResult(users);

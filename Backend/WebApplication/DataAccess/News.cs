@@ -14,5 +14,31 @@ namespace WebApplication.DataAccess
         public string NewDescription { get; set; }
         public DateTime DataNew { get; set; }
         public string ImageNew { get; set; }
+
+        public News()
+        {
+            GuidNewsId = new Guid();
+            NewTitle = "";
+            NewDescription = "";
+            DataNew = new DateTime();
+            ImageNew = "";
+        }
+
+        public News(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew)
+        {
+            NewTitle = _NewTitle;
+            NewDescription = _NewDescription;
+            DataNew = _DataNew;
+            ImageNew = _ImageNew;
+        }
+
+        public void AddNews(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew)
+        {
+            GuidNewsId = Guid.NewGuid();
+            NewTitle = _NewTitle;
+            NewDescription = _NewDescription;
+            DataNew = _DataNew;
+            ImageNew = _ImageNew;
+        }
     }
 }
