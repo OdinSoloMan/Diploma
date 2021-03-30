@@ -1,2 +1,4 @@
 1. Update name user table columns GuidId => GuidIdUsers
 				  MiddleMame => MiddleName 
+
+2. Update at ServicesControllermethod deleteservices return delete new => delete services

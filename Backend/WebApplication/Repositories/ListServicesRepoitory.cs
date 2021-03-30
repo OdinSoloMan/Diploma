@@ -9,51 +9,51 @@ using WebApplication.DataAccess;
 
 namespace WebApplication.Repositories
 {
-    public class ServicesRepository : IServicesRepository
+    public class ListServicesRepoitory : IListSevicesRepository
     {
         public AppDatabaseContext db;
 
-        public ServicesRepository()
+        public ListServicesRepoitory()
         {
             db = new AppDatabaseContext();
         }
 
-        public void Create(Services services)
+        public void Create(ListServices listServices)
         {
-            db.Services.Add(services);
+            db.ListServices.Add(listServices);
             db.SaveChanges();
         }
 
-        public void Delete(Guid GuidServicesId)
+        public void Delete(Guid GuidListSevicesId)
         {
-            Services services = db.Services.Find(GuidServicesId);
-            if (services != null)
-                db.Services.Remove(services);
+            ListServices listServices = db.ListServices.Find(GuidListSevicesId);
+            if (listServices != null)
+                db.ListServices.Remove(listServices);
             db.SaveChanges();
         }
 
-        public Services Read(Guid GuidServicesId)
+        public ListServices Read(Guid GuidListSevicesId)
         {
-            return db.Services.Find(GuidServicesId);
+            return db.ListServices.Find(GuidListSevicesId);
         }
 
         public IEnumerable ReadAll()
         {
-            return db.Services;
+            return db.ListServices;
         }
 
         public IEnumerable ReadAllFullInfo()
         {
             JsonSerializerSettings jss = new JsonSerializerSettings();
             jss.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            var lst = db.Services.Include(c => c.ListServices).ToList();
+            var lst = db.ListServices.Include(c => c.Services).ToList();
             string json = JsonConvert.SerializeObject(lst, jss);
             return json;
         }
 
-        public void Update(Services services)
+        public void Update(ListServices listServices)
         {
-            db.Entry(services).State = EntityState.Modified;
+            db.Entry(listServices).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

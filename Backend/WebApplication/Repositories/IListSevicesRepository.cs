@@ -7,13 +7,13 @@ using WebApplication.DataAccess;
 
 namespace WebApplication.Repositories
 {
-    interface IServicesRepository
+    interface IListSevicesRepository
     {
         IEnumerable ReadAll();
-        void Create(Services services);
-        Services Read(Guid GuidServicesId);
-        void Update(Services services);
-        void Delete(Guid GuidServicesId);
+        void Create(ListServices listServices);
+        ListServices Read(Guid GuidListSevicesId);
+        void Update(ListServices listServices);
+        void Delete(Guid GuidListSevicesId);
         IEnumerable ReadAllFullInfo();
     }
 }

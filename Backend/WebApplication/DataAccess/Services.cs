@@ -17,20 +17,17 @@ namespace WebApplication.DataAccess
         {
             GuidServicesId = new Guid();
             Name = "";
-            ListServices =  new List<ListServices>();
         }
 
-        public Services(string _Name, List<ListServices> _ListServices)
+        public Services(string _Name)
         {
             Name = _Name;
-            ListServices = _ListServices;
         }
 
-        public void AddServices(string _Name, List<ListServices> _ListServices)
+        public void AddServices(string _Name)
         {
             GuidServicesId = Guid.NewGuid();
             Name = _Name;
-            ListServices = _ListServices;
         }
     }
 }

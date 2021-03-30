@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult<string> AddNewServices([FromBody] Services services)
         {
-            services.AddServices(services.Name, services.ListServices);
+            services.AddServices(services.Name);
             db.Create(services);
             return new OkObjectResult(services);
         }
@@ -34,6 +34,13 @@ namespace WebApplication.Controllers
         public ActionResult<string> ReadAllServices()
         {
             return new OkObjectResult(db.ReadAll());
+        }
+
+        [Route("readallservicesfullinfo")]
+        [HttpPost]
+        public ActionResult<string> ReadAllFullInfoListServices()
+        {
+            return new OkObjectResult(db.ReadAllFullInfo());
         }
 
         [Route("updateservices")]
