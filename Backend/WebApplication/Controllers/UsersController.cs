@@ -9,6 +9,7 @@ using WebApplication.Repositories;
 
 namespace WebApplication.Controllers
 {
+    [Route("users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -19,27 +20,36 @@ namespace WebApplication.Controllers
             db = new UsersRepository();
         }
 
-        [Route("registration")]
+        [Route("addusers")]
         [HttpGet]
-        public ActionResult<string> registrationGet([FromBody] Users users)
+        public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
-            users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Password, users.TypeOfEnterprise, users.Password);
+            users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
             db.Create(users);
             return new OkObjectResult(users);
         }
 
-        [Route("token")]
+        [Route("readallusers")]
         [HttpPost]
-        public ActionResult<string> Token()
-        {
-            return new OkObjectResult(5);
-        }
-
-        [Route("select")]
-        [HttpPost]
-        public ActionResult<string> Select()
+        public ActionResult<string> ReadAllUsers()
         {
             return new OkObjectResult(db.ReadAll());
+        }
+
+        [Route("updateusers")]
+        [HttpPut]
+        public ActionResult<string> UpdateUsers([FromBody] Users users)
+        {
+            db.Update(users);
+            return new OkObjectResult(users);
+        }
+
+        [Route("deleteusers")]
+        [HttpDelete]
+        public ActionResult<string> DeleteUsers([FromBody] Users users)
+        {
+            db.Delete(users.GuidId);
+            return new OkObjectResult("delete users" + users.GuidId);
         }
     }
 }

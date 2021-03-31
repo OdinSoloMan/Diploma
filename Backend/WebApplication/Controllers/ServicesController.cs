@@ -56,7 +56,7 @@ namespace WebApplication.Controllers
         public ActionResult<string> DeleteServices([FromBody] Services services)
         {
             db.Delete(services.GuidServicesId);
-            return new OkObjectResult("delete news" + services.GuidServicesId);
+            return new OkObjectResult("delete services" + services.GuidServicesId);
         }
     }
 }

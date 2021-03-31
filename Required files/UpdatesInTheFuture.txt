@@ -2,3 +2,5 @@
 				  MiddleMame => MiddleName 
 
 2. Update at ServicesControllermethod deleteservices return delete new => delete services
+
+3. Update type field at table Users.Telephone int to string

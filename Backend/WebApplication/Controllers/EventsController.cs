@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
 
         [Route("addevents")]
         [HttpGet]
-        public ActionResult<string> AddNewListServices([FromBody] Events events)
+        public ActionResult<string> AddNewListEvents([FromBody] Events events)
         {
             events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.PlannedEndDate, events.ImageEvents);
             db.Create(events);
@@ -31,14 +31,14 @@ namespace WebApplication.Controllers
 
         [Route("readallevents")]
         [HttpPost]
-        public ActionResult<string> ReadAllListServices()
+        public ActionResult<string> ReadAllListEvents()
         {
             return new OkObjectResult(db.ReadAll());
         }
 
         [Route("updateevents")]
         [HttpPut]
-        public ActionResult<string> UpdateListServices([FromBody] Events events)
+        public ActionResult<string> UpdateListEvents([FromBody] Events events)
         {
             db.Update(events);
             return new OkObjectResult(events);
@@ -46,7 +46,7 @@ namespace WebApplication.Controllers
 
         [Route("deleteevents")]
         [HttpDelete]
-        public ActionResult<string> DeleteListServices([FromBody] Events events)
+        public ActionResult<string> DeleteListEvents([FromBody] Events events)
         {
             db.Delete(events.GuidEventsId);
             return new OkObjectResult("delete events" + events.GuidEventsId);
