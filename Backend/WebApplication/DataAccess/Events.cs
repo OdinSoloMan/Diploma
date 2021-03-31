@@ -15,5 +15,33 @@ namespace WebApplication.DataAccess
         public DateTime PlannedStartDate { get; set; }
         public DateTime PlannedEndDate { get; set; }
         public string ImageEvents { get; set; }
+
+        public Events()
+        {
+            GuidEventsId = new Guid();
+            EventTitle = "";
+            DescriptionOfTheEvent = "";
+            PlannedStartDate = new DateTime();
+            PlannedEndDate = new DateTime();
+            ImageEvents = "";
+        }
+
+        public Events(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, DateTime _PlannedEndDate, string _ImageEvents)
+        {
+            EventTitle = _EventTitle;
+            DescriptionOfTheEvent = _DescriptionOfTheEvent;
+            PlannedStartDate = _PlannedStartDate;
+            PlannedEndDate = _PlannedEndDate;
+            ImageEvents = _ImageEvents;
+        }
+
+        public void AddEvents(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, DateTime _PlannedEndDate, string _ImageEvents)
+        {
+            EventTitle = _EventTitle;
+            DescriptionOfTheEvent = _DescriptionOfTheEvent;
+            PlannedStartDate = _PlannedStartDate;
+            PlannedEndDate = _PlannedEndDate;
+            ImageEvents = _ImageEvents;
+        }
     }
 }
