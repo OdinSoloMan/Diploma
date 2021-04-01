@@ -24,9 +24,16 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
         {
-            news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
-            db.Create(news);
-            return new OkObjectResult(news);
+            try
+            {
+                news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
+                db.Create(news);
+                return "Good";
+            }
+            catch
+            {
+                return "No good";
+            }
         }
 
         [Route("readallnews")]

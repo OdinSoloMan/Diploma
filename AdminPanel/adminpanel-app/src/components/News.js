@@ -24,6 +24,10 @@ export class News extends Component{
         });
     }
 
+    componentDidUpdate(){
+        //this.refreshList();
+    }
+
     render(){
 
         //объект снова из состояния, как только у нас есть объект, который мы реализовали в таблице
