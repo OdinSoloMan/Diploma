@@ -62,8 +62,15 @@ namespace WebApplication.Controllers
         [HttpDelete]
         public ActionResult<string> DeleteNews([FromBody] News news)
         {
-            db.Delete(news.GuidNewsId);
-            return new OkObjectResult("delete news" + news.GuidNewsId);
+            try
+            {
+                db.Delete(news.GuidNewsId);
+                return "News delete";
+            }
+            catch
+            {
+                return "News not delete";
+            }
         }
     }
 }

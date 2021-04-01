@@ -30,6 +30,45 @@ export class News extends Component{
         //this.refreshList();
     }
 
+    deleteDepNews(guidNewsId) {
+        if(window.confirm('Are you sure?')){
+        fetch('https://localhost:44367/news/deletenews', {
+          method :'DELETE',
+          headers : {
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
+          },
+          body :JSON.stringify({
+              GuidNewsId : guidNewsId
+          })
+        })
+        .then(res => res.json())
+        // .then((result) =>
+        // {        
+        //   //alert(result);
+        //   this.setState({snackbaropen : true, snackbarmsg : result});
+        // },
+        // (error) => {
+        //   //alert('Failed')
+        //   this.setState({snackbaropen : true, snackbarmsg : 'failed'});
+        // })
+      }
+    }
+
+    // deleteDepNews(guidNewsId){
+    //     if(window.confirm('Are you sure?')){
+    //         fetch('https://localhost:44367/news/deletenews',{
+    //             method : 'DELETE',
+    //             header : {'Accept' : 'application/json',
+    //             'Content-Type' : 'application/json'
+    //         },
+    //         body : JSON.stringify({
+    //             GuidNewsId : guidNewsId
+    //         })
+    //     })
+    //     }
+    // }
+
     render(){
 
         //объект снова из состояния, как только у нас есть объект, который мы реализовали в таблице
@@ -60,9 +99,9 @@ export class News extends Component{
                                 <td>
                                     <ButtonToolbar>
                                         <Button
-                                            className="mr-2"
-                                            variant="info"
-                                            onClick= {() => this.setState({
+                                            className = "mr-2"
+                                            variant = "info"
+                                            onClick = { () => this.setState({
                                                 editModalShow : true,
                                                 depid : dep.guidNewsId,
                                                 depnewtitle : dep.newTitle,
@@ -73,6 +112,13 @@ export class News extends Component{
                                             })}
                                         >
                                             Edit
+                                        </Button>
+                                        <Button
+                                            className = "mr-2"
+                                            onClick = { () => this.deleteDepNews(dep.guidNewsId)}
+                                            variant = "danger"
+                                        >
+                                            Delete                                            
                                         </Button>
                                         <EditNewsModal
                                             show = {this.state.editModalShow}
