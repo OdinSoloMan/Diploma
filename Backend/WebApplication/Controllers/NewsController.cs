@@ -28,11 +28,11 @@ namespace WebApplication.Controllers
             {
                 news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
                 db.Create(news);
-                return "Good";
+                return "Add news";
             }
             catch
             {
-                return "No good";
+                return "Not add news";
             }
         }
 
@@ -47,8 +47,15 @@ namespace WebApplication.Controllers
         [HttpPut]
         public ActionResult<string> UpdateNews([FromBody] News news)
         {
-            db.Update(news);
-            return new OkObjectResult(news);
+            try
+            {
+                db.Update(news);
+                return "Update info news";
+            }
+            catch
+            {
+                return "Not update info news";
+            }
         }
 
         [Route("deletenews")]

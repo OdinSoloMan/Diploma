@@ -1,14 +1,16 @@
 import React,{Component} from 'react';
 import {Table} from 'react-bootstrap';
 
-import {Button, ButtonToolbar} from 'react-bootstrap'
-import {AddNewsModal} from './AddNewsModal'
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import {AddNewsModal} from './AddNewsModal';
+
+import {EditNewsModal} from './EditNewsModal';
 
 export class News extends Component{
     //Конструктор и его состояния после его подключения через react-bootstrap
     constructor(props){
         super(props);
-        this.state = {deps:[], addModalShow: false}// deps сотсояния для постоения таблицы
+        this.state = {deps:[], addModalShow: false, editModalShow : false}// deps сотсояния для постоения таблицы
     }
 
     componentDidMount(){
@@ -31,8 +33,9 @@ export class News extends Component{
     render(){
 
         //объект снова из состояния, как только у нас есть объект, который мы реализовали в таблице
-        const {deps} = this.state;
-        let addModalClose = () => this.setState({addModalShow:false})
+        const {deps, depid, depnewtitle,  depnewdescription, depdatanew, depimagenew} = this.state;
+        let addModalClose = () => this.setState({addModalShow:false});
+        let editModalClose = () => this.setState({editModalShow:false});
         return(
             <div>
                 <Table className="mt-4" striped bordered hover size="sm">
@@ -43,6 +46,7 @@ export class News extends Component{
                             <th>newDescription</th>
                             <th>dataNew</th>
                             <th>imageNew</th>
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +57,34 @@ export class News extends Component{
                                 <td>{dep.newDescription}</td>
                                 <td>{dep.dataNew}</td>
                                 <td>{dep.imageNew}</td>
+                                <td>
+                                    <ButtonToolbar>
+                                        <Button
+                                            className="mr-2"
+                                            variant="info"
+                                            onClick= {() => this.setState({
+                                                editModalShow : true,
+                                                depid : dep.guidNewsId,
+                                                depnewtitle : dep.newTitle,
+                                                depnewdescription : dep.newDescription,
+                                                depdatanew : dep.dataNew,
+                                                depimagenew : dep.imageNew
+
+                                            })}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <EditNewsModal
+                                            show = {this.state.editModalShow}
+                                            onHide = {editModalClose}
+                                            depid = {depid}
+                                            depnewtitle = {depnewtitle}
+                                            depnewdescription = {depnewdescription}
+                                            depdatanew = {depdatanew}
+                                            depimagenew = {depimagenew}
+                                        />
+                                    </ButtonToolbar>
+                                </td>
                             </tr>
                             )}
                     </tbody>
