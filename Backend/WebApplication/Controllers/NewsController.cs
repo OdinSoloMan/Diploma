@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("addnews")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
         {
             news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("readallnews")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllNews()
         {
             return new OkObjectResult(db.ReadAll());

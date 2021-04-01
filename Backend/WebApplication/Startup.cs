@@ -30,6 +30,7 @@ namespace WebApplication
             services.AddDbContext<AppDatabaseContext>
                 (c => c.UseSqlServer($"Data Source=localhost;Initial Catalog={nameof(AppDatabaseContext)};Integrated Security=True"));
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +44,10 @@ namespace WebApplication
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+            );
 
             app.UseAuthorization();
 

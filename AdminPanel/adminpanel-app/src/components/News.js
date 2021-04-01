@@ -14,12 +14,11 @@ export class News extends Component{
     
     //метод в котором собираемя передать некоторые фиктивные данные для deps
     refreshList(){
-        this.setState({
-            deps:[{"GuidNewsId":"121314124","NewTitle":"OdinSolo"},
-            {"GuidNewsId":"Adbv5641","NewTitle":"TestIfoGrid"},
-            {"GuidNewsId":"123141245","NewTitle":"ПGG"}
-        ]
-        })
+        fetch('https://localhost:44367/news/readallnews')
+        .then(response => response.json())
+        .then(data =>{
+            this.setState({deps:data});
+        });
     }
 
     render(){
@@ -28,14 +27,22 @@ export class News extends Component{
         return(
             <Table className="mt-4" striped bordered hover size="sm">
                 <thead>
-                    <th>GuidNewsId</th>
-                    <th>NewTitle</th>
+                    <tr>
+                        <th>GuidNewsId</th>
+                        <th>newTitle</th>
+                        <th>newDescription</th>
+                        <th>dataNew</th>
+                        <th>imageNew</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {deps.map(dep=>
-                        <tr key={dep.GuidNewsId}>
-                            <td>{dep.GuidNewsId}</td>
-                            <td>{dep.NewTitle}</td>
+                        <tr key={dep.guidNewsId}>
+                            <td>{dep.guidNewsId}</td>
+                            <td>{dep.newTitle}</td>
+                            <td>{dep.newDescription}</td>
+                            <td>{dep.dataNew}</td>
+                            <td>{dep.imageNew}</td>
                         </tr>
                         )}
                 </tbody>
