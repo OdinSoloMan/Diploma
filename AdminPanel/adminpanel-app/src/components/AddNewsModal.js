@@ -22,6 +22,7 @@ export class AddNewsModal extends Component{
       fetch('https://localhost:44367/news/addnews', {
         method :'POST',
         headers : {
+          'Authorization' : 'Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsIm5iZiI6MTYxNzM1OTkwMSwiZXhwIjoxNjE3MzYzNTAxLCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzY3LyJ9.SvS81IgBMFGelgBumVV1AkrBllls0bkoyDL-JTNoDPg',
           'Accept' : 'application/json',
           'Content-Type' : 'application/json'
         },

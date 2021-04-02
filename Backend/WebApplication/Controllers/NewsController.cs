@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace WebApplication.Controllers
         {
             db = new NewsRepository();
         }
-
+        [Authorize]
         [Route("addnews")]
         [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
@@ -34,6 +35,7 @@ namespace WebApplication.Controllers
             {
                 return "Not add news";
             }
+            return "ot add news";
         }
 
         [Route("readallnews")]
