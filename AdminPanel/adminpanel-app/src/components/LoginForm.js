@@ -9,7 +9,6 @@ function LoginForm({Login, error}) {
 
        Login(details);
     }
-
     
     return (
         <div className="text-center mt-5">
@@ -22,9 +21,9 @@ function LoginForm({Login, error}) {
                         height="72"
                     />
                     <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-                    {(error != "") ? ( <div className="error">{error}</div> ) : ""}
+                    {(error !== "") ? ( <div className="error">{error}</div> ) : ""}
                     <div className="form-group">
-                        <label for="name" className="sr-only">Name:</label>
+                        <label htmlFor="name" className="sr-only">Name:</label>
                         <input 
                             className="form-control"
                             type="text" 
@@ -36,7 +35,7 @@ function LoginForm({Login, error}) {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="email" className="sr-only">Email:</label>
+                        <label htmlFor="email" className="sr-only">Email:</label>
                         <input                      
                             className="form-control"
                             type="email" 
@@ -48,7 +47,7 @@ function LoginForm({Login, error}) {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="password" className="sr-only">Password:</label>
+                        <label htmlFor="password" className="sr-only">Password:</label>
                         <input                      
                             className="form-control"
                             type="password" 
