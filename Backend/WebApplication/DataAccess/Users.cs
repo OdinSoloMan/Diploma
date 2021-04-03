@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Domain;
 
 namespace WebApplication.DataAccess
 {
@@ -50,7 +51,7 @@ namespace WebApplication.DataAccess
             Telephone = _Telephone;
             Position = _Position;
             TypeOfEnterprise = _TypeOfEnterprise;
-            Password = _Password;
+            Password = Md5.Convert(_Password);
         }
     }
 }

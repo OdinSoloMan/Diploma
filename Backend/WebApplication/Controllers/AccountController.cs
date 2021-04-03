@@ -34,15 +34,15 @@ namespace WebApplication.Controllers
             return new OkObjectResult(users);
         }
 
-        [Route("token")]
+        [Route("login")]
         [HttpGet]
-        public ActionResult<string> Token([FromBody] AccountLoginOptions value)
+        public ActionResult<string> Login([FromBody] AccountLoginOptions value)
         {
-            var identity = GetIdentity(value.Login, value.Password);
+            var identity = GetIdentity(value.Username, value.Password);
 
             if (identity == null)
             {
-                return new NotFoundObjectResult("Неправильный логин или пароль");
+                return null;
             }
 
             var now = DateTime.UtcNow;
@@ -56,13 +56,11 @@ namespace WebApplication.Controllers
                             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
+            return new OkObjectResult(new
             {
                 access_token = encodedJwt,
-                login = identity.Name
-            };
-
-            return encodedJwt;
+                login = value.Username
+            });
         }
 
         [Authorize]
@@ -78,10 +76,11 @@ namespace WebApplication.Controllers
         {
             var Base = db.ReadAll();
 
-            Users users = new Users();
+            Users users = null;
             foreach (Users Elm in Base)
             {
-                if (Elm.SecondName == login && Elm.Password == Md5.Convert(password)) users = Elm;
+                if (Elm.SecondName == login && Elm.Password == Md5.Convert(password)) 
+                    users = Elm;
             }
             if (users != null)
             {

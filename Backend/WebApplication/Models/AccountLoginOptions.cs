@@ -7,7 +7,7 @@ namespace WebApplication
 {
     public class AccountLoginOptions
     {
-        public string Login { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
     }
 }
