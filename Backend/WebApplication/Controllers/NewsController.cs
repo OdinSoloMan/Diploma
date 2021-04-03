@@ -20,7 +20,7 @@ namespace WebApplication.Controllers
         {
             db = new NewsRepository();
         }
-        [Authorize]
+        //[Authorize]
         [Route("addnews")]
         [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
@@ -29,13 +29,12 @@ namespace WebApplication.Controllers
             {
                 news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
                 db.Create(news);
-                return "Add news";
+                return new OkObjectResult("Add news");
             }
             catch
             {
-                return "Not add news";
+                return new OkObjectResult("Not add news");
             }
-            return "ot add news";
         }
 
         [Route("readallnews")]
@@ -52,11 +51,11 @@ namespace WebApplication.Controllers
             try
             {
                 db.Update(news);
-                return "Update info news";
+                return new OkObjectResult("Update info news");
             }
             catch
             {
-                return "Not update info news";
+                return new OkObjectResult("Not update info news");
             }
         }
 
@@ -67,11 +66,11 @@ namespace WebApplication.Controllers
             try
             {
                 db.Delete(news.GuidNewsId);
-                return "News delete";
+                return new OkObjectResult("News delete");
             }
             catch
             {
-                return "News not delete";
+                return new OkObjectResult("News not delete");
             }
         }
     }

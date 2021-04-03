@@ -30,7 +30,7 @@ export class News extends Component{
         //this.refreshList();
     }
 
-    deleteDepNews(guidNewsId) {
+    deleteNews(guidNewsId) {
         if(window.confirm('Are you sure?')){
         fetch('https://localhost:44367/news/deletenews', {
           method :'DELETE',
@@ -115,7 +115,7 @@ export class News extends Component{
                                         </Button>
                                         <Button
                                             className = "mr-2"
-                                            onClick = { () => this.deleteDepNews(dep.guidNewsId)}
+                                            onClick = { () => this.deleteNews(dep.guidNewsId)}
                                             variant = "danger"
                                         >
                                             Delete                                            

@@ -21,16 +21,23 @@ namespace WebApplication.Controllers
         }
 
         [Route("addevents")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewListEvents([FromBody] Events events)
         {
-            events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.PlannedEndDate, events.ImageEvents);
-            db.Create(events);
-            return new OkObjectResult(events);
+            try
+            {
+                events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.PlannedEndDate, events.ImageEvents);
+                db.Create(events);
+                return new OkObjectResult("Add Events");
+            }
+            catch
+            {
+                return new OkObjectResult("Not add Events");
+            }
         }
 
         [Route("readallevents")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllListEvents()
         {
             return new OkObjectResult(db.ReadAll());
@@ -40,16 +47,30 @@ namespace WebApplication.Controllers
         [HttpPut]
         public ActionResult<string> UpdateListEvents([FromBody] Events events)
         {
-            db.Update(events);
-            return new OkObjectResult(events);
+            try
+            {
+                db.Update(events);
+                return new OkObjectResult("Update info Events");
+            }
+            catch
+            {
+                return new OkObjectResult("Not update info Events");
+            }
         }
 
         [Route("deleteevents")]
         [HttpDelete]
         public ActionResult<string> DeleteListEvents([FromBody] Events events)
         {
-            db.Delete(events.GuidEventsId);
-            return new OkObjectResult("delete events" + events.GuidEventsId);
+            try
+            {
+                db.Delete(events.GuidEventsId);
+                return new OkObjectResult("Events delete");
+            }
+            catch
+            {
+                return new OkObjectResult("Events not delete");
+            }
         }
     }
 }

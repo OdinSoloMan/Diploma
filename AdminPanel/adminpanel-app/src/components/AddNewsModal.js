@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {Modal, Button, Row, Col, Form} from 'react-bootstrap'
+import React, {Component} from 'react';
+import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
 
-import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
 
 export class AddNewsModal extends Component{
     constructor(props){
@@ -22,7 +22,6 @@ export class AddNewsModal extends Component{
       fetch('https://localhost:44367/news/addnews', {
         method :'POST',
         headers : {
-          'Authorization' : 'Bearer '+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsIm5iZiI6MTYxNzM1OTkwMSwiZXhwIjoxNjE3MzYzNTAxLCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzY3LyJ9.SvS81IgBMFGelgBumVV1AkrBllls0bkoyDL-JTNoDPg',
           'Accept' : 'application/json',
           'Content-Type' : 'application/json'
         },
@@ -102,7 +101,7 @@ export class AddNewsModal extends Component{
                       <Form.Group controlId="dataNew">
                         <Form.Label>dataNew</Form.Label>
                         <Form.Control
-                          type="text"
+                          type="datetime-local"
                           name="dataNew"
                           required
                           placeholder="dataNew"
@@ -132,5 +131,5 @@ export class AddNewsModal extends Component{
         </Modal>
       </div>
       );
-    }
+  }
 }

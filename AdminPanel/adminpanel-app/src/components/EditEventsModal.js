@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {Modal, Button, Row, Col, Form} from 'react-bootstrap'
+import React, {Component} from 'react';
+import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
 
-import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
 
-export class EditNewsModal extends Component{
+export class EditEventsModal extends Component{
     constructor(props){
         super(props);
 
@@ -16,21 +16,23 @@ export class EditNewsModal extends Component{
         this.setState({snackbaropen : false});
     }
 
+
     handleSubmit(event){
         event.preventDefault();
   
-        fetch('https://localhost:44367/news/updatenews', {
+        fetch('https://localhost:44367/events/updateevents', {
           method :'PUT',
           headers : {
             'Accept' : 'application/json',
             'Content-Type' : 'application/json'
           },
-          body :JSON.stringify({
-            GuidNewsId : event.target.GuidNewsId.value,
-            newTitle : event.target.newTitle.value,
-            newDescription : event.target.newDescription.value,
-            dataNew :  event.target.dataNew.value,
-            imageNew : event.target.imageNew.value
+          body :JSON.stringify({              
+            GuidEventsId : event.target.GuidEventsId.value,
+            eventTitle : event.target.eventTitle.value,
+            descriptionOfTheEvent : event.target.descriptionOfTheEvent.value,
+            plannedStartDate :  event.target.plannedStartDate.value,
+            plannedEndDate : event.target.plannedEndDate.value,
+            imageEvents : event.target.imageEvents.value
           })
         })
         .then(res => res.json())
@@ -74,66 +76,76 @@ export class EditNewsModal extends Component{
             >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                Edit News
+                Edit Events
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                     <Row>
                       <Col sm={10}>
                       <Form onSubmit={this.handleSubmit}>
-                      <Form.Group controlId="GuidNewsId">
-                          <Form.Label>GuidNewsId</Form.Label>
+                      <Form.Group controlId="GuidEventsId">
+                          <Form.Label>GuidEventsId</Form.Label>
                           <Form.Control
                             type="text"
-                            name="GuidNewsId"
+                            name="GuidEventsId"
                             disabled
-                            defaultValue = {this.props.depid}
-                            placeholder="GuidNewsId"
+                            defaultValue = {this.props.evid}
+                            placeholder="GuidEventsId"
                           />                      
                         </Form.Group>
-                        <Form.Group controlId="newTitle">
-                          <Form.Label>newTitle</Form.Label>
+                        <Form.Group controlId="eventTitle">
+                          <Form.Label>eventTitle</Form.Label>
                           <Form.Control
                             type="text"
-                            name="newTitle"
+                            name="eventTitle"
                             required                            
-                            defaultValue = {this.props.depnewtitle}
-                            placeholder="newTitle"
+                            defaultValue = {this.props.eveventtitle}
+                            placeholder="eventTitle"
                           />                      
                         </Form.Group>
-                        <Form.Group controlId="newDescription">
-                          <Form.Label>newDescription</Form.Label>
+                        <Form.Group controlId="descriptionOfTheEvent">
+                          <Form.Label>descriptionOfTheEvent</Form.Label>
                           <Form.Control
                             type="text"
-                            name="newDescription"
-                            required
-                            defaultValue = {this.props.depnewdescription}
-                            placeholder="newDescription"
+                            name="descriptionOfTheEvent"
+                            required                            
+                            defaultValue = {this.props.evdescriptionoftheevent}
+                            placeholder="descriptionOfTheEvent"
                           />
                         </Form.Group>
-                        <Form.Group controlId="dataNew">
-                          <Form.Label>dataNew</Form.Label>
+                        <Form.Group controlId="plannedStartDate">
+                          <Form.Label>plannedStartDate</Form.Label>
                           <Form.Control
                             type="datetime-local"
-                            name="dataNew"
+                            name="plannedStartDate"
                             required
-                            defaultValue = {this.props.depdatanew}
-                            placeholder="dataNew"
+                            defaultValue = {this.props.evplannedstartdate}
+                            placeholder="plannedStartDate"
                           />
                         </Form.Group>
-                        <Form.Group controlId="imageNew">
-                          <Form.Label>imageNew</Form.Label>
+                        <Form.Group controlId="plannedEndDate">
+                          <Form.Label>plannedEndDate</Form.Label>
+                          <Form.Control
+                            type="datetime-local"
+                            name="plannedEndDate"
+                            required                            
+                            defaultValue = {this.props.evplannedenddate}
+                            placeholder="plannedEndDate"
+                          />
+                        </Form.Group>
+                        <Form.Group controlId="imageEvents">
+                          <Form.Label>imageEvents</Form.Label>
                           <Form.Control
                             type="text"
-                            name="imageNew"
+                            name="imageEvents"
                             required
-                            defaultValue = {this.props.depimagenew}
-                            placeholder="imageNew"
+                            defaultValue = {this.props.evimageevents}
+                            placeholder="imageEvents"
                           />
                         </Form.Group>
                         <Form.Group>
                           <Button variant="primary" type="submit">
-                            Update News
+                            Update Events
                           </Button>
                         </Form.Group>
                       </Form>
@@ -146,6 +158,5 @@ export class EditNewsModal extends Component{
           </Modal>
         </div>
         );
-      }
-
+    }
 }
