@@ -1,9 +1,7 @@
 import React,{Component} from 'react';
 import {Table} from 'react-bootstrap';
-
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import {AddEventsModal} from './AddEventsModal';
-
 import {EditEventsModal} from './EditEventsModal';
 
 export class Events extends Component{

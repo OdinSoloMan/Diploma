@@ -1,9 +1,7 @@
 import React,{Component} from 'react';
 import {Table} from 'react-bootstrap';
-
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import {AddNewsModal} from './AddNewsModal';
-
 import {EditNewsModal} from './EditNewsModal';
 
 export class News extends Component{

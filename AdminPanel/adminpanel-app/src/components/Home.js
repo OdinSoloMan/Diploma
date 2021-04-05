@@ -1,11 +1,19 @@
-import React,{Component} from 'react';
+//import logo from './logo.svg';
+import React, { useState } from 'react';
+import LoginForm from './LoginForm';
+import Conntent from './Conntent'
 
-export class Home extends Component{
-     render(){
-         return(
-             <div className="mt-5 d-flex justify-content-left">
-                 <h3>Wellcome to Admin Panel. This is the Home page.</h3>
-             </div>
-         )
-     }
+function Home() {
+
+    return (
+        <div className="App">
+            {(localStorage.getItem('user')) ? (
+                <Conntent />
+            ) : (
+                <LoginForm />
+            )}
+        </div>
+    );
 }
+
+export default Home;

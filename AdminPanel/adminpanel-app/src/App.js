@@ -1,70 +1,44 @@
 //import logo from './logo.svg';
 import './App.css';
-import React, {useState} from 'react';
-import {Home} from './components/Home';
-import {News} from './components/News';
-import {Events} from './components/Events';
-import {Navigation} from './components/Navigation';
-import LoginForm from './components/LoginForm';
-
-import{Browser, BrowserRouter, Route, Switch} from 'react-router-dom'
+import React from 'react';
+import Home from '../src/components/Home'
 
 function App() {
-  const adminUser = {
-    email : "admin@admin.com",
-    password : "admin123"
-  }
-
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-
-    if(details.email === adminUser.email && details.password === adminUser.password) {
-      console.log("Logged in");
-      setUser({
-        name: details.name,
-        email : details.email
-      });
-    } else {
-      console.log("Details do not math!");
-      setError("Details do not math!");
-    }
-  }
-
-  const Logout = () => {    
-    setUser({name: "", email: ""});
-  }
-
   return (
     <div className="App">
-      {(user.email !== "") ? (
-          <BrowserRouter>
-          <div className="container">
-            <h2>Welcome, <span>{user.name}</span></h2>            
-            <button onClick={Logout}>Logout</button>
-            <h3 className="m-3 d-flex justify-content-center">
-              React JS with Web api Demo
-            </h3>
-            
-            <Navigation/>
-
-            <Switch>
-              <Route path='/' component={Home} exact/>
-              <Route path='/news' component={News} exact/>
-              <Route path='/events' component={Events} exact/>
-            </Switch>
-          </div>
-        </BrowserRouter>
-        ) : (
-          <LoginForm Login={Login} error={error}/>
-        )}
+      <Home/>
     </div>
   );
 }
 
 export default App;
+
+/*
+    const state = {snackbaropen : false, snackbarmsg : ''};
+    const submitHandler = e => {
+       e.preventDefault();
+       fetch('https://localhost:44367/login', {
+        method :'GET',
+        headers : {
+          'Accept' : 'application/json',
+          'Content-Type' : 'application/json'
+        },
+        body :JSON.stringify({
+          Username : e.target.name.value,
+          password : e.target.password.value
+        })
+      })
+      .then(res => res.json())
+      .then((result) =>
+      {        
+        //alert(result);
+        //this.setState({snackbaropen : true, snackbarmsg : result});
+      },
+      (error) => {
+        //alert('Failed')
+        //this.setState({snackbaropen : true, snackbarmsg : 'failed'});
+      })
+*/
 
 /**
  *   return (

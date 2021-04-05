@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -35,14 +36,14 @@ namespace WebApplication.Controllers
         }
 
         [Route("login")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> Login([FromBody] AccountLoginOptions value)
         {
             var identity = GetIdentity(value.Username, value.Password);
 
             if (identity == null)
             {
-                return null;
+                return new OkObjectResult(false);
             }
 
             var now = DateTime.UtcNow;
@@ -63,12 +64,13 @@ namespace WebApplication.Controllers
             });
         }
 
+
         [Authorize]
         [Route("getrole")]
         [HttpPost]
         public ActionResult<string> GetRole()
         {
-            return new OkObjectResult("gg");
+            return "gg";
             //return new OkObjectResult(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
         }
 
@@ -79,7 +81,7 @@ namespace WebApplication.Controllers
             Users users = null;
             foreach (Users Elm in Base)
             {
-                if (Elm.SecondName == login && Elm.Password == Md5.Convert(password)) 
+                if (Elm.SecondName == login && Elm.Password == password) 
                     users = Elm;
             }
             if (users != null)

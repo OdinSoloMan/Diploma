@@ -1,18 +1,61 @@
-import React, {useState} from 'react';
-import logotrash from '../img/logotrash.svg';
+import React, { useState } from 'react';
+import logotrash from 'C:/Users/yurab/OneDrive/Desktop/Diploma/AdminPanel/adminpanel-app/src/img/logotrash.svg';
 
-function LoginForm({Login, error}) {
-    const [details, setDetails] = useState({name: "", email: "", password: ""});
-    
+function LoginForm() {
+    const [details, setDetails] = useState({ name: "", password: "" });
+    const [user, setUser] = useState({ name: "", password: "" });
+    const [error, setError] = useState("");
+
     const submitHandler = e => {
-       e.preventDefault();
+        e.preventDefault();
 
-       Login(details);
+        Login(details);
     }
-    
+    const Login = details => {
+        console.log(details);
+
+        fetch('https://localhost:44367/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Username: details.name,
+                password: details.password
+            })
+        })
+            .then(res => res.json())
+            .then((result) => {
+                (result === false) ? alert("gg") : localStorage.setItem('user', JSON.stringify(result));
+                check();
+            },
+                (error) => {
+                    console.log(error);
+                })
+                
+        
+    }
+
+    function check(){
+        console.log((localStorage.getItem('user')));
+        if ((localStorage.getItem('user'))) {
+            console.log("Logged in");
+            setUser({
+                name: details.name,
+                password: details.password
+            });
+            window.location.reload(); 
+        } else {
+            console.log("Details do not math!");
+            setError("Details do not math!");
+        }
+        //debugger;
+    }
+
     return (
         <div className="text-center mt-5">
-            <form onSubmit={submitHandler} style={{maxWidth:"300px", margin:"auto"}}> 
+            <form onSubmit={submitHandler} style={{ maxWidth: "300px", margin: "auto" }}>
                 <div className="form-inner">
                     <img
                         src={logotrash}
@@ -21,44 +64,32 @@ function LoginForm({Login, error}) {
                         height="72"
                     />
                     <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-                    {(error !== "") ? ( <div className="error">{error}</div> ) : ""}
+                    {(error !== "") ? (<div className="error">{error}</div>) : ""}
                     <div className="form-group">
                         <label htmlFor="name" className="sr-only">Name:</label>
-                        <input 
+                        <input
                             className="form-control"
-                            type="text" 
-                            name="name" 
-                            id="name"                            
+                            type="text"
+                            name="name"
+                            id="name"
                             placeholder="Name"
-                            onChange={e => setDetails({...details, name: e.target.value})} 
+                            onChange={e => setDetails({ ...details, name: e.target.value })}
                             value={details.name}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email" className="sr-only">Email:</label>
-                        <input                      
-                            className="form-control"
-                            type="email" 
-                            name="email" 
-                            id = "email"                            
-                            placeholder="Email"
-                            onChange={e => setDetails({...details, email: e.target.value})} 
-                            value={details.email}
-                        />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="password" className="sr-only">Password:</label>
-                        <input                      
+                        <input
                             className="form-control"
-                            type="password" 
-                            name="password" 
-                            id = "password"
+                            type="password"
+                            name="password"
+                            id="password"
                             placeholder="Password"
-                            onChange={e => setDetails({...details, password: e.target.value})} 
+                            onChange={e => setDetails({ ...details, password: e.target.value })}
                             value={details.password}
                         />
                     </div>
-                    <input className="btn btn-lg btn-primary" type="submit" value="LOGIN"/>
+                    <input className="btn btn-lg btn-primary" type="submit" value="LOGIN" />
                 </div>
             </form>
         </div>
