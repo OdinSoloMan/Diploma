@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("addusers")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
             users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
@@ -30,24 +30,37 @@ namespace WebApplication.Controllers
         }
 
         [Route("readallusers")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllUsers()
         {
             return new OkObjectResult(db.ReadAll());
+        }
+
+        [Route("{guid}")]
+        [HttpGet]
+        public ActionResult<string> ReadUsers(Guid guid)
+        {
+            return new OkObjectResult(db.Read(guid));
         }
 
         [Route("updateusers")]
         [HttpPut]
         public ActionResult<string> UpdateUsers([FromBody] Users users)
         {
-            db.Update(users);
-            return new OkObjectResult(users);
+            
+            {
+                db.Update(users);
+                return new OkObjectResult(users);
+            }
+            
         }
 
-        [Route("deleteusers")]
+        [Route("deleteusers/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteUsers([FromBody] Users users)
+        public ActionResult<string> DeleteUsers(Guid guid)
         {
+            Users users = new Users { };
+            users.GuidId = guid;
             db.Delete(users.GuidId);
             return new OkObjectResult("delete users" + users.GuidId);
         }

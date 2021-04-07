@@ -6,3 +6,5 @@
 3. Update type field at table Users.Telephone int to string
 
 4. Get and post requests to apicontroller
+
+5. Add authorization for test case

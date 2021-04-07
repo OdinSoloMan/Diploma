@@ -2,6 +2,7 @@ import {News} from './ConntentInfo/News';
 import {Events} from './ConntentInfo/Events';
 import {Navigation} from './Navigation';
 import{Browser, BrowserRouter, Route, Switch} from 'react-router-dom';
+import { Users } from './ConntentInfo/Users';
 
 const Logout = () => {
     localStorage.removeItem('user');
@@ -25,6 +26,7 @@ function Conntent() {
             <Switch>
               <Route path='/news' component={News} exact/>
               <Route path='/events' component={Events} exact/>
+              <Route path='/users' component={Users} exact/>
             </Switch>
           </div>
         </BrowserRouter>
