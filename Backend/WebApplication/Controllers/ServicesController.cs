@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("addservices")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewServices([FromBody] Services services)
         {
             services.AddServices(services.Name);
@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("readallservices")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllServices()
         {
             return new OkObjectResult(db.ReadAll());
