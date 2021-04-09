@@ -51,10 +51,12 @@ namespace WebApplication.Controllers
             return new OkObjectResult(services);
         }
 
-        [Route("deleteservices")]
+        [Route("deleteservices/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteServices([FromBody] Services services)
+        public ActionResult<string> DeleteServices(Guid guid)
         {
+            Services services = new Services() { };
+            services.GuidServicesId = guid;
             db.Delete(services.GuidServicesId);
             return new OkObjectResult("delete services" + services.GuidServicesId);
         }
