@@ -29,5 +29,6 @@ namespace WebApplication.DataAccess
         public DbSet<ListServices> ListServices { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<ConsultationRequests> ConsultationRequests { get; set; }
     }
 }
