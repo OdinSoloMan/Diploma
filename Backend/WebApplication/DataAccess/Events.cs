@@ -19,32 +19,36 @@ namespace WebApplication.DataAccess
         public Guid UsersId { get; set; }
         public Users Users { get; set; }
 
-        //public Events()
-        //{
-        //    GuidEventsId = new Guid();
-        //    EventTitle = "";
-        //    DescriptionOfTheEvent = "";
-        //    PlannedStartDate = new DateTime();
-        //    PlannedEndDate = new DateTime();
-        //    ImageEvents = "";
-        //}
+        public Events()
+        {
+            Guid guid = new Guid();
+            GuidEventsId = guid;
+            EventTitle = "";
+            DescriptionOfTheEvent = "";
+            PlannedStartDate = new DateTime();
+            ImageEvents = "";
+            IsConsidered = false;
+            UsersId = guid;
+        }
 
-        //public Events(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, DateTime _PlannedEndDate, string _ImageEvents)
-        //{
-        //    EventTitle = _EventTitle;
-        //    DescriptionOfTheEvent = _DescriptionOfTheEvent;
-        //    PlannedStartDate = _PlannedStartDate;
-        //    PlannedEndDate = _PlannedEndDate;
-        //    ImageEvents = _ImageEvents;
-        //}
+        public Events(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, string _ImageEvents, bool _IsConsidered, Guid _UsersId)
+        {
+            EventTitle = _EventTitle;
+            DescriptionOfTheEvent = _DescriptionOfTheEvent;
+            PlannedStartDate = _PlannedStartDate;
+            ImageEvents = _ImageEvents;
+            IsConsidered = false;
+            UsersId = _UsersId;
+        }
 
-        //public void AddEvents(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, DateTime _PlannedEndDate, string _ImageEvents)
-        //{
-        //    EventTitle = _EventTitle;
-        //    DescriptionOfTheEvent = _DescriptionOfTheEvent;
-        //    PlannedStartDate = _PlannedStartDate;
-        //    PlannedEndDate = _PlannedEndDate;
-        //    ImageEvents = _ImageEvents;
-        //}
+        public void AddEvents(string _EventTitle, string _DescriptionOfTheEvent, DateTime _PlannedStartDate, string _ImageEvents, bool _IsConsidered, Guid _UsersId)
+        {
+            EventTitle = _EventTitle;
+            DescriptionOfTheEvent = _DescriptionOfTheEvent;
+            PlannedStartDate = _PlannedStartDate;
+            ImageEvents = _ImageEvents;
+            IsConsidered = false;
+            UsersId = _UsersId;
+        }
     }
 }

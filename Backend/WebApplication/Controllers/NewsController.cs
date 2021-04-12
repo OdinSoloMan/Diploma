@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                //news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew);
+                news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew, news.UsersId);
                 db.Create(news);
                 return new OkObjectResult("Add news");
             }

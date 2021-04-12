@@ -19,30 +19,34 @@ namespace WebApplication.DataAccess
         public Guid UsersId { get; set; }
         public Users Users { get; set; }
 
-        //public News()
-        //{
-        //    GuidNewsId = new Guid();
-        //    NewTitle = "";
-        //    NewDescription = "";
-        //    DataNew = new DateTime();
-        //    ImageNew = "";
-        //}
+        public News()
+        {
+            Guid guid = new Guid();
+            GuidNewsId = guid;
+            NewTitle = "";
+            NewDescription = "";
+            DataNew = new DateTime();
+            ImageNew = "";
+            IsConsidered = false;
+            UsersId = guid;
+        }
 
-        //public News(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew)
-        //{
-        //    NewTitle = _NewTitle;
-        //    NewDescription = _NewDescription;
-        //    DataNew = _DataNew;
-        //    ImageNew = _ImageNew;
-        //}
+        public News(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, Guid guid)
+        {
+            NewTitle = _NewTitle;
+            NewDescription = _NewDescription;
+            DataNew = _DataNew;
+            ImageNew = _ImageNew;
+            UsersId = guid;
+        }
 
-        //public void AddNews(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew)
-        //{
-        //    GuidNewsId = Guid.NewGuid();
-        //    NewTitle = _NewTitle;
-        //    NewDescription = _NewDescription;
-        //    DataNew = _DataNew;
-        //    ImageNew = _ImageNew;
-        //}
+        public void AddNews(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, Guid guid)
+        {
+            NewTitle = _NewTitle;
+            NewDescription = _NewDescription;
+            DataNew = _DataNew;
+            ImageNew = _ImageNew;
+            UsersId = guid;
+        }
     }
 }

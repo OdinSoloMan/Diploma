@@ -14,7 +14,7 @@ namespace WebApplication.DataAccess
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Telephone { get; set; }
-        public int Position { get; set; }
+        public string Position { get; set; }
         public string TypeOfEnterprise { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
@@ -25,39 +25,38 @@ namespace WebApplication.DataAccess
         public List<ConsultationRequests> consultationRequests { get; set; } = new List<ConsultationRequests>();
 
 
-        //public Users()
-        //{
-        //    GuidId = new Guid();
-        //    SecondName = "";
-        //    FirstName = "";
-        //    MiddleMame = "";
-        //    Telephone = 0;
-        //    Position = "";
-        //    TypeOfEnterprise = "";
-        //    Password = "";
-        //}
+        public Users()
+        {
+            GuidUsersId = new Guid();
+            FullName = "";
+            Email = "";
+            Telephone = "";
+            TypeOfEnterprise = "";
+            Position = "";
+            Password = "";
+            Role = "users";
+        }
 
-        //public Users(string _SecondName, string _FirstName, string _MiddleMame, int _Telephone, string _Position, string _TypeOfEnterprise, string _Password)
-        //{
-        //    SecondName = _SecondName;
-        //    FirstName = _FirstName;
-        //    MiddleMame = _MiddleMame;
-        //    Telephone = _Telephone;
-        //    Position = _Position;
-        //    TypeOfEnterprise = _TypeOfEnterprise;
-        //    Password = _Password;
-        //}
+        public Users(string _FullName, string _Email, string _Telephone, string _TypeOfEnterprise, string _Position, string _Password)
+        {
+            FullName = _FullName;
+            Email = _Email;
+            Telephone = _Telephone;
+            TypeOfEnterprise = _TypeOfEnterprise;
+            Position = _Position;
+            Password = Md5.Convert(_Password);
+            Role = "users";
+        }
 
-        //public void Recording(string _SecondName, string _FirstName, string _MiddleMame, int _Telephone, string _Position, string _TypeOfEnterprise, string _Password)
-        //{
-        //    GuidId = Guid.NewGuid();
-        //    SecondName = _SecondName;
-        //    FirstName = _FirstName;
-        //    MiddleMame = _MiddleMame;
-        //    Telephone = _Telephone;
-        //    Position = _Position;
-        //    TypeOfEnterprise = _TypeOfEnterprise;
-        //    Password = Md5.Convert(_Password);
-        //}
+        public void Recording(string _FullName, string _Email, string _Telephone, string _TypeOfEnterprise, string _Position, string _Password)
+        {
+            FullName = _FullName;
+            Email = _Email;
+            Telephone = _Telephone;
+            TypeOfEnterprise = _TypeOfEnterprise;
+            Position = _Position;
+            Password = Md5.Convert(_Password);
+            Role = "users";
+        }
     }
 }

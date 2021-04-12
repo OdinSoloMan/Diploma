@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                //events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.PlannedEndDate, events.ImageEvents);
+                events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.ImageEvents, events.IsConsidered, events.UsersId);
                 db.Create(events);
                 return new OkObjectResult("Add Events");
             }

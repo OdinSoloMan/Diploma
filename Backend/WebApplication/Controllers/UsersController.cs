@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
-           // users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
+            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
             db.Create(users);
             return new OkObjectResult(users);
         }
@@ -47,21 +47,25 @@ namespace WebApplication.Controllers
         [HttpPut]
         public ActionResult<string> UpdateUsers([FromBody] Users users)
         {
-            
+            try
             {
                 db.Update(users);
                 return new OkObjectResult(users);
             }
-            
+            catch
+            {
+                return BadRequest();
+            }
+           
         }
 
         [Route("deleteusers/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteUsers(Guid guid)
         {
-/*            Users users = new Users { };
-            users.GuidId = guid;
-            db.Delete(users.GuidId);*/
+            Users users = new Users { };
+            users.GuidUsersId = guid;
+            db.Delete(users.GuidUsersId);
             return new OkObjectResult("delete users" );
         }
     }
