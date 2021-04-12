@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logotrash from 'C:/Users/yurab/OneDrive/Desktop/Diploma/AdminPanel/adminpanel-app/src/img/logotrash.svg';
+//import logotrash from 'C:/Users/yurab/OneDrive/Desktop/Diploma/AdminPanel/adminpanel-app/src/img/logotrash.svg';
 
 function LoginForm() {
     const [details, setDetails] = useState({ name: "", password: "" });
@@ -58,7 +58,7 @@ function LoginForm() {
             <form onSubmit={submitHandler} style={{ maxWidth: "300px", margin: "auto" }}>
                 <div className="form-inner">
                     <img
-                        src={logotrash}
+                        //src={logotrash}
                         className="mt-4 mb-4"
                         alt="logotrash"
                         height="72"
