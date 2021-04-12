@@ -11,6 +11,7 @@ namespace WebApplication.DataAccess
         [Key]
         public Guid GuidServicesId { get; set; }
         public string Name { get; set; }
+
         public List<ListServices> ListServices { get; set; } = new List<ListServices>();
 
         public Services()

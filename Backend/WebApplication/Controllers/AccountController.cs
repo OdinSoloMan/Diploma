@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> registrationPost([FromBody] Users users)
         {            
-            users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
+            //users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
             db.Create(users);
             return new OkObjectResult(users);
         }
@@ -81,14 +81,14 @@ namespace WebApplication.Controllers
             Users users = null;
             foreach (Users Elm in Base)
             {
-                if (Elm.SecondName == login && Elm.Password == password) 
+                if (Elm.Email == login && Elm.Password == password) 
                     users = Elm;
             }
             if (users != null)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, users.GuidId.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, users.GuidUsersId.ToString()),
                     //new Claim(ClaimsIdentity.DefaultRoleClaimType, users.Role)
                 };
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication.DataAccess;
 
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210412165622_AddNewTableConsultationRequestsAndChangeRelationshipsBetweenTables")]
+    partial class AddNewTableConsultationRequestsAndChangeRelationshipsBetweenTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,20 +30,26 @@ namespace WebApplication.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ListServicesId")
+                    b.Property<string>("GuidUsersId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdListServiesId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ListServicesGuidListSevicesId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ReverseCommunication")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid?>("UsersGuidUsersId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("GuidConsultationRequestsId");
 
-                    b.HasIndex("ListServicesId");
+                    b.HasIndex("ListServicesGuidListSevicesId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UsersGuidUsersId");
 
                     b.ToTable("ConsultationRequests");
                 });
@@ -67,12 +75,15 @@ namespace WebApplication.Migrations
                     b.Property<DateTime>("PlannedStartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("usersGuidUsersId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("GuidEventsId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("usersGuidUsersId");
 
                     b.ToTable("Events");
                 });
@@ -117,12 +128,15 @@ namespace WebApplication.Migrations
                     b.Property<string>("NewTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("usersGuidUsersId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("GuidNewsId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("usersGuidUsersId");
 
                     b.ToTable("News");
                 });
@@ -175,32 +189,22 @@ namespace WebApplication.Migrations
 
             modelBuilder.Entity("WebApplication.DataAccess.ConsultationRequests", b =>
                 {
-                    b.HasOne("WebApplication.DataAccess.ListServices", "ListServices")
+                    b.HasOne("WebApplication.DataAccess.ListServices", null)
                         .WithMany("consultationRequests")
-                        .HasForeignKey("ListServicesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ListServicesGuidListSevicesId");
 
-                    b.HasOne("WebApplication.DataAccess.Users", "Users")
+                    b.HasOne("WebApplication.DataAccess.Users", null)
                         .WithMany("consultationRequests")
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ListServices");
-
-                    b.Navigation("Users");
+                        .HasForeignKey("UsersGuidUsersId");
                 });
 
             modelBuilder.Entity("WebApplication.DataAccess.Events", b =>
                 {
-                    b.HasOne("WebApplication.DataAccess.Users", "Users")
+                    b.HasOne("WebApplication.DataAccess.Users", "users")
                         .WithMany("events")
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("usersGuidUsersId");
 
-                    b.Navigation("Users");
+                    b.Navigation("users");
                 });
 
             modelBuilder.Entity("WebApplication.DataAccess.ListServices", b =>
@@ -216,13 +220,11 @@ namespace WebApplication.Migrations
 
             modelBuilder.Entity("WebApplication.DataAccess.News", b =>
                 {
-                    b.HasOne("WebApplication.DataAccess.Users", "Users")
+                    b.HasOne("WebApplication.DataAccess.Users", "users")
                         .WithMany("news")
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("usersGuidUsersId");
 
-                    b.Navigation("Users");
+                    b.Navigation("users");
                 });
 
             modelBuilder.Entity("WebApplication.DataAccess.ListServices", b =>

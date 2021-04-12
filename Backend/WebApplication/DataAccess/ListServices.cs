@@ -12,10 +12,12 @@ namespace WebApplication.DataAccess
         public Guid GuidListSevicesId { get; set; }
         public string Description { get; set; }
 
+        public List<ConsultationRequests> consultationRequests { get; set; } = new List<ConsultationRequests>();
+
         public Guid ServicesId { get; set; }
         public Services Services { get; set; }
 
-        public ListServices()
+/*        public ListServices()
         {
             GuidListSevicesId = new Guid();
             Description = "";
@@ -33,6 +35,6 @@ namespace WebApplication.DataAccess
             GuidListSevicesId = Guid.NewGuid();
             Description = _Description;
             ServicesId = _GuidServicesId;
-        }
+        }*/
     }
 }

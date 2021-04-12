@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult<string> AddNewListServices([FromBody] ListServices listServices)
         {
-            listServices.AddListServices(listServices.Description, listServices.ServicesId);
+            //listServices.AddListServices(listServices.Description, listServices.ServicesId);
             db.Create(listServices);
             return new OkObjectResult(listServices);
         }
