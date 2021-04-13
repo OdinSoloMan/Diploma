@@ -5,12 +5,17 @@ import { Modal, TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const colums = [
-  { title: "GuidListSevicesId", field: "guidListSevicesId" },
-  { title: "Description", field: "description" },
-  { title: "ServicesId", field: "servicesId" },
+  { title: "GuidUsersId", field: "guidUsersId" },
+  { title: "FullName", field: "fullName" },
+  { title: "Email", field: "email" },
+  { title: "Telephone", field: "telephone" },
+  { title: "Position", field: "position" },
+  { title: "TypeOfEnterprise", field: "typeOfEnterprise" },
+  { title: "Role", field: "role" },
+  { title: "Password", field: "password" },
 ];
 
-const baseUrl = "https://localhost:44367/listsevices";
+const baseUrl = "https://localhost:44367/users";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -32,16 +37,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ListServicesFunctions() {
+function UsersFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
   const [modalInserSerives, setModalInserSerives] = useState(false);
   const [modalEditSerives, setModalEditSerives] = useState(false);
   const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
   const [serviesSelectInfo, setServiesSelectInfo] = useState({
-    guidListSevicesId: "",
-    description: "",
-    servicesId: "",
+    guidUsersId: "",
+    fullName: "",
+    email: "",
+    telephone: "",
+    position: "",
+    typeOfEnterprise: "",
+    role: "",
+    password: "",
     //listServices: [],
   });
 
@@ -57,7 +67,7 @@ function ListServicesFunctions() {
 
   const servicGet = async () => {
     await axioc
-      .get(baseUrl + "/readalllistsevices")
+      .get(baseUrl + "/readallusers")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -68,11 +78,16 @@ function ListServicesFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addlistsevices", serviesSelectInfo);
+    console.log("addusers", serviesSelectInfo);
     await axioc
-      .post(baseUrl + "/addlistsevices", {
-        Description: serviesSelectInfo.description,
-        ServicesId : serviesSelectInfo.servicesId
+      .post(baseUrl + "/addusers", {
+        fullName: serviesSelectInfo.fullName,
+        email: serviesSelectInfo.email,
+        telephone: serviesSelectInfo.telephone,
+        position: serviesSelectInfo.position,
+        typeOfEnterprise: serviesSelectInfo.typeOfEnterprise,
+        role: serviesSelectInfo.role,
+        password: serviesSelectInfo.password
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -84,21 +99,31 @@ function ListServicesFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("updatelistsevices", serviesSelectInfo);
+    console.log("update", serviesSelectInfo);
     var s = serviesSelectInfo.name,
       ser;
     await axioc
-      .put(baseUrl + "/updatelistsevices", {
-        guidListSevicesId : serviesSelectInfo.guidListSevicesId,
-        description: serviesSelectInfo.description,
-        servicesId : serviesSelectInfo.servicesId
+      .put(baseUrl + "/updateusers", {
+        guidUsersId : serviesSelectInfo.guidUsersId,
+        fullName: serviesSelectInfo.fullName,
+        email: serviesSelectInfo.email,
+        telephone: serviesSelectInfo.telephone,
+        position: serviesSelectInfo.position,
+        typeOfEnterprise: serviesSelectInfo.typeOfEnterprise,
+        role: serviesSelectInfo.role,
+        password: serviesSelectInfo.password
       })
       .then((response) => {
         var dataEvent = data;
         dataEvent.map((event) => {
-          if (event.guidListSevicesId === serviesSelectInfo.guidListSevicesId) {
-            event.description = serviesSelectInfo.description;
-            event.servicesId = serviesSelectInfo.servicesId;
+          if (event.guidUsersId === serviesSelectInfo.guidUsersId) {
+            event.fullName = serviesSelectInfo.fullName;
+            event.email = serviesSelectInfo.email;
+            event.telephone = serviesSelectInfo.telephone;
+            event.position = serviesSelectInfo.position;
+            event.typeOfEnterprise = serviesSelectInfo.typeOfEnterprise;
+            event.role = serviesSelectInfo.role;
+            event.password = serviesSelectInfo.password;
           }
         });
         setData(dataEvent);
@@ -110,15 +135,15 @@ function ListServicesFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("delete", serviesSelectInfo);
+    console.log("deleteusers", serviesSelectInfo);
     await axioc
-    .delete(baseUrl + "/deletelistsevices/" + serviesSelectInfo.guidListSevicesId, {
-        guidListSevicesId: serviesSelectInfo.guidListSevicesId,
+      .delete(baseUrl + "/deleteusers/" + serviesSelectInfo.guidUsersId, {
+        guidUsersId: serviesSelectInfo.guidUsersId,
       })
       .then((response) => {
         setData(
           data.filter(
-            (event) => event.guidListSevicesId !== serviesSelectInfo.guidListSevicesId
+            (event) => event.guidUsersId !== serviesSelectInfo.guidUsersId
           )
         );
         openCloseModalDelete();
@@ -155,15 +180,50 @@ function ListServicesFunctions() {
       <h3>New servies</h3>
       <TextField
         className={styles.inputMaterial}
-        label="Description"
-        name="description"
+        label="FullName"
+        name="fullName"
         onChange={handleChange}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="ServicesId"
-        name="servicesId"
+        label="Email"
+        name="email"
+        onChange={handleChange}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Telephone"
+        name="telephone"
+        onChange={handleChange}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Position"
+        name="position"
+        onChange={handleChange}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="TypeOfEnterprise"
+        name="typeOfEnterprise"
+        onChange={handleChange}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Role"
+        name="role"
+        onChange={handleChange}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Password"
+        name="password"
         onChange={handleChange}
       />
       <br />
@@ -182,18 +242,58 @@ function ListServicesFunctions() {
       <h3>Edit servies</h3>
       <TextField
         className={styles.inputMaterial}
-        label="Description"
-        name="description"
+        label="FullName"
+        name="fullName"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.description}
+        value={serviesSelectInfo && serviesSelectInfo.fullName}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="ServicesId"
-        name="servicesId"
+        label="Email"
+        name="email"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.servicesId}
+        value={serviesSelectInfo && serviesSelectInfo.email}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Telephone"
+        name="telephone"
+        onChange={handleChange}
+        value={serviesSelectInfo && serviesSelectInfo.telephone}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Position"
+        name="position"
+        onChange={handleChange}
+        value={serviesSelectInfo && serviesSelectInfo.position}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="TypeOfEnterprise"
+        name="typeOfEnterprise"
+        onChange={handleChange}
+        value={serviesSelectInfo && serviesSelectInfo.typeOfEnterprise}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Role"
+        name="role"
+        onChange={handleChange}
+        value={serviesSelectInfo && serviesSelectInfo.role}
+      />
+      <br />
+      <TextField
+        className={styles.inputMaterial}
+        label="Password"
+        name="password"
+        onChange={handleChange}
+        value={serviesSelectInfo && serviesSelectInfo.password}
       />
       <br />
       <br />
@@ -210,7 +310,7 @@ function ListServicesFunctions() {
     <div className={styles.modal}>
       <p>
         Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.description}</b>?{" "}
+        <b>{serviesSelectInfo && serviesSelectInfo.guidUsersId}</b>?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -261,7 +361,7 @@ function ListServicesFunctions() {
   );
 }
 
-export default ListServicesFunctions;
+export default UsersFunctions;
 /*
 function SimpleAction() {
   return (

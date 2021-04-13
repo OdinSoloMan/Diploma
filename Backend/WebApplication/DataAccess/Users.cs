@@ -48,7 +48,7 @@ namespace WebApplication.DataAccess
             Role = "users";
         }
 
-        public void Recording(string _FullName, string _Email, string _Telephone, string _TypeOfEnterprise, string _Position, string _Password)
+        public void Recording(string _FullName, string _Email, string _Telephone, string _TypeOfEnterprise, string _Position, string _Password, string _Role)
         {
             FullName = _FullName;
             Email = _Email;
@@ -56,7 +56,14 @@ namespace WebApplication.DataAccess
             TypeOfEnterprise = _TypeOfEnterprise;
             Position = _Position;
             Password = Md5.Convert(_Password);
-            Role = "users";
+            if (_Role != "")
+            {
+                Role = _Role;
+            }
+            else
+            {
+                Role = "users";
+            }
         }
     }
 }

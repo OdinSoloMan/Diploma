@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
-            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
+            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, users.Role);
             db.Create(users);
             return new OkObjectResult(users);
         }
