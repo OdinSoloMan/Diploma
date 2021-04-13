@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("addconsultationRequests")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewListServices([FromBody] ConsultationRequests consultationRequests)
         {
             consultationRequests.AddConsultationRequests(consultationRequests.Description, consultationRequests.ReverseCommunication, consultationRequests.UsersId, consultationRequests.ListServicesId);
@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("readallconsultationRequests")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllListServices()
         {
             return new OkObjectResult(db.ReadAll());
@@ -44,10 +44,12 @@ namespace WebApplication.Controllers
             return new OkObjectResult(consultationRequests);
         }
 
-        [Route("deleteconsultationRequests")]
+        [Route("deleteconsultationRequests/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteListServices([FromBody] ConsultationRequests consultationRequests)
+        public ActionResult<string> DeleteListServices(Guid guid)
         {
+            ConsultationRequests consultationRequests = new ConsultationRequests() { };
+            consultationRequests.GuidConsultationRequestsId = guid;
             db.Delete(consultationRequests.GuidConsultationRequestsId);
             return new OkObjectResult("delete listsevices" + consultationRequests.GuidConsultationRequestsId);
         }

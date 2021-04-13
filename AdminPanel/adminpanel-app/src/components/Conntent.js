@@ -5,6 +5,7 @@ import{Browser, BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Users } from '../ConntentInfo/Users';
 import { Servies } from '../ConntentInfo/Servies';
 import { ListServices } from '../ConntentInfo/ListServices'
+import { ConsultationRequests } from '../ConntentInfo/ConsultationRequests'
 
 function Conntent() {
     return (
@@ -17,6 +18,7 @@ function Conntent() {
               <Route path='/users' component={Users} exact/>
               <Route path='/servies' component={Servies} exact/>
               <Route path='/listservices' component={ListServices} exact/>
+              <Route path='/consultationrequests' component={ConsultationRequests} exact/>
             </Switch>
         </BrowserRouter>
       </div>
