@@ -28,7 +28,7 @@ namespace WebApplication.Controllers
             {
                 events.AddEvents(events.EventTitle, events.DescriptionOfTheEvent, events.PlannedStartDate, events.ImageEvents, events.IsConsidered, events.UsersId);
                 db.Create(events);
-                return new OkObjectResult("Add Events");
+                return new OkObjectResult(events);
             }
             catch
             {
@@ -50,7 +50,7 @@ namespace WebApplication.Controllers
             try
             {
                 db.Update(events);
-                return new OkObjectResult("Update info Events");
+                return new OkObjectResult(events);
             }
             catch
             {
@@ -58,14 +58,16 @@ namespace WebApplication.Controllers
             }
         }
 
-        [Route("deleteevents")]
+        [Route("deleteevents/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteListEvents([FromBody] Events events)
+        public ActionResult<string> DeleteListEvents(Guid guid)
         {
             try
             {
+                Events events = new Events() { };
+                events.GuidEventsId = guid;
                 db.Delete(events.GuidEventsId);
-                return new OkObjectResult("Events delete");
+                return new OkObjectResult("Events delete" + events.GuidEventsId);
             }
             catch
             {

@@ -37,7 +37,7 @@ namespace WebApplication.DataAccess
             DescriptionOfTheEvent = _DescriptionOfTheEvent;
             PlannedStartDate = _PlannedStartDate;
             ImageEvents = _ImageEvents;
-            IsConsidered = false;
+            IsConsidered = _IsConsidered;
             UsersId = _UsersId;
         }
 
@@ -47,7 +47,7 @@ namespace WebApplication.DataAccess
             DescriptionOfTheEvent = _DescriptionOfTheEvent;
             PlannedStartDate = _PlannedStartDate;
             ImageEvents = _ImageEvents;
-            IsConsidered = false;
+            IsConsidered = _IsConsidered;
             UsersId = _UsersId;
         }
     }
