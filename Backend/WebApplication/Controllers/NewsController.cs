@@ -27,9 +27,9 @@ namespace WebApplication.Controllers
         {
             try
             {
-                news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew, news.UsersId);
+                news.AddNews(news.NewTitle, news.NewDescription, news.DataNew, news.ImageNew, news.IsConsidered, news.UsersId);
                 db.Create(news);
-                return new OkObjectResult("Add news");
+                return new OkObjectResult(news);
             }
             catch
             {
@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
             try
             {
                 db.Update(news);
-                return new OkObjectResult("Update info news");
+                return new OkObjectResult(news);
             }
             catch
             {
@@ -59,14 +59,16 @@ namespace WebApplication.Controllers
             }
         }
 
-        [Route("deletenews")]
+        [Route("deletenews/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteNews([FromBody] News news)
+        public ActionResult<string> DeleteNews(Guid guid)
         {
             try
             {
+                News news = new News() { };
+                news.GuidNewsId = guid;
                 db.Delete(news.GuidNewsId);
-                return new OkObjectResult("News delete");
+                return new OkObjectResult("News delete" + news.GuidNewsId);
             }
             catch
             {

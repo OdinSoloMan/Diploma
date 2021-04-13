@@ -31,21 +31,23 @@ namespace WebApplication.DataAccess
             UsersId = guid;
         }
 
-        public News(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, Guid guid)
+        public News(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, bool _IsConsidered, Guid guid)
         {
             NewTitle = _NewTitle;
             NewDescription = _NewDescription;
             DataNew = _DataNew;
             ImageNew = _ImageNew;
+            IsConsidered = _IsConsidered;
             UsersId = guid;
         }
 
-        public void AddNews(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, Guid guid)
+        public void AddNews(string _NewTitle, string _NewDescription, DateTime _DataNew, string _ImageNew, bool _IsConsidered, Guid guid)
         {
             NewTitle = _NewTitle;
             NewDescription = _NewDescription;
             DataNew = _DataNew;
             ImageNew = _ImageNew;
+            IsConsidered = _IsConsidered;
             UsersId = guid;
         }
     }
