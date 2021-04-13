@@ -9,7 +9,10 @@ const Logout = () => {
 export class Navigation extends Component {
   render() {
     return (
-      <Navbar className="navbar navbar-expand-lg navbar-light bg-light" expand="lg">
+      <Navbar
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        expand="lg"
+      >
         <Navbar.Toggle aria-controls="collapse navbar-collapse" />
         <Navbar.Collapse>
           <Nav>
@@ -25,14 +28,20 @@ export class Navigation extends Component {
             <NavLink className="nav-link" to="/servies">
               Servies
             </NavLink>
+            <NavLink className="nav-link" to="/listservices">
+              Listservices
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
+            <li className="nav-item"></li>
             <li className="nav-item">
-            </li>
-            <li className="nav-item">
-              <button type="button" className="btn btn-light pull-left" onClick={Logout}>
+              <button
+                type="button"
+                className="btn btn-light pull-left"
+                onClick={Logout}
+              >
                 Sign out
               </button>
             </li>

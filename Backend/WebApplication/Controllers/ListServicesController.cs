@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("addlistsevices")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<string> AddNewListServices([FromBody] ListServices listServices)
         {
             listServices.AddListServices(listServices.Description, listServices.ServicesId);
@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("readalllistsevices")]
-        [HttpPost]
+        [HttpGet]
         public ActionResult<string> ReadAllListServices()
         {
             return new OkObjectResult(db.ReadAll());
@@ -51,12 +51,14 @@ namespace WebApplication.Controllers
             return new OkObjectResult(listServices);
         }
 
-        [Route("deletelistsevices")]
+        [Route("deletelistsevices/{guid}")]
         [HttpDelete]
-        public ActionResult<string> DeleteListServices([FromBody] ListServices listServices)
+        public ActionResult<string> DeleteListServices(Guid guid)
         {
+            ListServices listServices = new ListServices() { };
+            listServices.GuidListSevicesId = guid;
             db.Delete(listServices.GuidListSevicesId);
-            return new OkObjectResult("delete listsevices" + listServices.ServicesId);
+            return new OkObjectResult("delete listsevices" + listServices.GuidListSevicesId);
         }
     }
 }

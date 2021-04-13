@@ -4,6 +4,7 @@ import {Navigation} from './Navigation';
 import{Browser, BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Users } from '../ConntentInfo/Users';
 import { Servies } from '../ConntentInfo/Servies';
+import { ListServices } from '../ConntentInfo/ListServices'
 
 function Conntent() {
     return (
@@ -15,6 +16,7 @@ function Conntent() {
               <Route path='/events' component={Events} exact/>
               <Route path='/users' component={Users} exact/>
               <Route path='/servies' component={Servies} exact/>
+              <Route path='/listservices' component={ListServices} exact/>
             </Switch>
         </BrowserRouter>
       </div>
