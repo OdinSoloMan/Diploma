@@ -34,13 +34,12 @@ const useStyles = makeStyles((theme) => ({
 function SeviesFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
+  const [modalInserServies, setModalInserServies] = useState(false);
+  const [modalEditServies, setModalEditServies] = useState(false);
+  const [modalDeleteServies, setModalDeleteServies] = useState(false);
   const [serviesSelectInfo, setServiesSelectInfo] = useState({
     guidServicesId: "",
     name: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
@@ -83,8 +82,6 @@ function SeviesFunctions() {
 
   const updateSerivcePut = async () => {
     console.log("update", serviesSelectInfo.name);
-    var s = serviesSelectInfo.name,
-      ser;
     await axioc
       .put(baseUrl + "/updateservices", {
         guidServicesId: serviesSelectInfo.guidServicesId,
@@ -92,7 +89,7 @@ function SeviesFunctions() {
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
+        dataEvent.forEach((event) => {
           if (event.guidServicesId === serviesSelectInfo.guidServicesId) {
             event.name = serviesSelectInfo.name;
             event.listServices = serviesSelectInfo.listServices;
@@ -136,15 +133,15 @@ function SeviesFunctions() {
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserServies(!modalInserServies);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditServies(!modalEditServies);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteServies(!modalDeleteServies);
   };
 
   useEffect(() => {
@@ -164,9 +161,9 @@ function SeviesFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
@@ -185,9 +182,9 @@ function SeviesFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -196,7 +193,7 @@ function SeviesFunctions() {
     <div className={styles.modal}>
       <p>
         Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.name}</b>?{" "}
+        <b>{serviesSelectInfo && serviesSelectInfo.guidServicesId}</b>?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -214,18 +211,18 @@ function SeviesFunctions() {
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table Servies"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
+            tooltip: "Edit Servies",
             onClick: (event, rowData) => selectServies(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
+            tooltip: "Delete Servies",
             onClick: (event, rowData) => selectServies(rowData, "Delete"),
           },
         ]}
@@ -234,13 +231,13 @@ function SeviesFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal open={modalInserServies} onClose={openCloseModalInsert}>
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditServies} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal open={modalDeleteServies} onClose={openCloseModalDelete}>
         {bodyDelete}
       </Modal>
     </div>
@@ -248,33 +245,3 @@ function SeviesFunctions() {
 }
 
 export default SeviesFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/

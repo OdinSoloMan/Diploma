@@ -37,26 +37,37 @@ const useStyles = makeStyles((theme) => ({
 function ConsultationRequestsFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
-  const [serviesSelectInfo, setServiesSelectInfo] = useState({
+  const [
+    modalInserConsultationRequests,
+    setModalInserConsultationRequests,
+  ] = useState(false);
+  const [
+    modalEditConsultationRequests,
+    setModalEditConsultationRequests,
+  ] = useState(false);
+  const [
+    modalDeleteConsultationRequests,
+    setModalDeleteConsultationRequests,
+  ] = useState(false);
+  const [
+    consultationRequestSelectInfo,
+    setConsultationRequestSelectInfo,
+  ] = useState({
     guidConsultationRequestsId: "",
     description: "",
     reverseCommunication: "",
     usersId: "",
     listServicesId: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(222, name);
-    setServiesSelectInfo((prevState) => ({
+    setConsultationRequestSelectInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(serviesSelectInfo);
+    console.log(consultationRequestSelectInfo);
   };
 
   const servicGet = async () => {
@@ -72,13 +83,14 @@ function ConsultationRequestsFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addconsultationRequests", serviesSelectInfo);
+    console.log("addconsultationRequests", consultationRequestSelectInfo);
     await axioc
       .post(baseUrl + "/addconsultationRequests", {
-        description: serviesSelectInfo.description,
-        reverseCommunication : serviesSelectInfo.reverseCommunication,
-        usersId : serviesSelectInfo.usersId,
-        listServicesId : serviesSelectInfo.listServicesId,
+        description: consultationRequestSelectInfo.description,
+        reverseCommunication:
+          consultationRequestSelectInfo.reverseCommunication,
+        usersId: consultationRequestSelectInfo.usersId,
+        listServicesId: consultationRequestSelectInfo.listServicesId,
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -90,25 +102,31 @@ function ConsultationRequestsFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("updateconsultationRequests", serviesSelectInfo);
-    var s = serviesSelectInfo.name,
-      ser;
+    console.log("updateconsultationRequests", consultationRequestSelectInfo);
     await axioc
       .put(baseUrl + "/updateconsultationRequests", {
-        guidConsultationRequestsId : serviesSelectInfo.guidConsultationRequestsId,
-        description: serviesSelectInfo.description,
-        reverseCommunication : serviesSelectInfo.reverseCommunication,
-        usersId : serviesSelectInfo.usersId,
-        listServicesId : serviesSelectInfo.listServicesId,
+        guidConsultationRequestsId:
+          consultationRequestSelectInfo.guidConsultationRequestsId,
+        description: consultationRequestSelectInfo.description,
+        reverseCommunication:
+          consultationRequestSelectInfo.reverseCommunication,
+        usersId: consultationRequestSelectInfo.usersId,
+        listServicesId: consultationRequestSelectInfo.listServicesId,
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
-          if (event.guidConsultationRequestsId === serviesSelectInfo.guidConsultationRequestsId) {
-            event.description = serviesSelectInfo.description;
-            event.reverseCommunication = serviesSelectInfo.reverseCommunication;
-            event.usersId = serviesSelectInfo.usersId;
-            event.listServicesId = serviesSelectInfo.listServicesId;
+        dataEvent.forEach((event) => {
+          if (
+            event.guidConsultationRequestsId ===
+            consultationRequestSelectInfo.guidConsultationRequestsId
+          ) {
+            event.description = consultationRequestSelectInfo.description;
+            event.reverseCommunication =
+              consultationRequestSelectInfo.reverseCommunication;
+            event.usersId = consultationRequestSelectInfo.usersId;
+            event.listServicesId = consultationRequestSelectInfo.listServicesId;
+          } else {
+            console.log(dataEvent);
           }
         });
         setData(dataEvent);
@@ -120,15 +138,23 @@ function ConsultationRequestsFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("deleteconsultationRequests", serviesSelectInfo);
+    console.log("deleteconsultationRequests", consultationRequestSelectInfo);
     await axioc
-    .delete(baseUrl + "/deleteconsultationRequests/" + serviesSelectInfo.guidConsultationRequestsId, {
-        guidConsultationRequestsId: serviesSelectInfo.guidConsultationRequestsId,
-      })
+      .delete(
+        baseUrl +
+          "/deleteconsultationRequests/" +
+          consultationRequestSelectInfo.guidConsultationRequestsId,
+        {
+          guidConsultationRequestsId:
+            consultationRequestSelectInfo.guidConsultationRequestsId,
+        }
+      )
       .then((response) => {
         setData(
           data.filter(
-            (event) => event.guidConsultationRequestsId !== serviesSelectInfo.guidConsultationRequestsId
+            (event) =>
+              event.guidConsultationRequestsId !==
+              consultationRequestSelectInfo.guidConsultationRequestsId
           )
         );
         openCloseModalDelete();
@@ -138,22 +164,22 @@ function ConsultationRequestsFunctions() {
       });
   };
 
-  const selectServies = (name, caso) => {
+  const selectConsultationRequest = (name, caso) => {
     console.log(111, name);
-    setServiesSelectInfo(name);
+    setConsultationRequestSelectInfo(name);
     caso === "Editar" ? openCloseModalEdit() : openCloseModalDelete();
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserConsultationRequests(!modalInserConsultationRequests);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditConsultationRequests(!modalEditConsultationRequests);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteConsultationRequests(!modalDeleteConsultationRequests);
   };
 
   useEffect(() => {
@@ -162,7 +188,7 @@ function ConsultationRequestsFunctions() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>New servies</h3>
+      <h3>New consultation requests</h3>
       <TextField
         className={styles.inputMaterial}
         label="Description"
@@ -194,22 +220,25 @@ function ConsultationRequestsFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
 
   const bodyEdit = (
     <div className={styles.modal}>
-      <h3>Edit servies</h3>
+      <h3>Edit consultation requests</h3>
       <TextField
         className={styles.inputMaterial}
         label="Description"
         name="description"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.description}
+        value={
+          consultationRequestSelectInfo &&
+          consultationRequestSelectInfo.description
+        }
       />
       <br />
       <TextField
@@ -217,15 +246,20 @@ function ConsultationRequestsFunctions() {
         label="ReverseCommunication"
         name="reverseCommunication"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.reverseCommunication}
+        value={
+          consultationRequestSelectInfo &&
+          consultationRequestSelectInfo.reverseCommunication
+        }
       />
-     <br />
+      <br />
       <TextField
         className={styles.inputMaterial}
         label="UsersId"
         name="usersId"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.usersId}
+        value={
+          consultationRequestSelectInfo && consultationRequestSelectInfo.usersId
+        }
       />
       <br />
       <TextField
@@ -233,14 +267,17 @@ function ConsultationRequestsFunctions() {
         label="ListServicesId"
         name="listServicesId"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.listServicesId}
+        value={
+          consultationRequestSelectInfo &&
+          consultationRequestSelectInfo.listServicesId
+        }
       />
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -248,8 +285,12 @@ function ConsultationRequestsFunctions() {
   const bodyDelete = (
     <div className={styles.modal}>
       <p>
-        Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.guidConsultationRequestsId}</b>?{" "}
+        Are you sure you want to delete the consultation requests <br />
+        <b>
+          {consultationRequestSelectInfo &&
+            consultationRequestSelectInfo.guidConsultationRequestsId}
+        </b>
+        ?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -263,23 +304,27 @@ function ConsultationRequestsFunctions() {
   return (
     <div>
       <br />
-      <Button onClick={() => openCloseModalInsert()}>Insert Servies</Button>
+      <Button onClick={() => openCloseModalInsert()}>
+        Insert Consultation Requests
+      </Button>
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table Consultation Requests"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
-            onClick: (event, rowData) => selectServies(rowData, "Editar"),
+            tooltip: "Edit Consultation Requests",
+            onClick: (event, rowData) =>
+              selectConsultationRequest(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
-            onClick: (event, rowData) => selectServies(rowData, "Delete"),
+            tooltip: "Delete Consultation Requests",
+            onClick: (event, rowData) =>
+              selectConsultationRequest(rowData, "Delete"),
           },
         ]}
         options={{
@@ -287,13 +332,19 @@ function ConsultationRequestsFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal
+        open={modalInserConsultationRequests}
+        onClose={openCloseModalInsert}
+      >
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditConsultationRequests} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal
+        open={modalDeleteConsultationRequests}
+        onClose={openCloseModalDelete}
+      >
         {bodyDelete}
       </Modal>
     </div>
@@ -301,33 +352,3 @@ function ConsultationRequestsFunctions() {
 }
 
 export default ConsultationRequestsFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/

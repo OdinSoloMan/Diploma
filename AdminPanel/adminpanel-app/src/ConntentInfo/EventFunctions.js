@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
 function EventFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
-  const [serviesSelectInfo, setServiesSelectInfo] = useState({
+  const [modalInserEvents, setModalInserEvents] = useState(false);
+  const [modalEditEvents, setModalEditEvents] = useState(false);
+  const [modalDeleteEvents, setModalDeleteEvents] = useState(false);
+  const [eventsSelectInfo, setEventsSelectInfo] = useState({
     guidEventsId: "",
     eventTitle: "",
     descriptionOfTheEvent: "",
@@ -50,17 +50,16 @@ function EventFunctions() {
     imageEvents: "",
     isConsidered: "",
     usersId: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(222, name);
-    setServiesSelectInfo((prevState) => ({
+    setEventsSelectInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(serviesSelectInfo);
+    console.log(eventsSelectInfo);
   };
 
   const servicGet = async () => {
@@ -76,21 +75,21 @@ function EventFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addevents", serviesSelectInfo);
+    console.log("addevents", eventsSelectInfo);
     let s = false;
-    if (serviesSelectInfo.isConsidered === "true") {
+    if (eventsSelectInfo.isConsidered === "true") {
       s = true;
     } else {
-        s = false;
+      s = false;
     }
     await axioc
       .post(baseUrl + "/addevents", {
-        eventTitle: serviesSelectInfo.eventTitle,
-        descriptionOfTheEvent: serviesSelectInfo.descriptionOfTheEvent,
-        plannedStartDate: serviesSelectInfo.plannedStartDate,
-        imageEvents: serviesSelectInfo.imageEvents,
+        eventTitle: eventsSelectInfo.eventTitle,
+        descriptionOfTheEvent: eventsSelectInfo.descriptionOfTheEvent,
+        plannedStartDate: eventsSelectInfo.plannedStartDate,
+        imageEvents: eventsSelectInfo.imageEvents,
         isConsidered: s,
-        usersId: serviesSelectInfo.usersId,
+        usersId: eventsSelectInfo.usersId,
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -102,33 +101,34 @@ function EventFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("updateevents", serviesSelectInfo);
+    console.log("updateevents", eventsSelectInfo);
     let s = false;
-    if (serviesSelectInfo.isConsidered === "true") {
+    if (eventsSelectInfo.isConsidered === "true") {
       s = true;
     } else {
-        s = false;
+      s = false;
     }
     await axioc
       .put(baseUrl + "/updateevents", {
-        guidEventsId: serviesSelectInfo.guidEventsId,
-        eventTitle: serviesSelectInfo.eventTitle,
-        descriptionOfTheEvent: serviesSelectInfo.descriptionOfTheEvent,
-        plannedStartDate: serviesSelectInfo.plannedStartDate,
-        imageEvents: serviesSelectInfo.imageEvents,
+        guidEventsId: eventsSelectInfo.guidEventsId,
+        eventTitle: eventsSelectInfo.eventTitle,
+        descriptionOfTheEvent: eventsSelectInfo.descriptionOfTheEvent,
+        plannedStartDate: eventsSelectInfo.plannedStartDate,
+        imageEvents: eventsSelectInfo.imageEvents,
         isConsidered: s,
-        usersId: serviesSelectInfo.usersId,
+        usersId: eventsSelectInfo.usersId,
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
-          if (event.guidEventsId === serviesSelectInfo.guidEventsId) {
-            event.eventTitle= serviesSelectInfo.eventTitle;
-            event.descriptionOfTheEvent= serviesSelectInfo.descriptionOfTheEvent;
-            event.plannedStartDate= serviesSelectInfo.plannedStartDate;
-            event.imageEvents= serviesSelectInfo.imageEvents;
-            event.isConsidered= serviesSelectInfo.isConsidered;
-            event.usersId= serviesSelectInfo.usersId;
+        dataEvent.forEach((event) => {
+          if (event.guidEventsId === eventsSelectInfo.guidEventsId) {
+            event.eventTitle = eventsSelectInfo.eventTitle;
+            event.descriptionOfTheEvent =
+              eventsSelectInfo.descriptionOfTheEvent;
+            event.plannedStartDate = eventsSelectInfo.plannedStartDate;
+            event.imageEvents = eventsSelectInfo.imageEvents;
+            event.isConsidered = eventsSelectInfo.isConsidered;
+            event.usersId = eventsSelectInfo.usersId;
           }
         });
         setData(dataEvent);
@@ -140,19 +140,15 @@ function EventFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("delete", serviesSelectInfo);
+    console.log("delete", eventsSelectInfo);
     await axioc
-      .delete(
-        baseUrl + "/deleteevents/" + serviesSelectInfo.guidEventsId,
-        {
-            guidEventsId: serviesSelectInfo.guidEventsId,
-        }
-      )
+      .delete(baseUrl + "/deleteevents/" + eventsSelectInfo.guidEventsId, {
+        guidEventsId: eventsSelectInfo.guidEventsId,
+      })
       .then((response) => {
         setData(
           data.filter(
-            (event) =>
-              event.guidEventsId !== serviesSelectInfo.guidEventsId
+            (event) => event.guidEventsId !== eventsSelectInfo.guidEventsId
           )
         );
         openCloseModalDelete();
@@ -162,22 +158,22 @@ function EventFunctions() {
       });
   };
 
-  const selectServies = (name, caso) => {
+  const selectEvents = (name, caso) => {
     console.log(111, name);
-    setServiesSelectInfo(name);
+    setEventsSelectInfo(name);
     caso === "Editar" ? openCloseModalEdit() : openCloseModalDelete();
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserEvents(!modalInserEvents);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditEvents(!modalEditEvents);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteEvents(!modalDeleteEvents);
   };
 
   useEffect(() => {
@@ -186,7 +182,7 @@ function EventFunctions() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>New servies</h3>
+      <h3>New events</h3>
       <TextField
         className={styles.inputMaterial}
         label="EventTitle"
@@ -233,39 +229,38 @@ function EventFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
 
   const bodyEdit = (
     <div className={styles.modal}>
-      <h3>Edit servies</h3>
+      <h3>Edit events</h3>
       <TextField
         className={styles.inputMaterial}
         label="EventTitle"
         name="eventTitle"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.eventTitle}
+        value={eventsSelectInfo && eventsSelectInfo.eventTitle}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
         label="DescriptionOfTheEvent"
         name="descriptionOfTheEvent"
-        onChange={handleChange}        
-        value={serviesSelectInfo && serviesSelectInfo.descriptionOfTheEvent}
+        onChange={handleChange}
+        value={eventsSelectInfo && eventsSelectInfo.descriptionOfTheEvent}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        //label="PlannedStartDate"
         type="datetime-local"
         name="plannedStartDate"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.plannedStartDate}
+        value={eventsSelectInfo && eventsSelectInfo.plannedStartDate}
       />
       <br />
       <TextField
@@ -273,7 +268,7 @@ function EventFunctions() {
         label="ImageEvents"
         name="imageEvents"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.imageEvents}
+        value={eventsSelectInfo && eventsSelectInfo.imageEvents}
       />
       <br />
       <TextField
@@ -281,7 +276,7 @@ function EventFunctions() {
         label="IsConsidered"
         name="isConsidered"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.isConsidered}
+        value={eventsSelectInfo && eventsSelectInfo.isConsidered}
       />
       <br />
       <TextField
@@ -289,15 +284,15 @@ function EventFunctions() {
         label="UsersId"
         name="usersId"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.usersId}
+        value={eventsSelectInfo && eventsSelectInfo.usersId}
       />
       <br />
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -305,8 +300,8 @@ function EventFunctions() {
   const bodyDelete = (
     <div className={styles.modal}>
       <p>
-        Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.guidEventsId}</b>?{" "}
+        Are you sure you want to delete the events{" "}
+        <b>{eventsSelectInfo && eventsSelectInfo.guidEventsId}</b>?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -320,23 +315,23 @@ function EventFunctions() {
   return (
     <div>
       <br />
-      <Button onClick={() => openCloseModalInsert()}>Insert Servies</Button>
+      <Button onClick={() => openCloseModalInsert()}>Insert Events</Button>
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table Events"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
-            onClick: (event, rowData) => selectServies(rowData, "Editar"),
+            tooltip: "Edit events",
+            onClick: (event, rowData) => selectEvents(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
-            onClick: (event, rowData) => selectServies(rowData, "Delete"),
+            tooltip: "Delete events",
+            onClick: (event, rowData) => selectEvents(rowData, "Delete"),
           },
         ]}
         options={{
@@ -344,13 +339,13 @@ function EventFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal open={modalInserEvents} onClose={openCloseModalInsert}>
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditEvents} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal open={modalDeleteEvents} onClose={openCloseModalDelete}>
         {bodyDelete}
       </Modal>
     </div>
@@ -358,33 +353,3 @@ function EventFunctions() {
 }
 
 export default EventFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/

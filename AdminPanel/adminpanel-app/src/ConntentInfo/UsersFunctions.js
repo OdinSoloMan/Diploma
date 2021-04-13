@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
 function UsersFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
-  const [serviesSelectInfo, setServiesSelectInfo] = useState({
+  const [modalInserUsers, setModalInserUsers] = useState(false);
+  const [modalEditUsers, setModalEditUsers] = useState(false);
+  const [modalDeleteUsers, setModalDeleteUsers] = useState(false);
+  const [usersSelectInfo, setUsersSelectInfo] = useState({
     guidUsersId: "",
     fullName: "",
     email: "",
@@ -52,17 +52,16 @@ function UsersFunctions() {
     typeOfEnterprise: "",
     role: "",
     password: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(222, name);
-    setServiesSelectInfo((prevState) => ({
+    setUsersSelectInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(serviesSelectInfo);
+    console.log(usersSelectInfo);
   };
 
   const servicGet = async () => {
@@ -78,16 +77,16 @@ function UsersFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addusers", serviesSelectInfo);
+    console.log("addusers", usersSelectInfo);
     await axioc
       .post(baseUrl + "/addusers", {
-        fullName: serviesSelectInfo.fullName,
-        email: serviesSelectInfo.email,
-        telephone: serviesSelectInfo.telephone,
-        position: serviesSelectInfo.position,
-        typeOfEnterprise: serviesSelectInfo.typeOfEnterprise,
-        role: serviesSelectInfo.role,
-        password: serviesSelectInfo.password
+        fullName: usersSelectInfo.fullName,
+        email: usersSelectInfo.email,
+        telephone: usersSelectInfo.telephone,
+        position: usersSelectInfo.position,
+        typeOfEnterprise: usersSelectInfo.typeOfEnterprise,
+        role: usersSelectInfo.role,
+        password: usersSelectInfo.password,
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -99,31 +98,29 @@ function UsersFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("update", serviesSelectInfo);
-    var s = serviesSelectInfo.name,
-      ser;
+    console.log("update", usersSelectInfo);
     await axioc
       .put(baseUrl + "/updateusers", {
-        guidUsersId : serviesSelectInfo.guidUsersId,
-        fullName: serviesSelectInfo.fullName,
-        email: serviesSelectInfo.email,
-        telephone: serviesSelectInfo.telephone,
-        position: serviesSelectInfo.position,
-        typeOfEnterprise: serviesSelectInfo.typeOfEnterprise,
-        role: serviesSelectInfo.role,
-        password: serviesSelectInfo.password
+        guidUsersId: usersSelectInfo.guidUsersId,
+        fullName: usersSelectInfo.fullName,
+        email: usersSelectInfo.email,
+        telephone: usersSelectInfo.telephone,
+        position: usersSelectInfo.position,
+        typeOfEnterprise: usersSelectInfo.typeOfEnterprise,
+        role: usersSelectInfo.role,
+        password: usersSelectInfo.password,
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
-          if (event.guidUsersId === serviesSelectInfo.guidUsersId) {
-            event.fullName = serviesSelectInfo.fullName;
-            event.email = serviesSelectInfo.email;
-            event.telephone = serviesSelectInfo.telephone;
-            event.position = serviesSelectInfo.position;
-            event.typeOfEnterprise = serviesSelectInfo.typeOfEnterprise;
-            event.role = serviesSelectInfo.role;
-            event.password = serviesSelectInfo.password;
+        dataEvent.forEach((event) => {
+          if (event.guidUsersId === usersSelectInfo.guidUsersId) {
+            event.fullName = usersSelectInfo.fullName;
+            event.email = usersSelectInfo.email;
+            event.telephone = usersSelectInfo.telephone;
+            event.position = usersSelectInfo.position;
+            event.typeOfEnterprise = usersSelectInfo.typeOfEnterprise;
+            event.role = usersSelectInfo.role;
+            event.password = usersSelectInfo.password;
           }
         });
         setData(dataEvent);
@@ -135,15 +132,15 @@ function UsersFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("deleteusers", serviesSelectInfo);
+    console.log("deleteusers", usersSelectInfo);
     await axioc
-      .delete(baseUrl + "/deleteusers/" + serviesSelectInfo.guidUsersId, {
-        guidUsersId: serviesSelectInfo.guidUsersId,
+      .delete(baseUrl + "/deleteusers/" + usersSelectInfo.guidUsersId, {
+        guidUsersId: usersSelectInfo.guidUsersId,
       })
       .then((response) => {
         setData(
           data.filter(
-            (event) => event.guidUsersId !== serviesSelectInfo.guidUsersId
+            (event) => event.guidUsersId !== usersSelectInfo.guidUsersId
           )
         );
         openCloseModalDelete();
@@ -153,22 +150,22 @@ function UsersFunctions() {
       });
   };
 
-  const selectServies = (name, caso) => {
+  const selectUsers = (name, caso) => {
     console.log(111, name);
-    setServiesSelectInfo(name);
+    setUsersSelectInfo(name);
     caso === "Editar" ? openCloseModalEdit() : openCloseModalDelete();
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserUsers(!modalInserUsers);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditUsers(!modalEditUsers);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteUsers(!modalDeleteUsers);
   };
 
   useEffect(() => {
@@ -177,7 +174,7 @@ function UsersFunctions() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>New servies</h3>
+      <h3>New users</h3>
       <TextField
         className={styles.inputMaterial}
         label="FullName"
@@ -230,22 +227,22 @@ function UsersFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
 
   const bodyEdit = (
     <div className={styles.modal}>
-      <h3>Edit servies</h3>
+      <h3>Edit users</h3>
       <TextField
         className={styles.inputMaterial}
         label="FullName"
         name="fullName"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.fullName}
+        value={usersSelectInfo && usersSelectInfo.fullName}
       />
       <br />
       <TextField
@@ -253,7 +250,7 @@ function UsersFunctions() {
         label="Email"
         name="email"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.email}
+        value={usersSelectInfo && usersSelectInfo.email}
       />
       <br />
       <TextField
@@ -261,7 +258,7 @@ function UsersFunctions() {
         label="Telephone"
         name="telephone"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.telephone}
+        value={usersSelectInfo && usersSelectInfo.telephone}
       />
       <br />
       <TextField
@@ -269,7 +266,7 @@ function UsersFunctions() {
         label="Position"
         name="position"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.position}
+        value={usersSelectInfo && usersSelectInfo.position}
       />
       <br />
       <TextField
@@ -277,7 +274,7 @@ function UsersFunctions() {
         label="TypeOfEnterprise"
         name="typeOfEnterprise"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.typeOfEnterprise}
+        value={usersSelectInfo && usersSelectInfo.typeOfEnterprise}
       />
       <br />
       <TextField
@@ -285,7 +282,7 @@ function UsersFunctions() {
         label="Role"
         name="role"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.role}
+        value={usersSelectInfo && usersSelectInfo.role}
       />
       <br />
       <TextField
@@ -293,15 +290,15 @@ function UsersFunctions() {
         label="Password"
         name="password"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.password}
+        value={usersSelectInfo && usersSelectInfo.password}
       />
       <br />
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -309,8 +306,8 @@ function UsersFunctions() {
   const bodyDelete = (
     <div className={styles.modal}>
       <p>
-        Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.guidUsersId}</b>?{" "}
+        Are you sure you want to delete the users{" "}
+        <b>{usersSelectInfo && usersSelectInfo.guidUsersId}</b>?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -324,23 +321,23 @@ function UsersFunctions() {
   return (
     <div>
       <br />
-      <Button onClick={() => openCloseModalInsert()}>Insert Servies</Button>
+      <Button onClick={() => openCloseModalInsert()}>Insert Users</Button>
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table Users"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
-            onClick: (event, rowData) => selectServies(rowData, "Editar"),
+            tooltip: "Edit Users",
+            onClick: (event, rowData) => selectUsers(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
-            onClick: (event, rowData) => selectServies(rowData, "Delete"),
+            tooltip: "Delete Users",
+            onClick: (event, rowData) => selectUsers(rowData, "Delete"),
           },
         ]}
         options={{
@@ -348,13 +345,13 @@ function UsersFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal open={modalInserUsers} onClose={openCloseModalInsert}>
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditUsers} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal open={modalDeleteUsers} onClose={openCloseModalDelete}>
         {bodyDelete}
       </Modal>
     </div>
@@ -362,33 +359,3 @@ function UsersFunctions() {
 }
 
 export default UsersFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/

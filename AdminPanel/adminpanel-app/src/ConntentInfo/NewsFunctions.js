@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
 function NewsFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
-  const [serviesSelectInfo, setServiesSelectInfo] = useState({
+  const [modalInserNews, setModalInserNews] = useState(false);
+  const [modalEditNews, setModalEditNews] = useState(false);
+  const [modalDeleteNews, setModalDeleteNews] = useState(false);
+  const [newsSelectInfo, setNewsSelectInfo] = useState({
     guidNewsId: "",
     newTitle: "",
     newDescription: "",
@@ -50,17 +50,16 @@ function NewsFunctions() {
     imageNew: "",
     isConsidered: "",
     usersId: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(222, name);
-    setServiesSelectInfo((prevState) => ({
+    setNewsSelectInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(serviesSelectInfo);
+    console.log(newsSelectInfo);
   };
 
   const servicGet = async () => {
@@ -76,21 +75,21 @@ function NewsFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addnews", serviesSelectInfo);
+    console.log("addnews", newsSelectInfo);
     let s = false;
-    if (serviesSelectInfo.isConsidered === "true") {
+    if (newsSelectInfo.isConsidered === "true") {
       s = true;
     } else {
-        s = false;
+      s = false;
     }
     await axioc
       .post(baseUrl + "/addnews", {
-        newTitle: serviesSelectInfo.newTitle,
-        newDescription: serviesSelectInfo.newDescription,
-        dataNew: serviesSelectInfo.dataNew,
-        imageNew: serviesSelectInfo.imageNew,
+        newTitle: newsSelectInfo.newTitle,
+        newDescription: newsSelectInfo.newDescription,
+        dataNew: newsSelectInfo.dataNew,
+        imageNew: newsSelectInfo.imageNew,
         isConsidered: s,
-        usersId: serviesSelectInfo.usersId,
+        usersId: newsSelectInfo.usersId,
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -102,33 +101,33 @@ function NewsFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("updatenews", serviesSelectInfo);
+    console.log("updatenews", newsSelectInfo);
     let s = false;
-    if (serviesSelectInfo.isConsidered === "true") {
+    if (newsSelectInfo.isConsidered === "true") {
       s = true;
     } else {
-        s = false;
+      s = false;
     }
     await axioc
       .put(baseUrl + "/updatenews", {
-        guidNewsId: serviesSelectInfo.guidNewsId,
-        newTitle: serviesSelectInfo.newTitle,
-        newDescription: serviesSelectInfo.newDescription,
-        dataNew: serviesSelectInfo.dataNew,
-        imageNew: serviesSelectInfo.imageNew,
+        guidNewsId: newsSelectInfo.guidNewsId,
+        newTitle: newsSelectInfo.newTitle,
+        newDescription: newsSelectInfo.newDescription,
+        dataNew: newsSelectInfo.dataNew,
+        imageNew: newsSelectInfo.imageNew,
         isConsidered: s,
-        usersId: serviesSelectInfo.usersId,
+        usersId: newsSelectInfo.usersId,
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
-          if (event.guidNewsId === serviesSelectInfo.guidNewsId) {
-            event.newTitle= serviesSelectInfo.newTitle;
-            event.newDescription= serviesSelectInfo.newDescription;
-            event.dataNew= serviesSelectInfo.dataNew;
-            event.imageNew= serviesSelectInfo.imageNew;
-            event.isConsidered= serviesSelectInfo.isConsidered;
-            event.usersId= serviesSelectInfo.usersId;
+        dataEvent.forEach((event) => {
+          if (event.guidNewsId === newsSelectInfo.guidNewsId) {
+            event.newTitle = newsSelectInfo.newTitle;
+            event.newDescription = newsSelectInfo.newDescription;
+            event.dataNew = newsSelectInfo.dataNew;
+            event.imageNew = newsSelectInfo.imageNew;
+            event.isConsidered = newsSelectInfo.isConsidered;
+            event.usersId = newsSelectInfo.usersId;
           }
         });
         setData(dataEvent);
@@ -140,20 +139,14 @@ function NewsFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("deletenews", serviesSelectInfo);
+    console.log("deletenews", newsSelectInfo);
     await axioc
-      .delete(
-        baseUrl + "/deletenews/" + serviesSelectInfo.guidNewsId,
-        {
-            guidNewsId: serviesSelectInfo.guidNewsId,
-        }
-      )
+      .delete(baseUrl + "/deletenews/" + newsSelectInfo.guidNewsId, {
+        guidNewsId: newsSelectInfo.guidNewsId,
+      })
       .then((response) => {
         setData(
-          data.filter(
-            (event) =>
-              event.guidNewsId !== serviesSelectInfo.guidNewsId
-          )
+          data.filter((event) => event.guidNewsId !== newsSelectInfo.guidNewsId)
         );
         openCloseModalDelete();
       })
@@ -162,22 +155,22 @@ function NewsFunctions() {
       });
   };
 
-  const selectServies = (name, caso) => {
+  const selectNews = (name, caso) => {
     console.log(111, name);
-    setServiesSelectInfo(name);
+    setNewsSelectInfo(name);
     caso === "Editar" ? openCloseModalEdit() : openCloseModalDelete();
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserNews(!modalInserNews);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditNews(!modalEditNews);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteNews(!modalDeleteNews);
   };
 
   useEffect(() => {
@@ -186,7 +179,7 @@ function NewsFunctions() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>New servies</h3>
+      <h3>New news</h3>
       <TextField
         className={styles.inputMaterial}
         label="NewTitle"
@@ -233,22 +226,22 @@ function NewsFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
 
   const bodyEdit = (
     <div className={styles.modal}>
-      <h3>Edit servies</h3>
+      <h3>Edit news</h3>
       <TextField
         className={styles.inputMaterial}
         label="NewTitle"
         name="newTitle"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.newTitle}
+        value={newsSelectInfo && newsSelectInfo.newTitle}
       />
       <br />
       <TextField
@@ -256,7 +249,7 @@ function NewsFunctions() {
         label="NewDescription"
         name="newDescription"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.newDescription}
+        value={newsSelectInfo && newsSelectInfo.newDescription}
       />
       <br />
       <TextField
@@ -265,7 +258,7 @@ function NewsFunctions() {
         type="datetime-local"
         name="dataNew"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.dataNew}
+        value={newsSelectInfo && newsSelectInfo.dataNew}
       />
       <br />
       <TextField
@@ -273,7 +266,7 @@ function NewsFunctions() {
         label="ImageNew"
         name="imageNew"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.imageNew}
+        value={newsSelectInfo && newsSelectInfo.imageNew}
       />
       <br />
       <TextField
@@ -281,7 +274,7 @@ function NewsFunctions() {
         label="IsConsidered"
         name="isConsidered"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.isConsidered}
+        value={newsSelectInfo && newsSelectInfo.isConsidered}
       />
       <br />
       <TextField
@@ -289,15 +282,15 @@ function NewsFunctions() {
         label="UsersId"
         name="usersId"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.usersId}
+        value={newsSelectInfo && newsSelectInfo.usersId}
       />
       <br />
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -305,8 +298,8 @@ function NewsFunctions() {
   const bodyDelete = (
     <div className={styles.modal}>
       <p>
-        Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.guidNewsId}</b>?{" "}
+        Are you sure you want to delete the news{" "}
+        <b>{newsSelectInfo && newsSelectInfo.guidNewsId}</b>?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -320,23 +313,23 @@ function NewsFunctions() {
   return (
     <div>
       <br />
-      <Button onClick={() => openCloseModalInsert()}>Insert Servies</Button>
+      <Button onClick={() => openCloseModalInsert()}>Insert News</Button>
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table News"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
-            onClick: (event, rowData) => selectServies(rowData, "Editar"),
+            tooltip: "Edit News",
+            onClick: (event, rowData) => selectNews(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
-            onClick: (event, rowData) => selectServies(rowData, "Delete"),
+            tooltip: "Delete News",
+            onClick: (event, rowData) => selectNews(rowData, "Delete"),
           },
         ]}
         options={{
@@ -344,13 +337,13 @@ function NewsFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal open={modalInserNews} onClose={openCloseModalInsert}>
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditNews} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal open={modalDeleteNews} onClose={openCloseModalDelete}>
         {bodyDelete}
       </Modal>
     </div>
@@ -358,33 +351,3 @@ function NewsFunctions() {
 }
 
 export default NewsFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/

@@ -35,24 +35,23 @@ const useStyles = makeStyles((theme) => ({
 function ListServicesFunctions() {
   const styles = useStyles();
   const [data, setData] = useState([]);
-  const [modalInserSerives, setModalInserSerives] = useState(false);
-  const [modalEditSerives, setModalEditSerives] = useState(false);
-  const [modalDeleteSerives, setModalDeleteSerives] = useState(false);
-  const [serviesSelectInfo, setServiesSelectInfo] = useState({
+  const [modalInserListServices, setModalInserListServices] = useState(false);
+  const [modalEditListServices, setModalEditListServices] = useState(false);
+  const [modalDeleteListServices, setModalDeleteListServices] = useState(false);
+  const [listServicesSelectInfo, setListServicesSelectInfo] = useState({
     guidListSevicesId: "",
     description: "",
     servicesId: "",
-    //listServices: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(222, name);
-    setServiesSelectInfo((prevState) => ({
+    setListServicesSelectInfo((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(serviesSelectInfo);
+    console.log(listServicesSelectInfo);
   };
 
   const servicGet = async () => {
@@ -68,11 +67,11 @@ function ListServicesFunctions() {
   };
 
   const addSerivcPost = async () => {
-    console.log("addlistsevices", serviesSelectInfo);
+    console.log("addlistsevices", listServicesSelectInfo);
     await axioc
       .post(baseUrl + "/addlistsevices", {
-        Description: serviesSelectInfo.description,
-        ServicesId : serviesSelectInfo.servicesId
+        Description: listServicesSelectInfo.description,
+        ServicesId: listServicesSelectInfo.servicesId,
       })
       .then((response) => {
         setData(data.concat(response.data));
@@ -84,21 +83,21 @@ function ListServicesFunctions() {
   };
 
   const updateSerivcePut = async () => {
-    console.log("updatelistsevices", serviesSelectInfo);
-    var s = serviesSelectInfo.name,
-      ser;
+    console.log("updatelistsevices", listServicesSelectInfo);
     await axioc
       .put(baseUrl + "/updatelistsevices", {
-        guidListSevicesId : serviesSelectInfo.guidListSevicesId,
-        description: serviesSelectInfo.description,
-        servicesId : serviesSelectInfo.servicesId
+        guidListSevicesId: listServicesSelectInfo.guidListSevicesId,
+        description: listServicesSelectInfo.description,
+        servicesId: listServicesSelectInfo.servicesId,
       })
       .then((response) => {
         var dataEvent = data;
-        dataEvent.map((event) => {
-          if (event.guidListSevicesId === serviesSelectInfo.guidListSevicesId) {
-            event.description = serviesSelectInfo.description;
-            event.servicesId = serviesSelectInfo.servicesId;
+        dataEvent.forEach((event) => {
+          if (
+            event.guidListSevicesId === listServicesSelectInfo.guidListSevicesId
+          ) {
+            event.description = listServicesSelectInfo.description;
+            event.servicesId = listServicesSelectInfo.servicesId;
           }
         });
         setData(dataEvent);
@@ -110,15 +109,22 @@ function ListServicesFunctions() {
   };
 
   const deleteSerivceDelete = async () => {
-    console.log("delete", serviesSelectInfo);
+    console.log("delete", listServicesSelectInfo);
     await axioc
-    .delete(baseUrl + "/deletelistsevices/" + serviesSelectInfo.guidListSevicesId, {
-        guidListSevicesId: serviesSelectInfo.guidListSevicesId,
-      })
+      .delete(
+        baseUrl +
+          "/deletelistsevices/" +
+          listServicesSelectInfo.guidListSevicesId,
+        {
+          guidListSevicesId: listServicesSelectInfo.guidListSevicesId,
+        }
+      )
       .then((response) => {
         setData(
           data.filter(
-            (event) => event.guidListSevicesId !== serviesSelectInfo.guidListSevicesId
+            (event) =>
+              event.guidListSevicesId !==
+              listServicesSelectInfo.guidListSevicesId
           )
         );
         openCloseModalDelete();
@@ -128,22 +134,22 @@ function ListServicesFunctions() {
       });
   };
 
-  const selectServies = (name, caso) => {
+  const selectListServices = (name, caso) => {
     console.log(111, name);
-    setServiesSelectInfo(name);
+    setListServicesSelectInfo(name);
     caso === "Editar" ? openCloseModalEdit() : openCloseModalDelete();
   };
 
   const openCloseModalInsert = () => {
-    setModalInserSerives(!modalInserSerives);
+    setModalInserListServices(!modalInserListServices);
   };
 
   const openCloseModalEdit = () => {
-    setModalEditSerives(!modalEditSerives);
+    setModalEditListServices(!modalEditListServices);
   };
 
   const openCloseModalDelete = () => {
-    setModalDeleteSerives(!modalDeleteSerives);
+    setModalDeleteListServices(!modalDeleteListServices);
   };
 
   useEffect(() => {
@@ -152,7 +158,7 @@ function ListServicesFunctions() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>New servies</h3>
+      <h3>New list service</h3>
       <TextField
         className={styles.inputMaterial}
         label="Description"
@@ -170,22 +176,22 @@ function ListServicesFunctions() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => addSerivcPost()}>
-          Insertar
+          Insert
         </Button>
-        <Button onClick={() => openCloseModalInsert()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalInsert()}>Cancel</Button>
       </div>
     </div>
   );
 
   const bodyEdit = (
     <div className={styles.modal}>
-      <h3>Edit servies</h3>
+      <h3>Edit list serviece</h3>
       <TextField
         className={styles.inputMaterial}
         label="Description"
         name="description"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.description}
+        value={listServicesSelectInfo && listServicesSelectInfo.description}
       />
       <br />
       <TextField
@@ -193,15 +199,15 @@ function ListServicesFunctions() {
         label="ServicesId"
         name="servicesId"
         onChange={handleChange}
-        value={serviesSelectInfo && serviesSelectInfo.servicesId}
+        value={listServicesSelectInfo && listServicesSelectInfo.servicesId}
       />
       <br />
       <br />
       <div align="right">
         <Button color="primary" onClick={() => updateSerivcePut()}>
-          Editar
+          Edit
         </Button>
-        <Button onClick={() => openCloseModalEdit()}>Cancelar</Button>
+        <Button onClick={() => openCloseModalEdit()}>Cancel</Button>
       </div>
     </div>
   );
@@ -209,8 +215,11 @@ function ListServicesFunctions() {
   const bodyDelete = (
     <div className={styles.modal}>
       <p>
-        Are you sure you want to delete the service{" "}
-        <b>{serviesSelectInfo && serviesSelectInfo.description}</b>?{" "}
+        Are you sure you want to delete the list serviece <br />
+        <b>
+          {listServicesSelectInfo && listServicesSelectInfo.guidListSevicesId}
+        </b>
+        ?{" "}
       </p>
       <div align="right">
         <Button color="secondary" onClick={() => deleteSerivceDelete()}>
@@ -224,23 +233,25 @@ function ListServicesFunctions() {
   return (
     <div>
       <br />
-      <Button onClick={() => openCloseModalInsert()}>Insert Servies</Button>
+      <Button onClick={() => openCloseModalInsert()}>
+        Insert List Service
+      </Button>
       <br />
       <br />
       <MaterialTable
-        title="Simple action preview list table"
+        title="Table List Service"
         columns={colums}
         data={data}
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit services",
-            onClick: (event, rowData) => selectServies(rowData, "Editar"),
+            tooltip: "Edit List Service",
+            onClick: (event, rowData) => selectListServices(rowData, "Editar"),
           },
           {
             icon: "delete",
-            tooltip: "Delete services",
-            onClick: (event, rowData) => selectServies(rowData, "Delete"),
+            tooltip: "Delete List Service",
+            onClick: (event, rowData) => selectListServices(rowData, "Delete"),
           },
         ]}
         options={{
@@ -248,13 +259,13 @@ function ListServicesFunctions() {
         }}
       />
 
-      <Modal open={modalInserSerives} onClose={openCloseModalInsert}>
+      <Modal open={modalInserListServices} onClose={openCloseModalInsert}>
         {bodyInsertar}
       </Modal>
-      <Modal open={modalEditSerives} onClose={openCloseModalEdit}>
+      <Modal open={modalEditListServices} onClose={openCloseModalEdit}>
         {bodyEdit}
       </Modal>
-      <Modal open={modalDeleteSerives} onClose={openCloseModalDelete}>
+      <Modal open={modalDeleteListServices} onClose={openCloseModalDelete}>
         {bodyDelete}
       </Modal>
     </div>
@@ -262,33 +273,3 @@ function ListServicesFunctions() {
 }
 
 export default ListServicesFunctions;
-/*
-function SimpleAction() {
-  return (
-    <MaterialTable
-      title="Simple Action Preview"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-      ]}        
-      actions={[
-        {
-          icon: 'save',
-          tooltip: 'Save User',
-          onClick: (event, rowData) => alert("You saved " + rowData.name)
-        }
-      ]}
-    />
-  )
-}
-*/
