@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-autoform',
@@ -10,6 +11,7 @@ export class AutoformPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

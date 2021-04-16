@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private router: Router, private renderer: Renderer2) { }
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/create');
+    }
+    else {
+      this.router.navigateByUrl('autoform');
+    }
+    console.log(localStorage.getItem('dark'));
+    if(localStorage.getItem('dark') == "true"){
+      this.renderer.setAttribute(document.body, 'class', 'dark');
+    }
+  }
 }
