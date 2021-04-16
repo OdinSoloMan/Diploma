@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> registrationPost([FromBody] Users users)
         {            
-            //users.Recording(users.SecondName, users.FirstName, users.MiddleMame, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password);
+            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, "users");
             db.Create(users);
             return new OkObjectResult(users);
         }
@@ -39,11 +39,11 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> Login([FromBody] AccountLoginOptions value)
         {
-            var identity = GetIdentity(value.Username, value.Password);
+            var identity = GetIdentity(value.Email, value.Password);
 
             if (identity == null)
             {
-                return new OkObjectResult(false);
+                return BadRequest();
             }
 
             var now = DateTime.UtcNow;
@@ -59,8 +59,7 @@ namespace WebApplication.Controllers
 
             return new OkObjectResult(new
             {
-                access_token = encodedJwt,
-                login = value.Username
+                token = encodedJwt
             });
         }
 
@@ -81,7 +80,7 @@ namespace WebApplication.Controllers
             Users users = null;
             foreach (Users Elm in Base)
             {
-                if (Elm.Email == login && Elm.Password == password) 
+                if (Elm.Email == login && Elm.Password == Md5.Convert(password)) 
                     users = Elm;
             }
             if (users != null)

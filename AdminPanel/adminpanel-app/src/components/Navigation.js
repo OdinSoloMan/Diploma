@@ -34,6 +34,9 @@ export class Navigation extends Component {
             <NavLink className="nav-link" to="/consultationrequests">
               ConsultationRequests
             </NavLink>
+            <NavLink className="nav-link" to="/contactus">
+            ContactUs
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">

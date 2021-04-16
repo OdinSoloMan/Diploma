@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize]
         [Route("readallevents")]
         [HttpGet]
         public ActionResult<string> ReadAllListEvents()

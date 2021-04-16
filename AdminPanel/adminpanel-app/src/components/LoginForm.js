@@ -89,6 +89,9 @@ function LoginForm() {
                             value={details.password}
                         />
                     </div>
+                    <div className="form-group">
+                    <p class="text-primary">Cherk In</p>
+                    </div>
                     <input className="btn btn-lg btn-primary" type="submit" value="LOGIN" />
                 </div>
             </form>

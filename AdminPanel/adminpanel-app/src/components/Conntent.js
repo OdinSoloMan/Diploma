@@ -6,6 +6,7 @@ import { Users } from '../ConntentInfo/Users';
 import { Servies } from '../ConntentInfo/Servies';
 import { ListServices } from '../ConntentInfo/ListServices'
 import { ConsultationRequests } from '../ConntentInfo/ConsultationRequests'
+import { ContactUs } from '../ConntentInfo/ContactUs'
 
 function Conntent() {
     return (
@@ -19,6 +20,7 @@ function Conntent() {
               <Route path='/servies' component={Servies} exact/>
               <Route path='/listservices' component={ListServices} exact/>
               <Route path='/consultationrequests' component={ConsultationRequests} exact/>
+              <Route path='/contactus' component={ContactUs} exact/>
             </Switch>
         </BrowserRouter>
       </div>
