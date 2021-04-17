@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Event, EventService } from '../pages/service/event.service';
 
 @Component({
   selector: 'app-create',
@@ -7,17 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./create.page.scss'],
 })
 export class CreatePage  {
+  events: Event[];
+  constructor( private service: EventService) { }
 
-  constructor(private http: HttpClient) { }
-
-  onCreate(){
-    const token = localStorage.getItem('token')
-    const headers = new HttpHeaders({
-      Authorization : 'Bearer ' + token
-    });
-
-    this.http.get(`https://localhost:44367/events/readallevents`, 
-     {headers}).subscribe(console.log);
+  async ngOnInit(){
+    this.service.getAll().subscribe(response => {
+      this.events = response;
+      console.log(response);
+    })
   }
-
 }

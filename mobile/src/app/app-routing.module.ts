@@ -34,7 +34,15 @@ const routes: Routes = [
   {
     path: 'autoform',
     loadChildren: () => import('./auth/autoform/autoform.module').then( m => m.AutoformPageModule)
+  },  {
+    path: 'news',
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
   },
+  {
+    path: 'events',
+    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
+  },
+
 ];
 
 @NgModule({
