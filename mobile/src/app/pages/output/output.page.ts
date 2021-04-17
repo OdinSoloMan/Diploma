@@ -15,13 +15,20 @@ export class OutputPage  {
 
   onExit() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
     this.router.navigateByUrl('/autoform');
     console.log("exit")
   }
 
-  onToggleColorTheme(event){
-    console.log(event.detail.checked);
+  ngOnInit() {
+    this.checkStatusTheme();
+  }
 
+  checkStatusTheme(){
+    return localStorage.getItem("dark");
+  }
+
+  onToggleColorTheme(event){
     if(event.detail.checked){
       localStorage.setItem("dark", "true");
       //document.body.setAttribute('class', 'dark');
