@@ -37,6 +37,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize]
         [Route("readallnews")]
         [HttpGet]
         public ActionResult<string> ReadAllNews()
