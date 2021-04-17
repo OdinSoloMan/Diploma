@@ -15,9 +15,7 @@ export class AuthService {
     return this.http.post(`${this.url}/registration`, user)
   }
 
-  login(credentials : User) : Observable<string>{
-    return this.http.post<{token : string}>(`${this.url}/login`, credentials).pipe(
-      map(response => response.token)
-    );
+  login(credentials : User){
+    return this.http.post(`${this.url}/login`, credentials)
   }
 }

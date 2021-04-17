@@ -46,6 +46,9 @@ namespace WebApplication.Controllers
                 return BadRequest();
             }
 
+            var s = identity.Claims.ToList();
+            var x = s[0].Value;
+
             var now = DateTime.UtcNow;
 
             var jwt = new JwtSecurityToken(
@@ -59,7 +62,8 @@ namespace WebApplication.Controllers
 
             return new OkObjectResult(new
             {
-                token = encodedJwt
+                token = encodedJwt,
+                guid = x
             });
         }
 

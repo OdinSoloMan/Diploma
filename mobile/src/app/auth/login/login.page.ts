@@ -28,8 +28,9 @@ export class LoginPage {
     await loading.present();
 
     this.authService.login(this.form.value).subscribe(
-      async token => {
-        localStorage.setItem('token', token);
+      async response => {
+        localStorage.setItem('token', response["token"]);
+        localStorage.setItem('user_id', response["guid"])
         loading.dismiss();
         this.router.navigateByUrl('/create');
       },

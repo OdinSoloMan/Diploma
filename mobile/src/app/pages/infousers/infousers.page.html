@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>info users</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content class="ion-padding">
+  <ion-card *ngFor="let users of infousers">
+    <ion-card-header>
+      <ion-card-title>{{users.email}}</ion-card-title>
+      <ion-card-title>{{users.fullName}}</ion-card-title>
+      <ion-card-title>{{users.guidUsersId}}</ion-card-title>
+      <ion-card-title>{{users.position}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content> -->
+<ion-content class="ion-padding">
+  <form *ngFor="let users of infousers">
+    <ion-item>
+      <ion-label position="floating">Full name</ion-label>
+      <ion-input type="text" required [value]="users.fullName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" required [value]="users.email" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telephone</ion-label>
+      <ion-input type="text" required [value]="users.telephone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">position</ion-label>
+      <ion-input type="test" required [value]="users.position"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">TypeOfEnterprise</ion-label>
+      <ion-input type="text" required [value]="users.typeOfEnterprise"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" required [value]="users.password"></ion-input>
+    </ion-item>
+    <ion-button type="submit" class="ion-margin-top" expand="block">
+      Update
+    </ion-button>
+  </form>
+</ion-content>

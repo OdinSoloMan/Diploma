@@ -9,7 +9,10 @@
 
 <ion-content class="ion-padding">
   <ion-card *ngFor="let event of events">
-    <ion-img [src]="event.imageEvents"></ion-img>
+    <ion-img
+      [src]="event.imageEvents"
+      style="box-sizing: border-box; width: 100%; padding: 1px"
+    ></ion-img>
     <ion-card-header>
       <ion-card-subtitle>{{event.plannedStartDate | date}}</ion-card-subtitle>
       <ion-card-title>{{event.eventTitle}}</ion-card-title>

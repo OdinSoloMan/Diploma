@@ -9,7 +9,10 @@
 
 <ion-content class="ion-padding">
   <ion-card *ngFor="let new of news">
-    <ion-img [src]="new.imageNew"></ion-img>
+    <ion-img
+      [src]="new.imageNew"
+      style="box-sizing: border-box; width: 100%; padding: 1px"
+    ></ion-img>
     <ion-card-header>
       <ion-card-subtitle>{{new.dataNew | date}}</ion-card-subtitle>
       <ion-card-title>{{new.newTitle}}</ion-card-title>
