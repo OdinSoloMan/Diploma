@@ -21,6 +21,7 @@ namespace WebApplication.Controllers
             db = new EventsRepository();
         }
 
+        [Authorize]
         [Route("addevents")]
         [HttpPost]
         public ActionResult<string> AddNewListEvents([FromBody] Events events)
@@ -33,7 +34,7 @@ namespace WebApplication.Controllers
             }
             catch
             {
-                return new OkObjectResult("Not add Events");
+                return BadRequest();
             }
         }
 
