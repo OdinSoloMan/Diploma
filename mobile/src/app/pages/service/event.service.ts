@@ -23,6 +23,6 @@ export class EventService {
     const headers = new HttpHeaders({
       Authorization : 'Bearer ' + token
     });
-    return this.http.get<[Event]>(this.url+'/readallevents', {headers});
+    return this.http.get<[Event]>(this.url+'/readalltevents', {headers});
   }
 }

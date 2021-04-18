@@ -38,6 +38,14 @@ namespace WebApplication.Controllers
         }
 
         [Authorize]
+        [Route("readalltnews")]
+        [HttpGet]
+        public ActionResult<string> ReadAlltNews()
+        {
+            return new OkObjectResult(db.ReadAllTrue());
+        }
+
+        [Authorize]
         [Route("readallnews")]
         [HttpGet]
         public ActionResult<string> ReadAllNews()

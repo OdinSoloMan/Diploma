@@ -39,6 +39,14 @@ namespace WebApplication.Controllers
         }
 
         [Authorize]
+        [Route("readalltevents")]
+        [HttpGet]
+        public ActionResult<string> ReadAlltListEvents()
+        {
+            return new OkObjectResult(db.ReadAllTrue());
+        }
+
+        [Authorize]
         [Route("readallevents")]
         [HttpGet]
         public ActionResult<string> ReadAllListEvents()

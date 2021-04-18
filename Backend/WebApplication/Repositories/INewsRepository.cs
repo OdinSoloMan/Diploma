@@ -10,6 +10,7 @@ namespace WebApplication.Repositories
     interface INewsRepository
     {
         IEnumerable ReadAll();
+        IEnumerable ReadAllTrue();
         void Create(News news);
         News Read(Guid GuidNewsId);
         void Update(News news);

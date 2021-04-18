@@ -46,5 +46,10 @@ namespace WebApplication.Repositories
             db.Entry(news).State = EntityState.Modified;
             db.SaveChanges();
         }
+
+        public IEnumerable ReadAllTrue()
+        {
+            return db.News.Where(c => c.IsConsidered == true);
+        }
     }
 }

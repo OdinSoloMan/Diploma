@@ -46,5 +46,10 @@ namespace WebApplication.Repositories
             db.Entry(events).State = EntityState.Modified;
             db.SaveChanges();
         }
+
+        public IEnumerable ReadAllTrue()
+        {
+            return db.Events.Where(c => c.IsConsidered == true);
+        }
     }
 }

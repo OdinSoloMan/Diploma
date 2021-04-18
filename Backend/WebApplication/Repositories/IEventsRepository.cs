@@ -10,6 +10,7 @@ namespace WebApplication.Repositories
     interface IEventsRepository
     {
         IEnumerable ReadAll();
+        IEnumerable ReadAllTrue();
         void Create(Events events);
         Events Read(Guid GuidEventsId);
         void Update(Events events);

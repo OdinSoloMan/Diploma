@@ -23,6 +23,6 @@ export class NewsService {
     const headers = new HttpHeaders({
       Authorization : 'Bearer ' + token
     });
-    return this.http.get<[News]>(this.url+'/readallnews', {headers});
+    return this.http.get<[News]>(this.url+'/readalltnews', {headers});
   }
 }
