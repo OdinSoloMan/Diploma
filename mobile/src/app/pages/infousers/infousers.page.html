@@ -7,44 +7,61 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content class="ion-padding">
-  <ion-card *ngFor="let users of infousers">
-    <ion-card-header>
-      <ion-card-title>{{users.email}}</ion-card-title>
-      <ion-card-title>{{users.fullName}}</ion-card-title>
-      <ion-card-title>{{users.guidUsersId}}</ion-card-title>
-      <ion-card-title>{{users.position}}</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-</ion-content> -->
 <ion-content class="ion-padding">
-  <form *ngFor="let users of infousers">
-    <ion-item>
-      <ion-label position="floating">Full name</ion-label>
-      <ion-input type="text" required [value]="users.fullName"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required [value]="users.email" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Telephone</ion-label>
-      <ion-input type="text" required [value]="users.telephone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">position</ion-label>
-      <ion-input type="test" required [value]="users.position"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">TypeOfEnterprise</ion-label>
-      <ion-input type="text" required [value]="users.typeOfEnterprise"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required [value]="users.password"></ion-input>
-    </ion-item>
-    <ion-button type="submit" class="ion-margin-top" expand="block">
-      Update
-    </ion-button>
-  </form>
+  <ion-segment (ionChange)="segmentChanged($event)" value="list1">
+    <ion-segment-button value="list1">
+      <ion-label>
+        Personal information
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="list2">
+      <ion-label>
+        Change password
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+  <ion-list *ngIf="segment === 'list1'">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Full name</ion-label>
+        <ion-input type="text" required formControlName="fullName" value="[data.fullName]"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" required formControlName="email" value="[data.email]" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telephone</ion-label>
+        <ion-input type="text" required formControlName="telephone" value="[data.telephone]" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">position</ion-label>
+        <ion-input type="text" required formControlName="position" value="[data.position]"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">TypeOfEnterprise</ion-label>
+        <ion-input type="text" required formControlName="typeOfEnterprise" value="[data.typeOfEnterprise]"></ion-input>
+      </ion-item>
+      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form.invalid">
+        Update
+      </ion-button>
+    </form>
+  </ion-list>
+  
+  <ion-list *ngIf="segment === 'list2'">
+    <form [formGroup]="form1" (submit)="onSubmit1()">
+      <ion-item>
+        <ion-label position="floating">Passsword</ion-label>
+        <ion-input type="password" required formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirm password</ion-label>
+        <ion-input type="password" required formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form1.invalid">
+        Update password
+      </ion-button>
+    </form>
+  </ion-list>
 </ion-content>
