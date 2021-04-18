@@ -52,7 +52,7 @@ namespace WebApplication.Controllers
             try
             {
                 db.Update(users);
-                return new OkObjectResult(users);
+                return new OkObjectResult(db.Read(users.GuidUsersId));
             }
             catch
             {

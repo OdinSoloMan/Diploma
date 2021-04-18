@@ -20,7 +20,7 @@ namespace WebApplication.Controllers
         {
             db = new NewsRepository();
         }
-        //[Authorize]
+        [Authorize]
         [Route("addnews")]
         [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
@@ -33,7 +33,7 @@ namespace WebApplication.Controllers
             }
             catch
             {
-                return new OkObjectResult("Not add news");
+                return BadRequest();
             }
         }
 

@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'infousers',
     loadChildren: () => import('./pages/infousers/infousers.module').then( m => m.InfousersPageModule)
   },
+  {
+    path: 'suggestnewsorevent',
+    loadChildren: () => import('./pages/suggestnewsorevent/suggestnewsorevent.module').then( m => m.SuggestnewsoreventPageModule)
+  },
 
 ];
 
