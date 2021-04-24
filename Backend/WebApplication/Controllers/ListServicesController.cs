@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace WebApplication.Controllers
             db = new ListServicesRepoitory();
         }
 
+        [Authorize(Roles = "admin")]
         [Route("addlistsevices")]
         [HttpPost]
         public ActionResult<string> AddNewListServices([FromBody] ListServices listServices)
@@ -29,6 +31,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(listServices);
         }
 
+        [Authorize(Roles = "admin, users")]
         [Route("readalllistsevices")]
         [HttpGet]
         public ActionResult<string> ReadAllListServices()
@@ -36,6 +39,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAll());
         }
 
+        [Authorize(Roles = "admin, users")]
         [Route("readalllistsevicesfullinfo")]
         [HttpPost]
         public ActionResult<string> ReadAllFullInfoListServices()
@@ -43,6 +47,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAllFullInfo());
         }
 
+        [Authorize(Roles = "admin")]
         [Route("updatelistsevices")]
         [HttpPut]
         public ActionResult<string> UpdateListServices([FromBody] ListServices listServices)
@@ -51,6 +56,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(listServices);
         }
 
+        [Authorize(Roles = "admin")]
         [Route("deletelistsevices/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteListServices(Guid guid)

@@ -21,6 +21,7 @@ namespace WebApplication.Controllers
             db = new UsersRepository();
         }
 
+        [Authorize(Roles = "admin")]
         [Route("addusers")]
         [HttpPost]
         public ActionResult<string> AddNewUsers([FromBody] Users users)
@@ -30,6 +31,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(users);
         }
 
+        [Authorize(Roles = "admin")]
         [Route("readallusers")]
         [HttpGet]
         public ActionResult<string> ReadAllUsers()
@@ -37,7 +39,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAll());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin, users")]
         [Route("{guid}")]
         [HttpGet]
         public ActionResult<string> ReadUsers(Guid guid)
@@ -45,6 +47,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.Read(guid));
         }
 
+        [Authorize(Roles = "admin, users")]
         [Route("updateusers")]
         [HttpPut]
         public ActionResult<string> UpdateUsers([FromBody] Users users)
@@ -61,6 +64,7 @@ namespace WebApplication.Controllers
            
         }
 
+        [Authorize(Roles = "admin")]
         [Route("deleteusers/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteUsers(Guid guid)

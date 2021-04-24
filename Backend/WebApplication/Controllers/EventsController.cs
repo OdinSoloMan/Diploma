@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
             db = new EventsRepository();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin, users")]
         [Route("addevents")]
         [HttpPost]
         public ActionResult<string> AddNewListEvents([FromBody] Events events)
@@ -38,7 +38,7 @@ namespace WebApplication.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin, users")]
         [Route("readalltevents")]
         [HttpGet]
         public ActionResult<string> ReadAlltListEvents()
@@ -46,7 +46,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAllTrue());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [Route("readallevents")]
         [HttpGet]
         public ActionResult<string> ReadAllListEvents()
@@ -54,6 +54,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAll());
         }
 
+        [Authorize(Roles = "admin")]
         [Route("updateevents")]
         [HttpPut]
         public ActionResult<string> UpdateListEvents([FromBody] Events events)
@@ -69,6 +70,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [Route("deleteevents/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteListEvents(Guid guid)

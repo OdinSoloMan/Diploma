@@ -20,7 +20,8 @@ namespace WebApplication.Controllers
         {
             db = new NewsRepository();
         }
-        [Authorize]
+
+        [Authorize(Roles = "admin, users")]
         [Route("addnews")]
         [HttpPost]
         public ActionResult<string> AddNewNews([FromBody] News news)
@@ -37,7 +38,7 @@ namespace WebApplication.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin, users")]
         [Route("readalltnews")]
         [HttpGet]
         public ActionResult<string> ReadAlltNews()
@@ -45,7 +46,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAllTrue());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [Route("readallnews")]
         [HttpGet]
         public ActionResult<string> ReadAllNews()
@@ -53,6 +54,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAll());
         }
 
+        [Authorize(Roles = "admin")]
         [Route("updatenews")]
         [HttpPut]
         public ActionResult<string> UpdateNews([FromBody] News news)
@@ -68,6 +70,7 @@ namespace WebApplication.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [Route("deletenews/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteNews(Guid guid)

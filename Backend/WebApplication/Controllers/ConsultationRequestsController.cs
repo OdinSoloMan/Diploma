@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace WebApplication.Controllers
             db = new ConsultationRequestsRepository();
         }
 
+        [Authorize(Roles = "admin, users")]
         [Route("addconsultationRequests")]
         [HttpPost]
         public ActionResult<string> AddNewListServices([FromBody] ConsultationRequests consultationRequests)
@@ -29,6 +31,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(consultationRequests);
         }
 
+        [Authorize(Roles = "admin")]
         [Route("readallconsultationRequests")]
         [HttpGet]
         public ActionResult<string> ReadAllListServices()
@@ -36,6 +39,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(db.ReadAll());
         }
 
+        [Authorize(Roles = "admin")]
         [Route("updateconsultationRequests")]
         [HttpPut]
         public ActionResult<string> UpdateListServices([FromBody] ConsultationRequests consultationRequests)
@@ -44,6 +48,7 @@ namespace WebApplication.Controllers
             return new OkObjectResult(consultationRequests);
         }
 
+        [Authorize(Roles = "admin")]
         [Route("deleteconsultationRequests/{guid}")]
         [HttpDelete]
         public ActionResult<string> DeleteListServices(Guid guid)

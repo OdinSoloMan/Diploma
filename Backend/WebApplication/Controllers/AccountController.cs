@@ -68,7 +68,7 @@ namespace WebApplication.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [Route("getrole")]
         [HttpPost]
         public ActionResult<string> GetRole()
@@ -92,7 +92,7 @@ namespace WebApplication.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, users.GuidUsersId.ToString()),
-                    //new Claim(ClaimsIdentity.DefaultRoleClaimType, users.Role)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, users.Role)
                 };
 
                 ClaimsIdentity claimsIdentity =
