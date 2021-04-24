@@ -20,21 +20,14 @@ const routes: Routes = [
     loadChildren: () => import('./create/create.module').then( m => m.CreatePageModule)
   },
   {
-    path: 'outbox',
-    loadChildren: () => import('./pages/outbox/outbox.module').then( m => m.OutboxPageModule)
-  },
-  {
-    path: 'inbox',
-    loadChildren: () => import('./pages/inbox/inbox.module').then( m => m.InboxPageModule)
-  },
-  {
     path: 'output',
     loadChildren: () => import('./pages/output/output.module').then( m => m.OutputPageModule)
   },
   {
     path: 'autoform',
     loadChildren: () => import('./auth/autoform/autoform.module').then( m => m.AutoformPageModule)
-  },  {
+  },
+  {
     path: 'news',
     loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
   },
@@ -50,6 +43,19 @@ const routes: Routes = [
     path: 'suggestnewsorevent',
     loadChildren: () => import('./pages/suggestnewsorevent/suggestnewsorevent.module').then( m => m.SuggestnewsoreventPageModule)
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./pages/services/services.module').then( m => m.ServicesPageModule)
+  },  {
+    path: 'helpfulinfo',
+    loadChildren: () => import('./pages/helpfulinfo/helpfulinfo.module').then( m => m.HelpfulinfoPageModule)
+  },
+
+
 
 ];
 
