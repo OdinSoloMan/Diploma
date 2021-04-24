@@ -13,7 +13,7 @@ const colums = [
 ];
 
 const baseUrl = "https://localhost:44367/consultationRequests";
-
+axioc.defaults.headers.common = {'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}`}
 const useStyles = makeStyles((theme) => ({
   modal: {
     position: "absolute",

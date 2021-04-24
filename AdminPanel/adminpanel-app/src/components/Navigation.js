@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
 const Logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  localStorage.removeItem("id_users");
   window.location.reload();
 };
 export class Navigation extends Component {

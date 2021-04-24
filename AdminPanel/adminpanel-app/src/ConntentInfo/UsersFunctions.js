@@ -16,6 +16,7 @@ const colums = [
 ];
 
 const baseUrl = "https://localhost:44367/users";
+axioc.defaults.headers.common = {'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}`}
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -65,6 +66,7 @@ function UsersFunctions() {
   };
 
   const servicGet = async () => {
+    var s = localStorage.getItem("token");
     await axioc
       .get(baseUrl + "/readallusers")
       .then((response) => {

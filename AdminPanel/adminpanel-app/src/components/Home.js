@@ -7,7 +7,7 @@ function Home() {
 
     return (
         <div className="App">
-            {(localStorage.getItem('user')) ? (
+            {(localStorage.getItem('token')) ? (
                 <Conntent />
             ) : (
                 <LoginForm />
