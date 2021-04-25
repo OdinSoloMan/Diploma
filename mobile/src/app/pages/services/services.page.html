@@ -7,6 +7,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-list *ngFor="let e of services">
+    <ion-item-divider>
+      <ion-label>{{e.Name}}</ion-label>
+    </ion-item-divider>
+    <div *ngIf="e.ListServices != null">
+      <ion-item *ngFor="let g of e.ListServices">
+        <ion-label>{{g.Description}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+  <!-- <ion-list>
+    <ion-list-header>
+      <ion-label> Services </ion-label>
+    </ion-list-header>
+    <div>
+      <ion-item *ngFor="let e of services">
+        <ion-label>{{e.Name}}</ion-label>
 
+          <ion-select *ngIf="e.ListServices != null">
+          
+              <ion-select-option *ngFor="let g of e.ListServices">{{g.Description}}</ion-select-option>
+            
+          </ion-select>
+      </ion-item>
+    </div>
+  </ion-list> -->
+  <!-- <ion-list *ngFor="let e of services">
+    <ion-item>
+      <ion-label>{{e.Name}}</ion-label>
+      <div class="content" *ngIf="e.ListServices != null">
+        <ion-list *ngFor="let g of e.ListServices">
+          <ion-item>
+            <ion-label>{{g.Description}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-item>
+  </ion-list> -->
 </ion-content>
