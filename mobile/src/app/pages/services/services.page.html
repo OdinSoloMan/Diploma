@@ -15,8 +15,23 @@
     <div *ngIf="e.ListServices != null">
       <ion-item *ngFor="let g of e.ListServices">
         <ion-label>{{g.Description}}</ion-label>
+        <ion-button (click)="onCreateRequst(g)" expand="block" fill="clear" shape="round">
+          Click me
+        </ion-button>
       </ion-item>
     </div>
+    <!-- <ion-item>
+      <ion-label>{{e.Name}}</ion-label>
+      <div *ngIf="e.ListServices.length != 0">
+        <ion-button (click)="showList=!showList" slot="end">Click me</ion-button>
+        <div *ngIf="showList">
+          <br>
+          <ion-label *ngFor="let g of e.ListServices">
+            {{g.Description}}
+          </ion-label>
+        </div>
+      </div>
+    </ion-item> -->
   </ion-list>
   <!-- <ion-list>
     <ion-list-header>
@@ -46,4 +61,24 @@
       </div>
     </ion-item>
   </ion-list> -->
+  <!-- </ion-content>
+<button (click)="showList=!showList">Click me</button>
+<div *ngIf="showList"> 
+   <ion-list  *ngFor="let e of services">
+     ...
+   </ion-list>
+</div> -->
 </ion-content>
+<!-- <ion-list *ngFor="let e of services">
+  <ion-item>
+    <ion-label>{{e.Name}}</ion-label>
+    <div *ngIf="e.ListServices.length != 0">
+      <button (click)="showList=!showList">Click me</button>
+      <div *ngIf="showList">
+        <ion-label *ngFor="let g of e.ListServices">
+          {{g.Description}}
+        </ion-label>
+      </div>
+    </div>
+  </ion-item>
+</ion-list> -->
