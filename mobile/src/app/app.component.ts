@@ -15,9 +15,19 @@ export class AppComponent {
     else {
       this.router.navigateByUrl('autoform');
     }
-    console.log(localStorage.getItem('dark'));
-    if(localStorage.getItem('dark') == "true"){
-      this.renderer.setAttribute(document.body, 'class', 'dark');
+    console.log(localStorage.getItem('theme'));
+    if(localStorage.getItem("fontSize")==null){      
+      localStorage.setItem("fontSize", "20");
+    }
+    if(localStorage.getItem('theme') == null){
+      localStorage.setItem("theme", "light");
+      this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
+    }
+    if(localStorage.getItem('theme') == "dark"){
+      this.renderer.setAttribute(document.body, 'class', 'dark fontSize' + localStorage.getItem("fontSize"));
+    }
+    if(localStorage.getItem('theme') == "light"){
+      this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
     }
   }
 }

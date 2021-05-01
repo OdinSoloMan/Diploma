@@ -138,12 +138,7 @@ export class ServicesPage implements OnInit {
                 await alert.present();
               }
             )
-            console.log([{
-              "guid": ans.GuidListSevicesId,
-              "descr": res.description,
-              "usID": localStorage.getItem("user_id")
-            }]);
-
+            console.log(postData);
             console.log('Confirm Ok');
           }
         }
