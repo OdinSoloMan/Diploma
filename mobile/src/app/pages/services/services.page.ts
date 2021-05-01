@@ -1,5 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Services, ServicesService } from '../service/services.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { Services, ServicesService } from '../service/services.service';
   styleUrls: ['./services.page.scss'],
 })
 export class ServicesPage implements OnInit {
+  private url = 'https://localhost:44367/consultationRequests';
   services: Services[];
   userAnswer: any;
-  constructor(private alertCtrl: AlertController,
+  constructor(
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private service: ServicesService,
+    private http: HttpClient,
   ) { }
 
   async ngOnInit() {
@@ -38,12 +43,12 @@ export class ServicesPage implements OnInit {
 
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Sign up for a consultation ' +  ans.Description,
+      header: 'Sign up for a consultation ' + ans.Description,
       inputs: [
-        {          
-          name: 'howToContact',
+        {
+          name: 'reverseCommunication',
           type: 'text',
-          placeholder: 'howToContact'
+          placeholder: 'HowToContact'
         },
         {
           name: 'description',
@@ -108,10 +113,37 @@ export class ServicesPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: (res) => {
-            console.log([{"guid": ans.GuidListSevicesId, 
-            "descr": res.description, 
-            "usID": localStorage.getItem("user_id")}]);
+          handler: async (res) => {
+            let postData = {
+              "ListServicesId": ans.GuidListSevicesId,
+              "Description": res.description,
+              "ReverseCommunication": res.reverseCommunication,
+              "UsersId": localStorage.getItem("user_id")
+            }
+            const token = localStorage.getItem('token');
+            const headers = new HttpHeaders({
+              Authorization: 'Bearer ' + token
+            });
+            const loading = await this.loadingCtrl.create({ message: 'Request in progress ...' });
+            await loading.present();
+            this.http.post(this.url + "/addconsultationRequests", postData, { headers }).subscribe(
+              async () => {
+                const toast = await this.toastCtrl.create({ message: 'Application sent', duration: 2000, color: 'dark' })
+                await toast.present();
+                loading.dismiss();
+              },
+              async () => {
+                const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons: ['OK'] });
+                loading.dismiss();
+                await alert.present();
+              }
+            )
+            console.log([{
+              "guid": ans.GuidListSevicesId,
+              "descr": res.description,
+              "usID": localStorage.getItem("user_id")
+            }]);
+
             console.log('Confirm Ok');
           }
         }
