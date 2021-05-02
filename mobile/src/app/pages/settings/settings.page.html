@@ -46,4 +46,33 @@
       </ion-range>
     </ion-item>
   </ion-list>
+  <ion-list>
+    <ion-radio-group
+      name="radio-group" [value]="defaultSelectedRadio"
+      (ionChange)="radioGroupChange($event)"
+      #radioGroup
+    >
+      <ion-list-header>
+        <ion-label>Сolor palette</ion-label>
+      </ion-list-header>
+
+      <ion-item
+        *ngFor="let item of radio_list"
+        (ionFocus)="radioFocus()"
+        (ionSelect)="radioSelect($event)"
+        (ionBlur)="radioBlur()"
+      >
+        <ion-label>{{item.text}}</ion-label>
+        <div>
+          <ion-radio
+            slot="end"
+            name="{{item.name}}"
+            value="{{item.value}}"
+            color="{{item.color}}"
+            disabled="{{item.disabled}}"
+          ></ion-radio>
+        </div>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list> 
 </ion-content>
