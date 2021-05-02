@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'helpfulinfo',
     loadChildren: () => import('./pages/helpfulinfo/helpfulinfo.module').then( m => m.HelpfulinfoPageModule)
   },
+  {
+    path: 'moredetailsinfo',
+    loadChildren: () => import('./pages/moredetailsinfo/moredetailsinfo.module').then( m => m.MoredetailsinfoPageModule)
+  },
 
 
 
