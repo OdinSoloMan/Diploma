@@ -3,6 +3,7 @@
 
 /** Ionic CSS Variables **/
 :root {
+  --fontSize: 20;
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -392,48 +393,151 @@ body.dark {
 }
 
 .fontSize20 {
-  ion-title {
+  ion-title,
+  ion-card-title,
+  ion-toggle,
+  ion-label {
     //20px
-    font-size: 20px;
+    font-size: calc(var(--fontSize) * 1px);
   }
-  ion-card-subtitle {
+  ion-card-subtitle,
+  ion-card-content,
+  ion-segment-button,
+  ion-button,
+  ion-item-divider {
     //14px
-    font-size: 14px;
+    font-size: calc(var(--fontSize) * 0.7px);
   }
-  ion-card-title {
-    //20px
-    font-size: 20px;
+  ion-item {
+    //16px
+    font-size: calc(var(--fontSize) * 0.8px);
   }
-
-  ion-card-content {
-    //14px
-    font-size: 14px;
+  ion-icon {
+    //24px
+    font-size: calc(var(--fontSize) * 1.2px);
   }
-  ion-segment-button {
-    //14px
-    font-size: 14px;
+  ion-list-header {
+    //22px
+    font-size: calc(var(--fontSize) * 1.1px);
   }
 }
-.fontSize40 {
-  ion-title {
-    //20px
-    font-size: 40px;
-  }
-  ion-card-subtitle {
-    //14px
-    font-size: 14px;
-  }
-  ion-card-title {
-    //20px
-    font-size: 40px;
-  }
 
-  ion-card-content {
-    //14px
-    font-size: 14px;
+.fontSize25 {
+  ion-title,
+  ion-card-title,
+  ion-toggle,
+  ion-label {
+    //20px
+    font-size: calc(var(--fontSize) * 1.25px);
   }
-  ion-segment-button {
+  ion-card-subtitle,
+  ion-card-content,
+  ion-segment-button,
+  ion-button,
+  ion-item-divider {
     //14px
-    font-size: 14px;
+    font-size: calc(var(--fontSize) * 0.7 * 1.25px);
+  }
+  ion-item {
+    //16px
+    font-size: calc(var(--fontSize) * 0.8 * 1.25px);
+  }
+  ion-icon {
+    //24px
+    font-size: calc(var(--fontSize) * 1.2 * 1.25px);
+  }
+  ion-list-header {
+    //22px
+    font-size: calc(var(--fontSize) * 1.1 * 1.25px);
+  }
+}
+
+.fontSize30 {
+  ion-title,
+  ion-card-title,
+  ion-toggle,
+  ion-label {
+    //20px
+    font-size: calc(var(--fontSize) * 1.5px);
+  }
+  ion-card-subtitle,
+  ion-card-content,
+  ion-segment-button,
+  ion-button,
+  ion-item-divider {
+    //14px
+    font-size: calc(var(--fontSize) * 0.7 * 1.5px);
+  }
+  ion-item {
+    //16px
+    font-size: calc(var(--fontSize) * 0.8 * 1.5px);
+  }
+  ion-icon {
+    //24px
+    font-size: calc(var(--fontSize) * 1.2 * 1.5px);
+  }
+  ion-list-header {
+    //22px
+    font-size: calc(var(--fontSize) * 1.1 * 1.5px);
+  }
+}
+
+.fontSize35 {
+  ion-title,
+  ion-card-title,
+  ion-toggle,
+  ion-label {
+    //20px
+    font-size: calc(var(--fontSize) * 1.75px);
+  }
+  ion-card-subtitle,
+  ion-card-content,
+  ion-segment-button,
+  ion-button,
+  ion-item-divider {
+    //14px
+    font-size: calc(var(--fontSize) * 0.7 * 1.75px);
+  }
+  ion-item {
+    //16px
+    font-size: calc(var(--fontSize) * 0.8 * 1.75px);
+  }
+  ion-icon {
+    //24px
+    font-size: calc(var(--fontSize) * 1.2 * 1.75px);
+  }
+  ion-list-header {
+    //22px
+    font-size: calc(var(--fontSize) * 1.1 * 1.75px);
+  }
+}
+
+.fontSize40 {
+  ion-title,
+  ion-card-title,
+  ion-toggle,
+  ion-label {
+    //20px
+    font-size: calc(var(--fontSize) * 2px);
+  }
+  ion-card-subtitle,
+  ion-card-content,
+  ion-segment-button,
+  ion-button,
+  ion-item-divider {
+    //14px
+    font-size: calc(var(--fontSize) * 0.7 * 2px);
+  }
+  ion-item {
+    //16px
+    font-size: calc(var(--fontSize) * 0.8 * 2px);
+  }
+  ion-icon {
+    //24px
+    font-size: calc(var(--fontSize) * 1.2 * 2px);
+  }
+  ion-list-header {
+    //22px
+    font-size: calc(var(--fontSize) * 1.1 * 2px);
   }
 }
