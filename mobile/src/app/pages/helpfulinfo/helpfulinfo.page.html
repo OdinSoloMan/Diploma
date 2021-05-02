@@ -8,48 +8,17 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-  <ion-card>
-    <ion-img
-      src="http://svoy-business.com/wp-content/uploads/2014/09/75729179_112558_first_foto.jpg"
-      style="box-sizing: border-box; width: 100%; padding: 1px"
-    ></ion-img>
+  <ion-card *ngFor="let inf of infos">
     <ion-card-header>
-      <ion-card-title
-        >КАК ПОЛУЧИТЬ ЭЦП (ЭЛЕКТРОННУЮ ЦИФРОВУЮ ПОДПИСЬ)</ion-card-title
-      >
+      <ion-card-title>{{inf.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-label
-        >Электронная цифровая подпись — аналог собственноручной подписи,
-        применяемый по отношению к электронному документу. Внедрение и
-        использование систем электронного документооборота в организациях любых
-        форм собственности влечет за собой необходимость применения ЭЦП для
-        гарантий подлинности передаваемых данных.</ion-label
+      <ion-button
+        (click)="onClick(inf.id)"
+        expand="block"
+        fill="clear"
+        shape="round"
       >
-      <ion-button (click)="onClick(1)" expand="block" fill="clear" shape="round">
-        More details
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-img
-      src="http://svoy-business.com/wp-content/uploads/2014/09/vidy-vypisok-egrp.jpeg"
-      style="box-sizing: border-box; width: 100%; padding: 1px"
-    ></ion-img>
-    <ion-card-header>
-      <ion-card-title
-        >КОД ОБЩЕРОССИЙСКОГО КЛАССИФИКАТОРА ОКВЭД: РАСШИФРОВКА, СОВЕТЫ ПО
-        ВЫБОРУ</ion-card-title
-      >
-    </ion-card-header>
-    <ion-card-content>
-      <ion-label
-        >Прежде чем начать заниматься предпринимательской деятельностью,
-        необходимо выбрать ОКВЭД. Имея код, вы сможете получить лицензию на
-        работу. Их достаточно большое количество, но ориентироваться в них
-        несложно.</ion-label
-      >
-      <ion-button (click)="onClick(2)" expand="block" fill="clear" shape="round">
         More details
       </ion-button>
     </ion-card-content>
