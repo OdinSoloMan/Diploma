@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> AddNewListServices([FromBody] ConsultationRequests consultationRequests)
         {
-            consultationRequests.AddConsultationRequests(consultationRequests.Description, consultationRequests.ReverseCommunication, consultationRequests.UsersId, consultationRequests.ListServicesId);
+            consultationRequests.AddConsultationRequests(consultationRequests.Description, consultationRequests.ReverseCommunication, consultationRequests.IsVerified, consultationRequests.UsersId, consultationRequests.ListServicesId);
             db.Create(consultationRequests);
             return new OkObjectResult(consultationRequests);
         }
