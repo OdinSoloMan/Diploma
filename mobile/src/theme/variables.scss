@@ -541,3 +541,17 @@ body.dark {
     font-size: calc(var(--fontSize) * 1.1 * 2px);
   }
 }
+
+.warning {
+  ion-title,
+  ion-icon {
+    color: #ffc409;
+  }
+}
+
+.Success {
+  ion-title,
+  ion-icon {
+    color: #28ba62;
+  }
+}
