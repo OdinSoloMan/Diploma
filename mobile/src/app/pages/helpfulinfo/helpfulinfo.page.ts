@@ -14,8 +14,9 @@ export class HelpfulinfoPage implements OnInit {
 
   ngOnInit() {
     let info1 = [
-      { id: "0", title: "Подготовка заявление Р21001 на открытие ИП"},
-      { id: "1", title: "Какие требуются документы для открытия ИП? "},
+      { id: "0", title: "Порядок регистрации ИП" },
+      { id: "1", title: "Прекращение деятельности ИП" },
+      { id: "2", title: "Внесение изменений в регистрационные данные ИП" }
     ]
     this.infos = info1;
     console.log(info1)
