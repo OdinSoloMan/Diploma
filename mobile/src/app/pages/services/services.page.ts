@@ -12,13 +12,23 @@ export class ServicesPage implements OnInit {
   private url = 'https://localhost:44367/consultationRequests';
   services: Services[];
   userAnswer: any;
+
+  servicesInformation: any[];
+  automaticClose = false;
+
   constructor(
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private service: ServicesService,
     private http: HttpClient,
-  ) { }
+  ) { 
+    this.service.getAll().subscribe(res => {
+      this.servicesInformation = res;
+      console.log(this.servicesInformation);
+      //this.servicesInformation[0].open = true;
+    })
+  }
 
   async ngOnInit() {
     const loading = await this.loadingCtrl.create({ message: 'Loading in services...' });
@@ -56,51 +66,6 @@ export class ServicesPage implements OnInit {
           cssClass: 'minAlertMessage',
           placeholder: 'Description'
         },
-        // multiline input.
-        // {
-        //   name: 'paragraph',
-        //   id: 'paragraph',
-        //   type: 'textarea',
-        //   placeholder: 'Placeholder 3'
-        // },
-        // {
-        //   name: 'name3',
-        //   value: 'http://ionicframework.com',
-        //   type: 'url',
-        //   placeholder: 'Favorite site ever'
-        // },
-        // // input date with min & max
-        // {
-        //   name: 'name4',
-        //   type: 'date',
-        //   min: '2017-03-01',
-        //   max: '2018-01-12'
-        // },
-        // // input date without min nor max
-        // {
-        //   name: 'name5',
-        //   type: 'date'
-        // },
-        // {
-        //   name: 'name6',
-        //   type: 'number',
-        //   min: -5,
-        //   max: 10
-        // },
-        // {
-        //   name: 'name7',
-        //   type: 'number'
-        // },
-        // {
-        //   name: 'name8',
-        //   type: 'password',
-        //   placeholder: 'Advanced Attributes',
-        //   cssClass: 'specialClass',
-        //   attributes: {
-        //     maxlength: 4,
-        //     inputmode: 'decimal'
-        //   }
-        // }
       ],
       buttons: [
         {
@@ -144,9 +109,20 @@ export class ServicesPage implements OnInit {
         }
       ]
     }).then(res => res.present())
+  }
 
-    // await alert.present();
-    // let result = await alert.onDidDismiss();
-    // console.log(result);
+  toggleSection(index){
+      console.log(index)
+      this.servicesInformation[index].open  = !this.servicesInformation[index].open;
+
+      if(this.automaticClose && this.servicesInformation[index].open){
+        this.servicesInformation
+        .filter((item, itemIndex) => itemIndex != index)
+        .map(item => item.open = false)
+      }
+  }
+
+  toggleItem(index, childIndex){
+    this.servicesInformation[index].children[childIndex].open != this.servicesInformation[index].children[childIndex].open
   }
 }

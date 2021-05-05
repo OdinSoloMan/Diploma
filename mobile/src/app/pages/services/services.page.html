@@ -4,11 +4,25 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="automaticClose = !automaticClose">
+        <ion-icon
+          slot="icon-only"
+          name="close"
+          *ngIf="automaticClose"
+        ></ion-icon>
+        <ion-icon
+          slot="icon-only"
+          name="resize"
+          *ngIf="!automaticClose"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngFor="let e of services">
+<ion-content>
+  <!-- <ion-list *ngFor="let e of services">
     <ion-item-divider>
       <ion-label>{{e.Name}}</ion-label>
     </ion-item-divider>
@@ -20,65 +34,50 @@
         </ion-button>
       </ion-item>
     </div>
-    <!-- <ion-item>
-      <ion-label>{{e.Name}}</ion-label>
-      <div *ngIf="e.ListServices.length != 0">
-        <ion-button (click)="showList=!showList" slot="end">Click me</ion-button>
-        <div *ngIf="showList">
-          <br>
-          <ion-label *ngFor="let g of e.ListServices">
-            {{g.Description}}
-          </ion-label>
-        </div>
-      </div>
-    </ion-item> -->
-  </ion-list>
-  <!-- <ion-list>
-    <ion-list-header>
-      <ion-label> Services </ion-label>
-    </ion-list-header>
-    <div>
-      <ion-item *ngFor="let e of services">
-        <ion-label>{{e.Name}}</ion-label>
+  </ion-list> -->
 
-          <ion-select *ngIf="e.ListServices != null">
-          
-              <ion-select-option *ngFor="let g of e.ListServices">{{g.Description}}</ion-select-option>
-            
-          </ion-select>
-      </ion-item>
-    </div>
-  </ion-list> -->
-  <!-- <ion-list *ngFor="let e of services">
-    <ion-item>
-      <ion-label>{{e.Name}}</ion-label>
-      <div class="content" *ngIf="e.ListServices != null">
-        <ion-list *ngFor="let g of e.ListServices">
-          <ion-item>
-            <ion-label>{{g.Description}}</ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
+  <ion-list
+    *ngFor="let item of servicesInformation; let i = index"
+    class="accordion-list"
+    lines="none"
+    detail="false"
+    no-padding
+  >
+    <ion-item tappable (click)="toggleSection(i)">
+      <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+      <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+      <ion-label> {{item.Name}} </ion-label>
     </ion-item>
-  </ion-list> -->
-  <!-- </ion-content>
-<button (click)="showList=!showList">Click me</button>
-<div *ngIf="showList"> 
-   <ion-list  *ngFor="let e of services">
-     ...
-   </ion-list>
-</div> -->
-</ion-content>
-<!-- <ion-list *ngFor="let e of services">
-  <ion-item>
-    <ion-label>{{e.Name}}</ion-label>
-    <div *ngIf="e.ListServices.length != 0">
-      <button (click)="showList=!showList">Click me</button>
-      <div *ngIf="showList">
-        <ion-label *ngFor="let g of e.ListServices">
-          {{g.Description}}
-        </ion-label>
-      </div>
+
+    <div *ngIf="item.ListServices && item.open">
+      <ion-item *ngFor="let g of item.ListServices">
+        <ion-label>{{g.Description}}</ion-label>
+        <ion-button
+          (click)="onCreateRequst(g)"
+          expand="block"
+        >
+          Click me
+        </ion-button>
+      </ion-item>
+      <!-- <ion-list
+        *ngFor="let child of item.ListServices; let j = index;"
+        linex="none"
+        class="child-list"
+      >
+        <ion-item
+          tappable
+          (click)="toggleItem(i, j)"
+          *ngIf="child.Description"
+          [ngClass]="{'child-active': child.open, 'child': !child.open}"
+        >
+        <ion-icon slot="start" name="add" *ngIf="!child.open"></ion-icon>
+        <ion-icon slot="start" name="close" *ngIf="child.open"></ion-icon>
+        <ion-label> {{child.Description}} </ion-label>
+        </ion-item>
+      </ion-list> -->
     </div>
-  </ion-item>
-</ion-list> -->
+    <ion-item *ngIf="item.ListServices.length === 0 && item.open">
+      <ion-label class="ion-text-center">Sorry, nothing in here!</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
