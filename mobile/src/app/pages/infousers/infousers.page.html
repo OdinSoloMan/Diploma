@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>User info</ion-title>
+    <ion-title>{{textForm.title}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -10,57 +10,107 @@
 <ion-content class="ion-padding">
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
-      <ion-label>
-        Personal
-      </ion-label>
+      <ion-label> {{textForm.personal.label}} </ion-label>
     </ion-segment-button>
     <ion-segment-button value="list2">
-      <ion-label>
-        Password
-      </ion-label>
+      <ion-label> {{textForm.password.label}} </ion-label>
     </ion-segment-button>
   </ion-segment>
-  
+
   <ion-list *ngIf="segment === 'list1'">
     <form [formGroup]="form" (submit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Full name</ion-label>
-        <ion-input type="text" required formControlName="fullName" value="[data.fullName]"></ion-input>
+        <ion-label position="floating">{{textForm.personal.FIO}}</ion-label>
+        <ion-input
+          type="text"
+          required
+          formControlName="fullName"
+          value="[data.fullName]"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" required formControlName="email" value="[data.email]" ></ion-input>
+        <ion-label position="floating">{{textForm.personal.email}}</ion-label>
+        <ion-input
+          type="text"
+          required
+          formControlName="email"
+          value="[data.email]"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Telephone</ion-label>
-        <ion-input type="text" required formControlName="telephone" value="[data.telephone]" ></ion-input>
+        <ion-label position="floating"
+          >{{textForm.personal.telephone}}</ion-label
+        >
+        <ion-input
+          type="text"
+          required
+          formControlName="telephone"
+          value="[data.telephone]"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">position</ion-label>
-        <ion-input type="text" required formControlName="position" value="[data.position]"></ion-input>
+        <ion-label position="floating"
+          >{{textForm.personal.position}}</ion-label
+        >
+        <ion-input
+          type="text"
+          required
+          formControlName="position"
+          value="[data.position]"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">TypeOfEnterprise</ion-label>
-        <ion-input type="text" required formControlName="typeOfEnterprise" value="[data.typeOfEnterprise]"></ion-input>
+        <ion-label position="floating"
+          >{{textForm.personal.typeOfEnterprise}}</ion-label
+        >
+        <ion-input
+          type="text"
+          required
+          formControlName="typeOfEnterprise"
+          value="[data.typeOfEnterprise]"
+        ></ion-input>
       </ion-item>
-      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form.invalid">
-        Update
+      <ion-button
+        type="submit"
+        class="ion-margin-top"
+        expand="block"
+        [disabled]="form.invalid"
+      >
+        {{textForm.personal.btn_updateInfoUser}}
       </ion-button>
     </form>
   </ion-list>
-  
+
   <ion-list *ngIf="segment === 'list2'">
     <form [formGroup]="form1" (submit)="onSubmit1()">
       <ion-item>
-        <ion-label position="floating">Passsword</ion-label>
-        <ion-input type="password" required formControlName="password"></ion-input>
+        <ion-label position="floating"
+          >{{textForm.password.label_password}}</ion-label
+        >
+        <ion-input
+          type="password"
+          required
+          formControlName="password"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Confirm password</ion-label>
-        <ion-input type="password" required formControlName="confirmPassword" autocapitalize="off"></ion-input>
+        <ion-label position="floating"
+          >{{textForm.password.label_confirmPassword}}</ion-label
+        >
+        <ion-input
+          type="password"
+          required
+          formControlName="confirmPassword"
+          autocapitalize="off"
+        ></ion-input>
       </ion-item>
-      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form1.invalid">
-        Update password
+      <ion-button
+        type="submit"
+        class="ion-margin-top"
+        expand="block"
+        [disabled]="form1.invalid"
+      >
+        {{textForm.password.btn_updatePassword}}
       </ion-button>
     </form>
   </ion-list>

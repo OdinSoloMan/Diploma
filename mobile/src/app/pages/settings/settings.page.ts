@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-
+import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-settings',
@@ -7,6 +7,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
   defaultSelectedRadio = localStorage.getItem("radioLanguage");
   selectedRadioGroup:any;
   selectedRadioItem:any;
@@ -39,6 +41,16 @@ export class SettingsPage implements OnInit {
     this.checkStatusTheme();
     this.checkFontSize();
     this.checkRadio();
+    this.checkLanguage();
+  }
+
+  checkLanguage() {
+    if (this.language == "ru") {
+      this.textForm = languageDesign.ru.settingForm;
+    }
+    if (this.language == "eng") {
+      this.textForm = languageDesign.eng.settingForm;
+    }
   }
 
   checkStatusTheme() {

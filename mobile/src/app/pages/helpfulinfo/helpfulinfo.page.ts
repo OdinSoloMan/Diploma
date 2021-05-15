@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-helpfulinfo',
@@ -7,12 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./helpfulinfo.page.scss'],
 })
 export class HelpfulinfoPage implements OnInit {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
+
   infos: any;
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit() {
+    this.checkLanguage();
     let info1 = [
       { id: "0", title: "Порядок регистрации ИП" },
       { id: "1", title: "Прекращение деятельности ИП" },
@@ -20,6 +25,15 @@ export class HelpfulinfoPage implements OnInit {
     ]
     this.infos = info1;
     console.log(info1)
+  }
+
+  checkLanguage() {
+    if (this.language == "ru") {
+      this.textForm = languageDesign.ru.helpfulinfoForm;
+    }
+    if (this.language == "eng") {
+      this.textForm = languageDesign.eng.helpfulinfoForm;
+    }
   }
 
   onClick(event) {

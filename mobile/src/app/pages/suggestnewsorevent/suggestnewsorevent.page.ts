@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { from } from 'rxjs';
+import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-suggestnewsorevent',
@@ -10,6 +11,8 @@ import { from } from 'rxjs';
   styleUrls: ['./suggestnewsorevent.page.scss'],
 })
 export class SuggestnewsoreventPage implements OnInit {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
   private url = 'https://localhost:44367/news';
   private url1 = 'https://localhost:44367/events';
   public segment: string = "list1";
@@ -21,6 +24,16 @@ export class SuggestnewsoreventPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.checkLanguage()
+  }
+
+  checkLanguage() {
+    if (this.language == "ru") {
+      this.textForm = languageDesign.ru.suggestnewsoreventForm;
+    }
+    if (this.language == "eng") {
+      this.textForm = languageDesign.eng.suggestnewsoreventForm;
+    }
   }
 
   form = new FormGroup({

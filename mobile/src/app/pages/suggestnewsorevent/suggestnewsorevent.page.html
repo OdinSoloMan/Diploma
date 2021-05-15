@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Suggest</ion-title>
+    <ion-title>{{textForm.title}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -11,12 +11,12 @@
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
       <ion-label>
-        News
+        {{textForm.news.segmentTitleLabel}}
       </ion-label>
     </ion-segment-button>
     <ion-segment-button value="list2">
       <ion-label>
-        Event
+        {{textForm.event.segmentTitleLabel}}
       </ion-label>
     </ion-segment-button>
   </ion-segment>
@@ -24,19 +24,19 @@
   <ion-list *ngIf="segment === 'list1'">
     <form [formGroup]="form" (submit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">News Title</ion-label>
-        <ion-input type="text" required formControlName="newTitle"></ion-input>
+        <ion-label position="floating">{{textForm.news.labelTitle}}</ion-label>
+        <ion-input type="text" required formControlName="newTitle"  [placeholder]="textForm.news.labelTitlePlaceholder"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >Data News</ion-label>
+        <ion-label position="floating" >{{textForm.news.labelData}}</ion-label>
         <ion-datetime type="datetime-local" required formControlName="dataNew"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >News Description</ion-label>
-        <ion-textarea rows="6" cols="20" placeholder="Enter event description..." formControlName="newDescription"></ion-textarea>
+        <ion-label position="floating" >{{textForm.news.labelDescription}}</ion-label>
+        <ion-textarea rows="6" cols="20" [placeholder]="textForm.news.labelDescriptionPlaceholder" formControlName="newDescription"></ion-textarea>
       </ion-item>
       <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form.invalid">
-        Suggest news
+        {{textForm.news.btn_suggest}}
       </ion-button>
     </form>
   </ion-list>
@@ -44,19 +44,19 @@
   <ion-list *ngIf="segment === 'list2'">
     <form [formGroup]="form1" (submit)="onSubmit1()">
       <ion-item>
-        <ion-label position="floating">Event Title</ion-label>
-        <ion-input type="text" required formControlName="eventTitle"></ion-input>
+        <ion-label position="floating">{{textForm.event.labelTitle}}</ion-label>
+        <ion-input type="text" required formControlName="eventTitle" [placeholder]="textForm.event.labelTitlePlaceholder"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >Planned Start Date</ion-label>
+        <ion-label position="floating" >{{textForm.event.labelData}}</ion-label>
         <ion-datetime type="datetime-local" required formControlName="plannedStartDate"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >Description Of the event</ion-label>
-        <ion-textarea rows="6" cols="20" placeholder="Enter event description..." formControlName="descriptionOfTheEvent"></ion-textarea>
+        <ion-label position="floating" >{{textForm.event.labelDescription}}</ion-label>
+        <ion-textarea rows="6" cols="20" [placeholder]="textForm.event.labelDescriptionPlaceholder" formControlName="descriptionOfTheEvent"></ion-textarea>
       </ion-item>
       <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form1.invalid">
-        Suggest an event
+        {{textForm.event.btn_suggest}}
       </ion-button>
     </form>
   </ion-list>

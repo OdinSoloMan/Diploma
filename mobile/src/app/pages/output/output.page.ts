@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
+import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-output',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./output.page.scss'],
 })
 export class OutputPage  {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
 
   constructor(
     private router: Router,
@@ -20,6 +23,15 @@ export class OutputPage  {
   }
 
   ngOnInit() {
+    this.checkLanguage();
+  }
 
+  checkLanguage() {
+    if (this.language == "ru") {
+      this.textForm = languageDesign.ru.outputForm;
+    }
+    if (this.language == "eng") {
+      this.textForm = languageDesign.eng.outputForm;
+    }
   }
 }

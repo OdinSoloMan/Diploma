@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import info from './articles/articlesInfo.json';
+import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-moredetailsinfo',
@@ -10,6 +11,8 @@ import info from './articles/articlesInfo.json';
   styleUrls: ['./moredetailsinfo.page.scss'],
 })
 export class MoredetailsinfoPage implements OnInit {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
   public segment: string = "list1";
   state: Observable<object>;
   moreInfs: any;
@@ -18,6 +21,7 @@ export class MoredetailsinfoPage implements OnInit {
   constructor(public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.checkLanguage();
     this.state = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
     console.log("ww", window.history.state.id);
@@ -27,7 +31,16 @@ export class MoredetailsinfoPage implements OnInit {
     this.classSize = "fontSize" + localStorage.getItem("fontSize");
     console.log(this.classSize);
   }
-  
+
+  checkLanguage() {
+    if (this.language == "ru") {
+      this.textForm = languageDesign.ru.moredetailsinForm;
+    }
+    if (this.language == "eng") {
+      this.textForm = languageDesign.eng.moredetailsinForm;
+    }
+  }
+
   segmentChanged(ev: any) {
     this.segment = ev.detail.value;
   }

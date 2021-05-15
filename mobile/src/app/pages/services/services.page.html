@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Services</ion-title>
+    <ion-title>{{textForm.title}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -21,7 +21,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <!-- <ion-list *ngFor="let e of services">
     <ion-item-divider>
       <ion-label>{{e.Name}}</ion-label>
@@ -43,7 +43,7 @@
     detail="false"
     no-padding
   >
-    <ion-item tappable (click)="toggleSection(i)" >
+    <ion-item tappable (click)="toggleSection(i)">
       <ion-icon
         slot="end"
         name="chevron-forward-outline"
@@ -61,7 +61,7 @@
       <ion-item *ngFor="let g of item.ListServices">
         <ion-label>{{g.Description}}</ion-label>
         <ion-button (click)="onCreateRequst(g)" expand="block">
-          Apply
+          {{textForm.btn_apply}}
         </ion-button>
       </ion-item>
       <!-- <ion-list
@@ -82,7 +82,9 @@
       </ion-list> -->
     </div>
     <ion-item *ngIf="item.ListServices.length === 0 && item.open">
-      <ion-label class="ion-text-center">Sorry, nothing in here!</ion-label>
+      <ion-label class="ion-text-center"
+        >{{textForm.infoNotServices}}</ion-label
+      >
     </ion-item>
   </ion-list>
 </ion-content>

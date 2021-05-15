@@ -1,16 +1,28 @@
-ion-content {
-  --background: var(--ion-color-light);
+.accordion-list {
+  box-sizing: border-box;
+  padding: 1px;
+  border: 1px solid  #c4c4c4;
+  margin-bottom: 4px;
 }
 
-.accordion-list {
-  margin-bottom: 4px;
-  --ion-item-background: #fff;
+.section {
+  margin-top: 4px;
+  border-top: 1px solid  #c4c4c4;
+}
+
+.section-active{
+    font-weight: 600;
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-top: 1px solid  #c4c4c4;
+}
 
 //   .section,
 //   .section-active {
 //     --min-height: 58px;
 //   }
-}
+
 
 // .section {
 //     --ion-item-background: #fff;
