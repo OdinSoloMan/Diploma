@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>info users</ion-title>
+    <ion-title>Personal Area</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -11,12 +11,12 @@
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
       <ion-label>
-        Personal information
+        Personal
       </ion-label>
     </ion-segment-button>
     <ion-segment-button value="list2">
       <ion-label>
-        Change password
+        Password
       </ion-label>
     </ion-segment-button>
   </ion-segment>
@@ -57,7 +57,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Confirm password</ion-label>
-        <ion-input type="password" required formControlName="confirmPassword"></ion-input>
+        <ion-input type="password" required formControlName="confirmPassword" autocapitalize="off"></ion-input>
       </ion-item>
       <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form1.invalid">
         Update password

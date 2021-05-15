@@ -7,7 +7,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  defaultSelectedRadio = localStorage.getItem("radio");
+  defaultSelectedRadio = localStorage.getItem("radioLanguage");
   selectedRadioGroup:any;
   selectedRadioItem:any;
 
@@ -15,28 +15,19 @@ export class SettingsPage implements OnInit {
     {
       id: '1',
       name: 'radio_list',
-      value: 'Primary',
-      text: 'Primary',
+      value: 'English',
+      text: 'English',
       disabled: false,
       checked: false,
       color: 'primary'
     }, {
       id: '2',
       name: 'radio_list',
-      value: 'Secondary',
-      text: 'Secondary',
+      value: 'Russian',
+      text: 'Russian',
       disabled: false,
       checked: true,
-      color: 'secondary'
-    }, {
-      id: '3',
-      name: 'radio_list',
-      value: 'Danger',
-      text: 'Danger',
-      disabled: false,
-      checked: false,
-      color: 'danger'
-    },
+    }
   ];
   fontsize;
 
@@ -89,7 +80,7 @@ export class SettingsPage implements OnInit {
   radioGroupChange(event) {
     console.log("radioGroupChange",event.detail);
     this.selectedRadioGroup = event.detail;
-    localStorage.setItem("radio", event.detail.value);
+    localStorage.setItem("radioLanguage", event.detail.value);
   }
 
   radioFocus() {

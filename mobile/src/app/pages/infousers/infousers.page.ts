@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { ToastController, AlertController, LoadingController } from '@ionic/angular';
+
 import { User, UsersinfoService } from '../service/usersinfo.service';
 
 @Component({
