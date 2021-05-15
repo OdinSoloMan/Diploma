@@ -1,0 +1,40 @@
+{
+    "ru": {
+        "loginForm": {
+            "title": "Вход",
+            "email": "Почта",
+            "password": "Пароль",
+            "btn_login": "Войти",
+            "btn_registration": "Региция"
+        },
+        "registrationForm": {
+            "title": "Регистрация",
+            "lableFIO": "ФИО",
+            "email": "Почта",
+            "telephone": "Телефон",
+            "position": "Должность",
+            "typeOfEnterprise": "Тип предприятия",
+            "password": "Пароль",
+            "btn_registration": "Региция"
+        }
+    },
+    "eng": {
+        "loginForm": {
+            "title": "Login",
+            "email": "Email",
+            "password": "Password",
+            "btn_login": "Login",
+            "btn_registration": "Registration"
+        },
+        "registrationForm": {
+            "title": "Check in",
+            "lableFIO": "Full name",
+            "email": "Email",
+            "telephone": "Telephone",
+            "position": "Position",
+            "typeOfEnterprise": "TypeOfEnterprise",
+            "password": "Password",
+            "btn_registration": "Registration"
+        }
+    }
+}

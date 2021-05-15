@@ -15,7 +15,7 @@ export class SettingsPage implements OnInit {
     {
       id: '1',
       name: 'radio_list',
-      value: 'English',
+      value: 'eng',
       text: 'English',
       disabled: false,
       checked: false,
@@ -23,7 +23,7 @@ export class SettingsPage implements OnInit {
     }, {
       id: '2',
       name: 'radio_list',
-      value: 'Russian',
+      value: 'ru',
       text: 'Russian',
       disabled: false,
       checked: true,

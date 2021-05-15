@@ -15,7 +15,7 @@ export class OutputPage  {
   onExit() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
-    this.router.navigateByUrl('/autoform');
+    this.router.navigateByUrl('/login');
     console.log("exit")
   }
 

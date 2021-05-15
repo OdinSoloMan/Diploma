@@ -10,10 +10,10 @@ export class AppComponent {
   constructor(private router: Router, private renderer: Renderer2) { }
   ngOnInit() {
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/create');
+      this.router.navigateByUrl('/news');
     }
     else {
-      this.router.navigateByUrl('autoform');
+      this.router.navigateByUrl('login');
     }
     console.log(localStorage.getItem('theme'));
     if(localStorage.getItem("fontSize")==null){      
@@ -28,6 +28,9 @@ export class AppComponent {
     }
     if(localStorage.getItem('theme') == "light"){
       this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
+    }
+    if(localStorage.getItem("radioLanguage") == null){
+      localStorage.setItem("radioLanguage", "ru")
     }
   }
 }

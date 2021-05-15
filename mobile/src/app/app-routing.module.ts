@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'autoform',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -50,7 +50,8 @@ const routes: Routes = [
   {
     path: 'services',
     loadChildren: () => import('./pages/services/services.module').then( m => m.ServicesPageModule)
-  },  {
+  },
+  {
     path: 'helpfulinfo',
     loadChildren: () => import('./pages/helpfulinfo/helpfulinfo.module').then( m => m.HelpfulinfoPageModule)
   },

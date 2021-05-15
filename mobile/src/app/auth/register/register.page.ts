@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import languageDesign from '../../pages/jsonfile/language-design.json'
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
+  language = localStorage.getItem("radioLanguage");
+  textForm: any;
 
   constructor(
     private authService: AuthService,
@@ -18,6 +21,19 @@ export class RegisterPage {
     private loadingCtrl: LoadingController,
     private router: Router,
   ) { }
+
+  ngOnInit(){
+    this.checkLanguage();
+  }
+
+  checkLanguage() {
+    if(this.language == "ru"){
+      this.textForm = languageDesign.ru.registrationForm;
+    }
+    if(this.language == "eng"){
+      this.textForm = languageDesign.eng.registrationForm;
+    }
+  }
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
