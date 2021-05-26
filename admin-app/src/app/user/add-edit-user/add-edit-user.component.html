@@ -1,0 +1,81 @@
+<div class="form-froup row">
+  <label class="col-sm-2 col-form-label">fullName</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="fullName"
+      placeholder="Enter fullName"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User email</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="email"
+      placeholder="Enter email"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User telephone</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="telephone"
+      placeholder="Enter telephone"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User position</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="position"
+      placeholder="Enter position"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User typeOfEnterprise</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="typeOfEnterprise"
+      placeholder="Enter typeOfEnterprise"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User password</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="password"
+      placeholder="Enter password"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User role</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="role"
+      placeholder="Enter role"
+    />
+  </div>
+</div>
+
+<button
+  (click)="addUser()"
+  *ngIf="user.guidUsersId == 0"
+  class="btn btn-primary"
+>
+  Add
+</button>
+
+<button
+  (click)="updateUser()"
+  *ngIf="user.guidUsersId != 0"
+  class="btn btn-primary"
+>
+  Update
+</button>
