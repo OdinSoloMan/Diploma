@@ -54,7 +54,7 @@ export class RegisterPage {
         await toast.present();
         loading.dismiss();
         this.form.reset();
-        this.router.navigateByUrl('/autoform');
+        this.router.navigateByUrl('/login');
       },
       // если ошибка
       async () => {
