@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MenuComponent } from './menu/menu.component'; //
+import { MenuComponent } from './menu/menu.component';
+import { LoginComponent } from './auth/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MenuComponent } from './menu/menu.component'; //
     ShowServiceComponent,
     AddEditUserComponent,
     MenuComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

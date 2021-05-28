@@ -3,11 +3,25 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserComponent } from './user/user.component'
 import { ServiceComponent } from './service/service.component'
+import { LoginComponent } from './auth/components/login/login.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent },
-  { path: 'service', component: ServiceComponent },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: MenuComponent,
+    children: [
+      { path: 'user', component: UserComponent },
+      { path: 'service', component: ServiceComponent },
+    ]
+  }
 ];
 
 @NgModule({
