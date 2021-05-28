@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ListserviceComponent } from './listservice/listservice.component';
 import { ConsultationrequestComponent } from './consultationrequest/consultationrequest.component';
 import { NewsComponent } from './news/news.component';
+import { EventComponent } from './event/event.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'listservice', component: ListserviceComponent },
       { path: 'consultationrequest', component: ConsultationrequestComponent },
       { path: 'news', component: NewsComponent },
+      { path: 'event', component: EventComponent },
     ]
   }
 ];

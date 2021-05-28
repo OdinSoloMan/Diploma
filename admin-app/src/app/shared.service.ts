@@ -101,4 +101,20 @@ export class SharedService {
   deleteNews(val: any) {
     return this.http.delete(this.APIUrl + '/news/deletenews/' + val, {headers: this.headers()})
   }
+
+  getEventList(): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/events/readallevents', {headers: this.headers()})
+  }
+
+  addEvent(val: any) {
+    return this.http.post(this.APIUrl + '/events/addevents', val, {headers: this.headers()})
+  }
+
+  updateEvent(val: any) {
+    return this.http.put(this.APIUrl + '/events/updateevents', val, {headers: this.headers()})
+  }
+
+  deleteEvent(val: any) {
+    return this.http.delete(this.APIUrl + '/events/deleteevents/' + val, {headers: this.headers()})
+  }
 }

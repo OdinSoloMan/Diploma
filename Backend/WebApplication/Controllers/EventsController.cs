@@ -80,7 +80,7 @@ namespace WebApplication.Controllers
                 Events events = new Events() { };
                 events.GuidEventsId = guid;
                 db.Delete(events.GuidEventsId);
-                return new OkObjectResult("Events delete" + events.GuidEventsId);
+                return new OkObjectResult(new { delete_events = guid });
             }
             catch
             {

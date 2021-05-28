@@ -1,0 +1,72 @@
+<div class="form-froup row">
+    <label class="col-sm-2 col-form-label">eventTitle</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="eventTitle"
+        placeholder="Enter eventTitle"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">descriptionOfTheEvent</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="descriptionOfTheEvent"
+        placeholder="Enter descriptionOfTheEvent"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">plannedStartDate</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="plannedStartDate"
+        placeholder="Enter plannedStartDate"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">imageEvents</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="imageEvents"
+        placeholder="Enter imageEvents"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">isConsidered</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="isConsidered"
+        placeholder="Enter isConsidered"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">User usersId</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="usersId"
+        placeholder="Enter usersId"
+      />
+    </div>
+  </div>
+  
+  <button
+    (click)="addEvent()"
+    *ngIf="event.guidEventsId == 0"
+    class="btn btn-primary"
+  >
+    Add
+  </button>
+  
+  <button
+    (click)="updateEvent()"
+    *ngIf="event.guidEventsId != 0"
+    class="btn btn-primary"
+  >
+    Update
+  </button>

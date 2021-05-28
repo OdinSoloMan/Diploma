@@ -28,6 +28,9 @@ import { AddEditConsultationrequestComponent } from './consultationrequest/add-e
 import { NewsComponent } from './news/news.component';
 import { AddEditNewsComponent } from './news/add-edit-news/add-edit-news.component';
 import { ShowNewsComponent } from './news/show-news/show-news.component';
+import { EventComponent } from './event/event.component';
+import { ShowEventComponent } from './event/show-event/show-event.component';
+import { AddEditEventComponent } from './event/add-edit-event/add-edit-event.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { ShowNewsComponent } from './news/show-news/show-news.component';
     NewsComponent,
     AddEditNewsComponent,
     ShowNewsComponent,
+    EventComponent,
+    ShowEventComponent,
+    AddEditEventComponent,
   ],
   imports: [
     BrowserModule,
