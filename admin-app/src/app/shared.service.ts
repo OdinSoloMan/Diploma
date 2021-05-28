@@ -85,4 +85,20 @@ export class SharedService {
   deleteConsultationrequest(val: any) {
     return this.http.delete(this.APIUrl + '/consultationRequests/deleteconsultationRequests/' + val, {headers: this.headers()})
   }
+
+  getNewsList(): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/news/readallnews', {headers: this.headers()})
+  }
+
+  addNews(val: any) {
+    return this.http.post(this.APIUrl + '/news/addnews', val, {headers: this.headers()})
+  }
+
+  updateNews(val: any) {
+    return this.http.put(this.APIUrl + '/news/updatenews', val, {headers: this.headers()})
+  }
+
+  deleteNews(val: any) {
+    return this.http.delete(this.APIUrl + '/news/deletenews/' + val, {headers: this.headers()})
+  }
 }

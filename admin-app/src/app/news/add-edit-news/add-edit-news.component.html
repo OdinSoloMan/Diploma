@@ -1,0 +1,72 @@
+<div class="form-froup row">
+  <label class="col-sm-2 col-form-label">newTitle</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="newTitle"
+      placeholder="Enter newTitle"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">newDescription</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="newDescription"
+      placeholder="Enter newDescription"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">dataNew</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="dataNew"
+      placeholder="Enter dataNew"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">imageNew</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="imageNew"
+      placeholder="Enter imageNew"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">isConsidered</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="isConsidered"
+      placeholder="Enter isConsidered"
+    />
+  </div>
+  <label class="col-sm-2 col-form-label">User usersId</label>
+  <div class="col-sm-10">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="usersId"
+      placeholder="Enter usersId"
+    />
+  </div>
+</div>
+
+<button
+  (click)="addNews()"
+  *ngIf="news.guidNewsId == 0"
+  class="btn btn-primary"
+>
+  Add
+</button>
+
+<button
+  (click)="updateNews()"
+  *ngIf="news.guidNewsId != 0"
+  class="btn btn-primary"
+>
+  Update
+</button>

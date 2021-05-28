@@ -25,6 +25,9 @@ import { ShowListserviceComponent } from './listservice/show-listservice/show-li
 import { ConsultationrequestComponent } from './consultationrequest/consultationrequest.component';
 import { ShowConsultationrequestComponent } from './consultationrequest/show-consultationrequest/show-consultationrequest.component';
 import { AddEditConsultationrequestComponent } from './consultationrequest/add-edit-consultationrequest/add-edit-consultationrequest.component';
+import { NewsComponent } from './news/news.component';
+import { AddEditNewsComponent } from './news/add-edit-news/add-edit-news.component';
+import { ShowNewsComponent } from './news/show-news/show-news.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { AddEditConsultationrequestComponent } from './consultationrequest/add-e
     ConsultationrequestComponent,
     ShowConsultationrequestComponent,
     AddEditConsultationrequestComponent,
+    NewsComponent,
+    AddEditNewsComponent,
+    ShowNewsComponent,
   ],
   imports: [
     BrowserModule,

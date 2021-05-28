@@ -80,7 +80,7 @@ namespace WebApplication.Controllers
                 News news = new News() { };
                 news.GuidNewsId = guid;
                 db.Delete(news.GuidNewsId);
-                return new OkObjectResult("News delete" + news.GuidNewsId);
+                return new OkObjectResult(new { delete_news = guid });
             }
             catch
             {
