@@ -19,6 +19,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './auth/components/login/login.component';
+import { ListserviceComponent } from './listservice/listservice.component';
+import { AddEditListserviceComponent } from './listservice/add-edit-listservice/add-edit-listservice.component';
+import { ShowListserviceComponent } from './listservice/show-listservice/show-listservice.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { LoginComponent } from './auth/components/login/login.component';
     AddEditUserComponent,
     MenuComponent,
     LoginComponent,
+    ListserviceComponent,
+    AddEditListserviceComponent,
+    ShowListserviceComponent,
   ],
   imports: [
     BrowserModule,

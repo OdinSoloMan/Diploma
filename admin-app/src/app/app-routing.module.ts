@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component'
 import { ServiceComponent } from './service/service.component'
 import { LoginComponent } from './auth/components/login/login.component';
 import { MenuComponent } from './menu/menu.component';
+import { ListserviceComponent } from './listservice/listservice.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'user', component: UserComponent },
       { path: 'service', component: ServiceComponent },
+      { path: 'listservice', component: ListserviceComponent },
     ]
   }
 ];

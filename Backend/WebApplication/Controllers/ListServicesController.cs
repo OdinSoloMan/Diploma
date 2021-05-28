@@ -64,7 +64,7 @@ namespace WebApplication.Controllers
             ListServices listServices = new ListServices() { };
             listServices.GuidListSevicesId = guid;
             db.Delete(listServices.GuidListSevicesId);
-            return new OkObjectResult("delete listsevices" + listServices.GuidListSevicesId);
+            return new OkObjectResult(new { delete_listservice = guid });
         }
     }
 }

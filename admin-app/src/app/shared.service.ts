@@ -53,4 +53,20 @@ export class SharedService {
   deleteService(val: any) {
     return this.http.delete(this.APIUrl + '/services/deleteservices/' + val, {headers: this.headers()})
   }
+
+  getListServiceList(): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/listsevices/readalllistsevices', {headers: this.headers()})
+  }
+
+  addListService(val: any) {
+    return this.http.post(this.APIUrl + '/listsevices/addlistsevices', val, {headers: this.headers()})
+  }
+
+  updateListService(val: any) {
+    return this.http.put(this.APIUrl + '/listsevices/updatelistsevices', val, {headers: this.headers()})
+  }
+
+  deleteListService(val: any) {
+    return this.http.delete(this.APIUrl + '/listsevices/deletelistsevices/' + val, {headers: this.headers()})
+  }
 }
