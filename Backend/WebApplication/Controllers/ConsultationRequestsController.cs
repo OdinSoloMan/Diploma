@@ -56,7 +56,7 @@ namespace WebApplication.Controllers
             ConsultationRequests consultationRequests = new ConsultationRequests() { };
             consultationRequests.GuidConsultationRequestsId = guid;
             db.Delete(consultationRequests.GuidConsultationRequestsId);
-            return new OkObjectResult("delete listsevices" + consultationRequests.GuidConsultationRequestsId);
+            return new OkObjectResult(new { delete_consultationRequests = guid });
         }
     }
 }

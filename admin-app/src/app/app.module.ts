@@ -22,6 +22,9 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { ListserviceComponent } from './listservice/listservice.component';
 import { AddEditListserviceComponent } from './listservice/add-edit-listservice/add-edit-listservice.component';
 import { ShowListserviceComponent } from './listservice/show-listservice/show-listservice.component';
+import { ConsultationrequestComponent } from './consultationrequest/consultationrequest.component';
+import { ShowConsultationrequestComponent } from './consultationrequest/show-consultationrequest/show-consultationrequest.component';
+import { AddEditConsultationrequestComponent } from './consultationrequest/add-edit-consultationrequest/add-edit-consultationrequest.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { ShowListserviceComponent } from './listservice/show-listservice/show-li
     ListserviceComponent,
     AddEditListserviceComponent,
     ShowListserviceComponent,
+    ConsultationrequestComponent,
+    ShowConsultationrequestComponent,
+    AddEditConsultationrequestComponent,
   ],
   imports: [
     BrowserModule,

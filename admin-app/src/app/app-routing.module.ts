@@ -6,6 +6,7 @@ import { ServiceComponent } from './service/service.component'
 import { LoginComponent } from './auth/components/login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListserviceComponent } from './listservice/listservice.component';
+import { ConsultationrequestComponent } from './consultationrequest/consultationrequest.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'user', component: UserComponent },
       { path: 'service', component: ServiceComponent },
       { path: 'listservice', component: ListserviceComponent },
+      { path: 'consultationrequest', component: ConsultationrequestComponent },
     ]
   }
 ];

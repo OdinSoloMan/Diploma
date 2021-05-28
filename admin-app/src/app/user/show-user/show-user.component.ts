@@ -113,7 +113,7 @@ export class ShowUserComponent implements OnInit {
   }
 
   sortResult(prop, asc) {
-    this.UserList = this.UserListWithoutFilter.sort(function (a, b) {
+    this.UserList = this.UserList.sort(function (a, b) {
       if (asc) {
         return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0)
       } else {

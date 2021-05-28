@@ -86,7 +86,7 @@ export class ShowListserviceComponent implements OnInit {
   }
 
   sortResult(prop, asc) {
-    this.ListServiceList = this.ListServiceListWithoutFilter.sort(function (a, b) {
+    this.ListServiceList = this.ListServiceList.sort(function (a, b) {
       if (asc) {
         return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0)
       } else {
