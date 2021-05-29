@@ -32,6 +32,9 @@ import { EventComponent } from './event/event.component';
 import { ShowEventComponent } from './event/show-event/show-event.component';
 import { AddEditEventComponent } from './event/add-edit-event/add-edit-event.component';
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +60,7 @@ import { AddEditEventComponent } from './event/add-edit-event/add-edit-event.com
     AddEditEventComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -64,6 +68,11 @@ import { AddEditEventComponent } from './event/add-edit-event/add-edit-event.com
     ReactiveFormsModule,
     NgxPaginationModule,
     NgbModule,//
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }), // ToastrModule added
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class ShowNewsComponent implements OnInit {
 
-  constructor(private service: SharedService) { }
+  constructor(
+    private service: SharedService,
+    private toastr: ToastrService,
+  ) { }
 
   NewsList: any = [];
 
@@ -65,10 +69,23 @@ export class ShowNewsComponent implements OnInit {
   }
 
   deleteClick(item) {
-    this.service.deleteNews(item.guidNewsId).subscribe(data => {
-      console.log(data)
-      this.refrechNewsList();
-    })
+    const http$ = this.service.deleteNews(item.guidNewsId);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+        this.refrechNewsList();
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   closeClick() {

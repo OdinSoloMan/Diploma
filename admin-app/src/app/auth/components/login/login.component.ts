@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../../shared.service';
 
 @Component({
@@ -16,8 +16,9 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private service: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -32,11 +33,25 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value)
-    this.service.login(this.loginForm.value).subscribe((response) => {
-      localStorage.setItem('token', response["token"])
-      localStorage.setItem('user_id', response["guid"])
-      this.router.navigateByUrl('user')
-    })
+    const http$ = this.service.login(this.loginForm.value);
+
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+        localStorage.setItem('token', res["token"])
+        localStorage.setItem('user_id', res["guid"])
+        this.router.navigateByUrl('user')
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 }

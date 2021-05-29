@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
 @Component({
   selector: 'app-add-edit-user',
@@ -9,6 +10,7 @@ export class AddEditUserComponent implements OnInit {
 
   constructor(
     private service: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   @Input() user: any;
@@ -42,10 +44,23 @@ export class AddEditUserComponent implements OnInit {
       password: this.password,
       role: this.role,
     }
-    this.service.addUser(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+
+    const http$ = this.service.addUser(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   updateUser() {
@@ -59,9 +74,22 @@ export class AddEditUserComponent implements OnInit {
       password: this.password,
       role: this.role,
     }
-    this.service.updateUser(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+
+    const http$ = this.service.updateUser(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );    
   }
 }

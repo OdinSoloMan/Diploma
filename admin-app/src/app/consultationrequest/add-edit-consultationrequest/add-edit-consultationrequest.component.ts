@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class AddEditConsultationrequestComponent implements OnInit {
 
   constructor(
     private service: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   @Input() consultationrequest: any;
@@ -30,9 +32,9 @@ export class AddEditConsultationrequestComponent implements OnInit {
   s: any = false;
   addConsultationRequest() {
     this.s = false;
-    if(this.isVerified == "true"){
+    if (this.isVerified == "true") {
       this.s = true;
-    } 
+    }
     var val = {
       description: this.description,
       reverseCommunication: this.reverseCommunication,
@@ -40,17 +42,30 @@ export class AddEditConsultationrequestComponent implements OnInit {
       usersId: this.usersId,
       listServicesId: this.listServicesId,
     }
-    this.service.addConsultationrequest(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+
+    const http$ = this.service.addConsultationrequest(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   updateConsultationRequest() {
     this.s = false;
-    if(this.isVerified == "true"){
+    if (this.isVerified == "true") {
       this.s = true;
-    } 
+    }
     var val = {
       guidConsultationRequestsId: this.guidConsultationRequestsId,
       description: this.description,
@@ -59,9 +74,22 @@ export class AddEditConsultationrequestComponent implements OnInit {
       usersId: this.usersId,
       listServicesId: this.listServicesId,
     }
-    this.service.updateConsultationrequest(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+    
+    const http$ = this.service.updateConsultationrequest(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 }

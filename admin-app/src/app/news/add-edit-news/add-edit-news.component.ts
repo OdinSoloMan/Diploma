@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class AddEditNewsComponent implements OnInit {
 
   constructor(
     private service: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   @Input() news: any;
@@ -43,10 +45,23 @@ export class AddEditNewsComponent implements OnInit {
       isConsidered : this.s,
       usersId : this.usersId,
     }
-    this.service.addNews(val).subscribe(res => {
-      //console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+
+    const http$ = this.service.addNews(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   updateNews() {
@@ -63,10 +78,22 @@ export class AddEditNewsComponent implements OnInit {
       isConsidered : this.s,
       usersId : this.usersId,
     }
-    this.service.updateNews(val).subscribe(res => {
-      //console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
-  }
 
+    const http$ = this.service.updateNews(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
+  }
 }

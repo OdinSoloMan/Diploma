@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class AddEditListserviceComponent implements OnInit {
 
   constructor(
     private service: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   @Input() listservice: any;
@@ -27,10 +29,23 @@ export class AddEditListserviceComponent implements OnInit {
       description: this.description,
       servicesId: this.servicesId,
     }
-    this.service.addListService(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+
+    const http$ = this.service.addListService(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   updateListService() {
@@ -39,9 +54,22 @@ export class AddEditListserviceComponent implements OnInit {
       description: this.description,
       servicesId: this.servicesId,
     }
-    this.service.updateListService(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+    
+    const http$ = this.service.updateListService(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 }

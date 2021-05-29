@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
 @Component({
   selector: 'app-show-user',
@@ -7,7 +8,10 @@ import { SharedService } from '../../shared.service';
 })
 export class ShowUserComponent implements OnInit {
 
-  constructor(private service: SharedService) { }
+  constructor(
+    private service: SharedService,
+    private toastr: ToastrService,
+  ) { }
 
   UserList: any = [];
 
@@ -67,10 +71,23 @@ export class ShowUserComponent implements OnInit {
   }
 
   deleteClick(item) {
-    this.service.deleteUser(item.guidUsersId).subscribe(data => {
-      console.log(data)
-      this.refrechUserList();
-    })
+    const http$ = this.service.deleteUser(item.guidUsersId);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+        this.refrechUserList();
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   closeClick() {

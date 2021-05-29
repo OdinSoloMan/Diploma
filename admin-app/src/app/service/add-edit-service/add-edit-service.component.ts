@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { SharedService } from 'src/app/shared.service';
 export class AddEditServiceComponent implements OnInit {
 
   constructor(
-    private serv: SharedService
+    private serv: SharedService,
+    private toastr: ToastrService,
   ) { }
 
   @Input() service: any;
@@ -24,10 +26,22 @@ export class AddEditServiceComponent implements OnInit {
     var val = {
       name: this.name,
     }
-    this.serv.addService(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+    const http$ = this.serv.addService(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   updateService(){
@@ -35,9 +49,21 @@ export class AddEditServiceComponent implements OnInit {
       guidServicesId: this.guidServicesId,
       name: this.name,
     }
-    this.serv.updateService(val).subscribe(res => {
-      console.log(JSON.stringify(res).toString());
-      alert(JSON.stringify(res).toString());
-    })
+    const http$ = this.serv.updateService(val);
+    http$.subscribe(
+      res => {
+        console.log('HTTP response', res)
+        this.toastr.success('Success', '200', {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+      }, () => console.log('HTTP request completed.')
+    );
   }
 }
