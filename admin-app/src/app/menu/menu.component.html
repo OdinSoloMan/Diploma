@@ -1,4 +1,68 @@
-<div class="container-fluid">
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div
+    class="bg-dark border-dark"
+    id="sidebar-wrapper"
+    [ngClass]="status ? 'hide' : 'show'"
+  >
+    <div class="sidebar-heading text-white">ODINSOLO</div>
+    <div class="list-group list-group-flush">
+      <a
+        [routerLink]="['/user']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >Users</a
+      >
+      <a
+        [routerLink]="['/service']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >Services</a
+      >
+      <a
+        [routerLink]="['/listservice']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >List Service</a
+      >
+      <a
+        [routerLink]="['/consultationrequest']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >Consultation Request</a
+      >
+      <a
+        [routerLink]="['/news']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >News</a
+      >
+      <a
+        [routerLink]="['/event']"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >Event</a
+      >
+      <a
+        role="button"
+        (click)="logout()"
+        class="list-group-item list-group-item-action bg-dark text-white"
+        >Exit</a
+      >
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="btn btn-primary" (click)="clickEvent()">Menu</button>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
       <div
@@ -83,7 +147,7 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</div> -->
 <!-- <nav
   class="navbar navbar-expand d-flex flex-column align-item-start active-nav"
   id="sidebar"
