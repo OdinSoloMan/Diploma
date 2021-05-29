@@ -21,8 +21,10 @@ export class ShowConsultationrequestComponent implements OnInit {
 
   countPage: any = 1;
 
-  ngOnInit(): void {
+  guidConsultationRequestsIdDel: any;
+  dataItemDel: any;
 
+  ngOnInit(): void {
     console.log(this.countPage)
     this.refrechConsultationrequestList();
   }
@@ -54,13 +56,17 @@ export class ShowConsultationrequestComponent implements OnInit {
     this.ActivateAddEditConsultationrequesComp = true;
   }
 
+  deleteItemFn(any){
+    this.guidConsultationRequestsIdDel = any.guidConsultationRequestsId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
   deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.service.deleteConsultationrequest(item.guidConsultationRequestsId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechConsultationrequestList();
-      })
-    }
+    this.service.deleteConsultationrequest(item.guidConsultationRequestsId).subscribe(data => {
+      console.log(data)
+      this.refrechConsultationrequestList();
+    })
   }
 
   closeClick() {
@@ -113,7 +119,7 @@ export class ShowConsultationrequestComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
     //this.countPage;

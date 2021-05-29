@@ -20,6 +20,10 @@ export class ShowNewsComponent implements OnInit {
   page: Number = 1
 
   countPage: any = 1;
+
+  guidNewsIdDel: any;
+  dataItemDel: any;
+
   ngOnInit(): void {
     console.log(this.countPage)
     this.refrechNewsList();
@@ -54,13 +58,17 @@ export class ShowNewsComponent implements OnInit {
     this.ActivateAddEditNewsComp = true;
   }
 
+  deleteItemFn(any) {
+    this.guidNewsIdDel = any.guidNewsId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
   deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.service.deleteNews(item.guidNewsId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechNewsList();
-      })
-    }
+    this.service.deleteNews(item.guidNewsId).subscribe(data => {
+      console.log(data)
+      this.refrechNewsList();
+    })
   }
 
   closeClick() {
@@ -68,7 +76,7 @@ export class ShowNewsComponent implements OnInit {
     this.refrechNewsList();
   }
 
-  refrechNewsList(){
+  refrechNewsList() {
     this.service.getNewsList().subscribe(data => {
       this.NewsList = data;
       this.NewsListWithoutFilter = data;
@@ -116,7 +124,7 @@ export class ShowNewsComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
     //this.countPage;

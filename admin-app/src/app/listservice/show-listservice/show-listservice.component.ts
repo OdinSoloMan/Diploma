@@ -20,6 +20,10 @@ export class ShowListserviceComponent implements OnInit {
   page: Number = 1;
 
   countPage: any = 1;
+
+  guidListSevicesIdDel: any;
+  dataItemDel: any;
+
   ngOnInit(): void {
     console.log(this.countPage)
     this.refrechListServiceList();
@@ -30,11 +34,11 @@ export class ShowListserviceComponent implements OnInit {
   servicesIdFilter: string = "";
   ListServiceListWithoutFilter: any = [];
 
-  addClick(){
+  addClick() {
     this.listservice = {
       guidListSevicesId: 0,
       description: '',
-      servicesId: '',    
+      servicesId: '',
     }
     this.ModalTitle = "Add List Service";
     this.ActivateAddEditListServiceComp = true;
@@ -46,13 +50,17 @@ export class ShowListserviceComponent implements OnInit {
     this.ActivateAddEditListServiceComp = true;
   }
 
+  deleteItemFn(any) {
+    this.guidListSevicesIdDel = any.guidListSevicesId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
   deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.service.deleteListService(item.guidListSevicesId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechListServiceList();
-      })
-    }
+    this.service.deleteListService(item.guidListSevicesId).subscribe(data => {
+      console.log(data)
+      this.refrechListServiceList();
+    })
   }
 
   closeClick() {
@@ -60,7 +68,7 @@ export class ShowListserviceComponent implements OnInit {
     this.refrechListServiceList();
   }
 
-  refrechListServiceList(){
+  refrechListServiceList() {
     this.service.getListServiceList().subscribe(data => {
       this.ListServiceList = data;
       this.ListServiceListWithoutFilter = data;
@@ -69,12 +77,12 @@ export class ShowListserviceComponent implements OnInit {
     })
   }
 
-  filterFn(){
+  filterFn() {
     var guidListSevicesIdFilter = this.guidListSevicesIdFilter;
     var descriptionFilter = this.descriptionFilter;
     var servicesIdFilter = this.servicesIdFilter;
 
-    this.ListServiceList = this.ListServiceListWithoutFilter.filter(function (el){
+    this.ListServiceList = this.ListServiceListWithoutFilter.filter(function (el) {
       return el.guidListSevicesId.toString().toLowerCase().includes(
         guidListSevicesIdFilter.toString().trim().toLowerCase()
       ) && el.description.toString().toLowerCase().includes(
@@ -95,7 +103,7 @@ export class ShowListserviceComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
     //this.countPage;

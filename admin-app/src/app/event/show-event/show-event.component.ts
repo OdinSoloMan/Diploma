@@ -20,10 +20,15 @@ export class ShowEventComponent implements OnInit {
   page: Number = 1
 
   countPage: any = 1;
+
+  guidEventsIdDel: any;
+  dataItemDel: any;
+
   ngOnInit(): void {
     console.log(this.countPage)
     this.refrechEventList();
   }
+
   guidEventsIdFilter: string = "";
   eventTitleFilter: string = "";
   descriptionOfTheEventFilter: string = "";
@@ -53,13 +58,17 @@ export class ShowEventComponent implements OnInit {
     this.ActivateAddEditEventComp = true;
   }
 
+  deleteItemFn(any){
+    this.guidEventsIdDel = any.guidEventsId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
   deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.service.deleteEvent(item.guidEventsId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechEventList();
-      })
-    }
+    this.service.deleteEvent(item.guidEventsId).subscribe(data => {
+      console.log(data)
+      this.refrechEventList();
+    })
   }
 
   closeClick() {
@@ -67,7 +76,7 @@ export class ShowEventComponent implements OnInit {
     this.refrechEventList();
   }
 
-  refrechEventList(){
+  refrechEventList() {
     this.service.getEventList().subscribe(data => {
       this.EventList = data;
       this.EventListWithoutFilter = data;
@@ -115,7 +124,7 @@ export class ShowEventComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
     //this.countPage;

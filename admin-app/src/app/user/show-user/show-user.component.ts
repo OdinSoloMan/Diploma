@@ -19,6 +19,10 @@ export class ShowUserComponent implements OnInit {
   page: Number = 1 //
 
   countPage: any = 1;
+
+  guidUsersIdDel: any;
+  dataItemDel: any;
+
   ngOnInit(): void {
 
     console.log(this.countPage)
@@ -56,13 +60,17 @@ export class ShowUserComponent implements OnInit {
     this.ActivateAddEditUserComp = true;
   }
 
+  deleteItemFn(any){
+    this.guidUsersIdDel = any.guidUsersId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
   deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.service.deleteUser(item.guidUsersId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechUserList();
-      })
-    }
+    this.service.deleteUser(item.guidUsersId).subscribe(data => {
+      console.log(data)
+      this.refrechUserList();
+    })
   }
 
   closeClick() {
@@ -122,7 +130,7 @@ export class ShowUserComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
     //this.countPage;

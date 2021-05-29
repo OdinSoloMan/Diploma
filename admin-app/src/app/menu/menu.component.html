@@ -1,4 +1,90 @@
-<nav
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <div
+        class="
+          d-flex
+          flex-column
+          align-items-center align-items-sm-start
+          px-3
+          pt-2
+          text-white
+          min-vh-100
+        "
+      >
+        <a
+          class="
+            d-flex
+            align-items-center
+            pb-3
+            mb-md-0
+            me-md-auto
+            text-white text-decoration-none
+          "
+        >
+          <span class="fs-5 d-none d-sm-inline">Menu</span>
+        </a>
+        <ul
+          class="
+            nav nav-pills
+            flex-column
+            mb-sm-auto mb-0
+            align-items-center align-items-sm-start
+          "
+          id="menu"
+        >
+          <li class="nav-item">
+            <a [routerLink]="['/user']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/service']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Services</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/listservice']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">List Service</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/consultationrequest']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Consultation Request</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/news']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">News</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/event']" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Event</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a role="button" (click)="logout()" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Exit</span>
+            </a>
+          </li>
+        </ul>
+        <hr />
+      </div>
+    </div>
+    <div class="col py-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- <nav
   class="navbar navbar-expand d-flex flex-column align-item-start active-nav"
   id="sidebar"
 >
@@ -34,7 +120,10 @@
       >Event</a
     >
     </li>
-  </ul>
+    <li class="nav-item w-100">
+      <a class="nav-link text-light pl-4 " role="button" (click)="logout()">Exit</a>
+    </li>
+   </ul>
 </nav>
 <section class="p-4 my-container active-cont">
   <button class="btn my-4" id="menu-btn" (click)="clickTogle()">
@@ -56,4 +145,4 @@
     Menu
   </button>
   <router-outlet></router-outlet>
-</section>
+</section> -->

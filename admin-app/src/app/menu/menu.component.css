@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -43,14 +43,14 @@ body {
 }
 
 
-/* for navbar */
+
 
 .active-nav {
     margin-left: 0;
 }
 
 
-/* for main section */
+
 
 .active-cont {
     margin-left: 250px;
@@ -63,4 +63,4 @@ body {
 
 #menu-btn:focus {
     box-shadow: 0 0 0 0.25rem #7952b344;
-}
+} */

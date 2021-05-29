@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  test: "test"
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     
@@ -21,5 +23,11 @@ export class MenuComponent implements OnInit {
       sidebar.classList.toggle("active-nav")
       container.classList.toggle("active-cont")
     })
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    this.router.navigateByUrl("login");
   }
 }

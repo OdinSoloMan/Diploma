@@ -16,10 +16,14 @@ export class ShowServiceComponent implements OnInit {
   ActivateAddEditServiceComp: boolean = false;
   service: any;
 
-  totalRecords: String 
+  totalRecords: String
   page: Number = 1
 
   countPage: any = 1;
+
+  guidServicesIdDel: any;
+  dataItemDel: any;
+
   ngOnInit(): void {
 
     console.log(this.countPage)
@@ -30,7 +34,7 @@ export class ShowServiceComponent implements OnInit {
   nameFilter: string = "";
   ServiceListWithoutFilter: any = [];
 
-  addClick(){
+  addClick() {
     this.service = {
       guidServicesId: 0,
       name: '',
@@ -39,20 +43,23 @@ export class ShowServiceComponent implements OnInit {
     this.ActivateAddEditServiceComp = true;
   }
 
-  editClick(item){
+  editClick(item) {
     this.service = item;
     this.ModalTitle = "Edit Service";
     this.ActivateAddEditServiceComp = true;
   }
 
-  deleteClick(item){
-    console.log(item)
-    if(confirm('Are you sure??')){
-      this.serv.deleteService(item.guidServicesId).subscribe(data => {
-        alert(JSON.stringify(data).toString());
-        this.refrechServiceList();
-      })
-    }
+  deleteItemFn(any) {
+    this.guidServicesIdDel = any.guidServicesId;
+    this.dataItemDel = any;
+    console.log(any);
+  }
+
+  deleteClick(item) {
+    this.serv.deleteService(item.guidServicesId).subscribe(data => {
+      console.log(data)
+      this.refrechServiceList();
+    })
   }
 
   closeClick() {
@@ -60,7 +67,7 @@ export class ShowServiceComponent implements OnInit {
     this.refrechServiceList();
   }
 
-  refrechServiceList(){
+  refrechServiceList() {
     this.serv.getServiceList().subscribe(data => {
       this.ServiceList = data;
       this.ServiceListWithoutFilter = data;
@@ -69,7 +76,7 @@ export class ShowServiceComponent implements OnInit {
     })
   }
 
-  filterFn(){
+  filterFn() {
     var guidServicesIdFilter = this.guidServicesIdFilter;
     var nameFilter = this.nameFilter;
 
@@ -83,7 +90,7 @@ export class ShowServiceComponent implements OnInit {
     this.totalRecords = this.ServiceList.length
   }
 
-  sortResult(prop, asc){
+  sortResult(prop, asc) {
     this.ServiceList = this.ServiceList.sort(function (a, b) {
       if (asc) {
         return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0)
@@ -93,7 +100,7 @@ export class ShowServiceComponent implements OnInit {
     })
   }
 
-  switchFnCountPage(e){
+  switchFnCountPage(e) {
     console.log(e);
     this.countPage = e;
   }
