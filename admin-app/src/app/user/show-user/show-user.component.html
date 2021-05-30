@@ -65,7 +65,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>
+      <th>№</th>
+      <th [hidden]="true">
         <div class="d-flex flex-row">
           <input
             [(ngModel)]="guidUsersIdFilter"
@@ -157,7 +158,7 @@
             </svg>
           </button>
         </div>
-        fullName
+        Full name
       </th>
       <th>
         <div class="d-flex flex-row">
@@ -204,7 +205,7 @@
             </svg>
           </button>
         </div>
-        email
+        Email
       </th>
       <th>
         <input
@@ -212,7 +213,7 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />telephone
+        />Telephone
       </th>
       <th>
         <input
@@ -220,7 +221,7 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />position
+        />Position
       </th>
       <th>
         <input
@@ -228,9 +229,9 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />typeOfEnterprise
+        />Type of enterprise
       </th>
-      <th>
+      <th [hidden]="true">
         <input
           [(ngModel)]="passwordFilter"
           class="form-control"
@@ -238,7 +239,7 @@
           placeholder="Filter"
         />password
       </th>
-      <th>
+      <th [hidden]="true">
         <input
           [(ngModel)]="roleFilter"
           class="form-control"
@@ -259,17 +260,19 @@
                 itemsPerPage: countPage,
                 currentPage: page,
                 totalItems: totalRecords
-              }
+              };
+        let i = index
       "
     >
-      <td>{{ dataItem.guidUsersId }}</td>
+      <td>{{ i + 1 }}</td>
+      <td [hidden]="true">{{ dataItem.guidUsersId }}</td>
       <td>{{ dataItem.fullName }}</td>
       <td>{{ dataItem.email }}</td>
       <td>{{ dataItem.telephone }}</td>
       <td>{{ dataItem.position }}</td>
       <td>{{ dataItem.typeOfEnterprise }}</td>
-      <td>{{ dataItem.password }}</td>
-      <td>{{ dataItem.role }}</td>
+      <td [hidden]="true">{{ dataItem.password }}</td>
+      <td [hidden]="true">{{ dataItem.role }}</td>
       <td>
         <button
           type="button"

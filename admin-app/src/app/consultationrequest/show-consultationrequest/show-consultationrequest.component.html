@@ -68,7 +68,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>
+      <th>№</th>
+      <th [hidden]="true">
         <div class="d-flex flex-row">
           <input
             [(ngModel)]="guidConsultationRequestsIdFilter"
@@ -160,7 +161,7 @@
             </svg>
           </button>
         </div>
-        description
+        Description
       </th>
       <th>
         <div class="d-flex flex-row">
@@ -207,7 +208,7 @@
             </svg>
           </button>
         </div>
-        reverseCommunication
+        Reverse communication
       </th>
       <th>
         <input
@@ -215,7 +216,7 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />isVerified
+        />Is verified
       </th>
       <th>
         <input
@@ -223,7 +224,7 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />usersId
+        />Users Id
       </th>
       <th>
         <input
@@ -231,7 +232,7 @@
           class="form-control"
           (keyup)="filterFn()"
           placeholder="Filter"
-        />listServicesId
+        />List services Id
       </th>
       <th>Options</th>
     </tr>
@@ -246,10 +247,12 @@
                 itemsPerPage: countPage,
                 currentPage: page,
                 totalItems: totalRecords
-              }
+              };
+        let i = index
       "
     >
-      <td>{{ dataItem.guidConsultationRequestsId }}</td>
+      <td>{{ i + 1 }}</td>
+      <td [hidden]="true">{{ dataItem.guidConsultationRequestsId }}</td>
       <td>{{ dataItem.description }}</td>
       <td>{{ dataItem.reverseCommunication }}</td>
       <td>{{ dataItem.isVerified }}</td>

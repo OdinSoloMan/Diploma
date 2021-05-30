@@ -68,7 +68,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>
+      <th>№</th>
+      <th [hidden]="true">
         <div class="d-flex flex-row">
           <input
             [(ngModel)]="guidServicesIdFilter"
@@ -160,7 +161,7 @@
             </svg>
           </button>
         </div>
-        name
+        Name
       </th>
       <th>Options</th>
     </tr>
@@ -175,10 +176,12 @@
                 itemsPerPage: countPage,
                 currentPage: page,
                 totalItems: totalRecords
-              }
+              };
+        let i = index
       "
     >
-      <td>{{ dataItem.guidServicesId }}</td>
+      <td>{{ i + 1 }}</td>
+      <td [hidden]="true">{{ dataItem.guidServicesId }}</td>
       <td>{{ dataItem.name }}</td>
       <td>
         <button
