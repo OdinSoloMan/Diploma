@@ -4,12 +4,22 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40%" height="40%" fill="currentColor" class="bi bi-peace-fill" viewBox="0 0 16 16" style="margin-top: 20px;">
-            <path d="M14 13.292A8 8 0 0 0 8.5.015v7.778l5.5 5.5zm-.708.708L8.5 9.206v6.778a7.967 7.967 0 0 0 4.792-1.986zM7.5 15.985V9.207L2.708 14A7.967 7.967 0 0 0 7.5 15.985zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5z"/>
-        </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40%"
+        height="40%"
+        fill="currentColor"
+        class="bi bi-peace-fill"
+        viewBox="0 0 16 16"
+        style="margin-top: 20px"
+      >
+        <path
+          d="M14 13.292A8 8 0 0 0 8.5.015v7.778l5.5 5.5zm-.708.708L8.5 9.206v6.778a7.967 7.967 0 0 0 4.792-1.986zM7.5 15.985V9.207L2.708 14A7.967 7.967 0 0 0 7.5 15.985zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5z"
+        />
+      </svg>
     </div>
     <!-- Login Form -->
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="margin-top: 20px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="margin-top: 20px">
       <input
         type="text"
         id="login"
@@ -17,16 +27,82 @@
         name="login"
         placeholder="login"
         formControlName="email"
+        [ngClass]="
+          (form.get('email').touched || form.get('email').dirty) &&
+          form.get('email').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('email')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('email').touched || form.get('email').dirty) &&
+                !form.get('email').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="email"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("email").hasError("required") ? " Email is required." : ""
+        }}
+        {{
+          form.get("email").hasError("minlength") ? " 5 letters required." : ""
+        }}
+        {{
+          form.get("email").hasError("maxlength") ? " 40 letters required." : ""
+        }}
+        {{ form.get("email").hasError("email") ? " Email type." : "" }}
+      </div>
       <input
-        type="text"
+        type="password"
         id="password"
         class="fadeIn third"
         name="password"
         placeholder="password"
         formControlName="password"
+        [ngClass]="
+          (form.get('password').touched || form.get('password').dirty) &&
+          form.get('password').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('password').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('password').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('password').touched || form.get('password').dirty) &&
+                !form.get('password').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="password"
       />
-      <input type="submit" class="fadeIn fourth" value="Log In" [disabled]="loginForm.invalid"/>
+      <div class="invalid-feedback">
+        {{
+          form.get("password").hasError("required")
+            ? " Password is required."
+            : ""
+        }}
+        {{
+          form.get("password").hasError("minlength")
+            ? " 6 letters required."
+            : ""
+        }}
+        {{
+          form.get("password").hasError("maxlength")
+            ? " 45 letters required."
+            : ""
+        }}
+      </div>
+      <input
+        type="submit"
+        class="fadeIn fourth"
+        value="Log In"
+        [disabled]="form.invalid"
+      />
     </form>
   </div>
 </div>

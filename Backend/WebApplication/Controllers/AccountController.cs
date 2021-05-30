@@ -73,7 +73,9 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> GetRole()
         {
-            return new OkObjectResult(new { admin = "Ok()" });
+            string s = Md5.Encrypt("test@admin.com");
+            string s1 = Md5.Decrypt(s);
+            return new OkObjectResult(new { EncodeTo64 = s, DecodeFrom64 = s1});
             //return new OkObjectResult(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
         }
 
@@ -84,7 +86,7 @@ namespace WebApplication.Controllers
             Users users = null;
             foreach (Users Elm in Base)
             {
-                if (Elm.Email == login && Elm.Password == Md5.Convert(password)) 
+                if (Elm.Email == login && Elm.Password == Md5.Encrypt(password)) 
                     users = Elm;
             }
             if (users != null)

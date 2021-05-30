@@ -1,81 +1,326 @@
 <div class="form-froup row">
-  <label class="col-sm-2 col-form-label">fullName</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="fullName"
-      placeholder="Enter fullName"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User email</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="email"
-      placeholder="Enter email"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User telephone</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="telephone"
-      placeholder="Enter telephone"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User position</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="position"
-      placeholder="Enter position"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User typeOfEnterprise</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="typeOfEnterprise"
-      placeholder="Enter typeOfEnterprise"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User password</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="password"
-      placeholder="Enter password"
-    />
-  </div>
-  <label class="col-sm-2 col-form-label">User role</label>
-  <div class="col-sm-10">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="role"
-      placeholder="Enter role"
-    />
-  </div>
+  <form [formGroup]="form">
+    <label class="col-sm-2 col-form-label">Full Name</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Full name"
+        [ngClass]="
+          (form.get('fullName').touched || form.get('fullName').dirty) &&
+          form.get('fullName').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('fullName').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('fullName').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('fullName').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('fullName').touched || form.get('fullName').dirty) &&
+                !form.get('fullName').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="fullName"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("fullName").hasError("required")
+            ? " FullName is required."
+            : ""
+        }}
+        {{
+          form.get("fullName").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("fullName").hasError("maxlength")
+            ? " 40 letters required."
+            : ""
+        }}
+        {{ form.get("fullName").hasError("pattern") ? " One letters." : "" }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter email"
+        [ngClass]="
+          (form.get('email').touched || form.get('email').dirty) &&
+          form.get('email').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('email').hasError('email')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('email').touched || form.get('email').dirty) &&
+                !form.get('email').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="email"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("email").hasError("required") ? " Email is required." : ""
+        }}
+        {{
+          form.get("email").hasError("minlength") ? " 5 letters required." : ""
+        }}
+        {{
+          form.get("email").hasError("maxlength") ? " 40 letters required." : ""
+        }}
+        {{ form.get("email").hasError("email") ? " Email type." : "" }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Telephone</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter telephone"
+        [ngClass]="
+          (form.get('telephone').touched || form.get('telephone').dirty) &&
+          form.get('telephone').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('telephone').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('telephone').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('telephone').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('telephone').touched || form.get('telephone').dirty) &&
+                !form.get('telephone').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="telephone"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("telephone").hasError("required")
+            ? " Telephone is required."
+            : ""
+        }}
+        {{
+          form.get("telephone").hasError("minlength")
+            ? " 11 letters required."
+            : ""
+        }}
+        {{
+          form.get("telephone").hasError("maxlength")
+            ? " 11 letters required."
+            : ""
+        }}
+        {{
+          form.get("telephone").hasError("pattern") ? " Telephone type." : ""
+        }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Position</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter position"
+        [ngClass]="
+          (form.get('position').touched || form.get('position').dirty) &&
+          form.get('position').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('position').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('position').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('position').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('position').touched || form.get('position').dirty) &&
+                !form.get('position').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="position"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("position").hasError("required")
+            ? " Position is required."
+            : ""
+        }}
+        {{
+          form.get("position").hasError("minlength")
+            ? " 2 letters required."
+            : ""
+        }}
+        {{
+          form.get("position").hasError("maxlength")
+            ? " 10 letters required."
+            : ""
+        }}
+        {{ form.get("position").hasError("pattern") ? " One letters." : "" }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Type of enterprise</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Type of enterprise"
+        [ngClass]="
+          (form.get('typeOfEnterprise').touched ||
+            form.get('typeOfEnterprise').dirty) &&
+          form.get('typeOfEnterprise').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('typeOfEnterprise').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('typeOfEnterprise').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('typeOfEnterprise').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('typeOfEnterprise').touched ||
+                form.get('typeOfEnterprise').dirty) &&
+                !form.get('typeOfEnterprise').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="typeOfEnterprise"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("typeOfEnterprise").hasError("required")
+            ? " Type of enterprise is required."
+            : ""
+        }}
+        {{
+          form.get("typeOfEnterprise").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("typeOfEnterprise").hasError("maxlength")
+            ? " 10 letters required."
+            : ""
+        }}
+        {{
+          form.get("typeOfEnterprise").hasError("pattern")
+            ? " One letters."
+            : ""
+        }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter password"
+        [ngClass]="
+          (form.get('password').touched || form.get('password').dirty) &&
+          form.get('password').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('password').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('password').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('password').touched || form.get('password').dirty) &&
+                !form.get('password').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="password"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("password").hasError("required")
+            ? " Password is required."
+            : ""
+        }}
+        {{
+          form.get("password").hasError("minlength")
+            ? " 6 letters required."
+            : ""
+        }}
+        {{
+          form.get("password").hasError("maxlength")
+            ? " 45 letters required."
+            : ""
+        }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Role</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter role"
+        [ngClass]="
+          (form.get('role').touched || form.get('role').dirty) &&
+          form.get('role').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('role').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('role').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('role').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('role').touched ||
+                form.get('role').dirty) &&
+                !form.get('role').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="role"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("role").hasError("required")
+            ? " Role is required."
+            : ""
+        }}
+        {{
+          form.get("role").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("role").hasError("maxlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{ form.get("role").hasError("pattern") ? " One letters." : "" }}
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <button
+        style="margin-top: 20px"
+        [disabled]="form.invalid"
+        (click)="addUser()"
+        *ngIf="user.guidUsersId == 0"
+        class="btn btn-primary"
+      >
+        Add
+      </button>
+
+      <button
+        style="margin-top: 20px"
+        [disabled]="form.invalid"
+        (click)="updateUser()"
+        *ngIf="user.guidUsersId != 0"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+    </div>
+  </form>
 </div>
-
-<button
-  (click)="addUser()"
-  *ngIf="user.guidUsersId == 0"
-  class="btn btn-primary"
->
-  Add
-</button>
-
-<button
-  (click)="updateUser()"
-  *ngIf="user.guidUsersId != 0"
-  class="btn btn-primary"
->
-  Update
-</button>

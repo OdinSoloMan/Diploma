@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
@@ -16,15 +17,19 @@ export class AddEditServiceComponent implements OnInit {
 
   @Input() service: any;
   guidServicesId: string;
-  name: string;
+  
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+  })
+
   ngOnInit(): void {
     this.guidServicesId = this.service.guidServicesId;
-    this.name = this.service.name;
+    this.form.controls['name'].setValue(this.service.name);
   }
 
   addService() {
     var val = {
-      name: this.name,
+      name: this.form.value.name,
     }
     const http$ = this.serv.addService(val);
     http$.subscribe(
@@ -44,10 +49,10 @@ export class AddEditServiceComponent implements OnInit {
     );
   }
 
-  updateService(){
+  updateService() {
     var val = {
       guidServicesId: this.guidServicesId,
-      name: this.name,
+      name: this.form.value.name,
     }
     const http$ = this.serv.updateService(val);
     http$.subscribe(

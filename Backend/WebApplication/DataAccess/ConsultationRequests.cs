@@ -13,6 +13,7 @@ namespace WebApplication.DataAccess
         public string Description { get; set; }
         public string ReverseCommunication { get; set; }
         public bool IsVerified { get; set; }
+        public string Message { get; set; }
 
         public Guid UsersId { get; set; }
         public Users Users { get; set; }
@@ -28,23 +29,26 @@ namespace WebApplication.DataAccess
             Description = "";
             ReverseCommunication = "";
             IsVerified = false;
+            Message = "";
             UsersId = guid;
             ListServicesId = guid;
         }
 
-        public ConsultationRequests(string _Description, string _ReverseCommunication, bool isVerified,  Guid _guidUsers, Guid _gudiListServies)
+        public ConsultationRequests(string _Description, string _ReverseCommunication, string _Message, bool isVerified,  Guid _guidUsers, Guid _gudiListServies)
         {
             Description = _Description;
             ReverseCommunication = _ReverseCommunication;
+            Message = _Message;
             UsersId = _guidUsers;
             IsVerified = isVerified;
             ListServicesId = _gudiListServies;
         }
 
-        public void AddConsultationRequests(string _Description, string _ReverseCommunication, bool isVerified, Guid _guidUsers, Guid _gudiListServies)
+        public void AddConsultationRequests(string _Description, string _ReverseCommunication, string _Message, bool isVerified, Guid _guidUsers, Guid _gudiListServies)
         {
             Description = _Description;
             ReverseCommunication = _ReverseCommunication;
+            Message = _Message;
             UsersId = _guidUsers;
             IsVerified = isVerified;
             ListServicesId = _gudiListServies;

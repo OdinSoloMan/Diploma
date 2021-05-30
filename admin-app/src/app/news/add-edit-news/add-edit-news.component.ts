@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
@@ -16,34 +17,39 @@ export class AddEditNewsComponent implements OnInit {
 
   @Input() news: any;
   guidNewsId: string;
-  newTitle: string;
-  newDescription: string;
-  dataNew: string;
-  imageNew: string;
-  isConsidered: string;
-  usersId: string;
+
+  form = new FormGroup({
+    newTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    newDescription: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(150)]),
+    dataNew: new FormControl('', [Validators.required]),
+    imageNew: new FormControl('', [Validators.required]),
+    isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
+    usersId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
+  })
+
   ngOnInit(): void {
     this.guidNewsId = this.news.guidNewsId;
-    this.newTitle = this.news.newTitle;
-    this.newDescription = this.news.newDescription;
-    this.dataNew = this.news.dataNew;
-    this.imageNew = this.news.imageNew;
-    this.isConsidered = this.news.isConsidered;
-    this.usersId = this.news.usersId;
+    this.form.controls['newTitle'].setValue(this.news.newTitle);
+    this.form.controls['newDescription'].setValue(this.news.newDescription);
+    this.form.controls['dataNew'].setValue(this.news.dataNew);
+    this.form.controls['imageNew'].setValue(this.news.imageNew);
+    this.form.controls['isConsidered'].setValue(this.news.isConsidered);
+    this.form.controls['usersId'].setValue(this.news.usersId);
   }
+  
   s: any = false;
   addNews() {
     this.s = false;
-    if(this.isConsidered == "true"){
+    if(this.form.value.isConsidered == "true"){
       this.s = true;
     } 
     var val = {
-      newTitle : this.newTitle,
-      newDescription : this.newDescription,
-      dataNew : this.dataNew,
-      imageNew : this.imageNew,
+      newTitle : this.form.value.newTitle,
+      newDescription : this.form.value.newDescription,
+      dataNew : this.form.value.dataNew,
+      imageNew : this.form.value.imageNew,
+      usersId : this.form.value.usersId,
       isConsidered : this.s,
-      usersId : this.usersId,
     }
 
     const http$ = this.service.addNews(val);
@@ -66,17 +72,17 @@ export class AddEditNewsComponent implements OnInit {
 
   updateNews() {
     this.s = false;
-    if(this.isConsidered == "true"){
+    if(this.form.value.isConsidered  == "true"){
       this.s = true;
     } 
     var val = {
       guidNewsId : this.guidNewsId,
-      newTitle : this.newTitle,
-      newDescription : this.newDescription,
-      dataNew : this.dataNew,
-      imageNew : this.imageNew,
+      newTitle : this.form.value.newTitle,
+      newDescription : this.form.value.newDescription,
+      dataNew : this.form.value.dataNew,
+      imageNew : this.form.value.imageNew,
+      usersId : this.form.value.usersId,
       isConsidered : this.s,
-      usersId : this.usersId,
     }
 
     const http$ = this.service.updateNews(val);

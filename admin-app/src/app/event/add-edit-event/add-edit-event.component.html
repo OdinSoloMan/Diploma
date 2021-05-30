@@ -1,72 +1,257 @@
 <div class="form-froup row">
-    <label class="col-sm-2 col-form-label">eventTitle</label>
+  <form [formGroup]="form">
+    <label class="col-sm-2 col-form-label">Event title</label>
     <div class="col-sm-10">
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="eventTitle"
-        placeholder="Enter eventTitle"
+        placeholder="Enter event title"
+        [ngClass]="
+          (form.get('eventTitle').touched || form.get('eventTitle').dirty) &&
+          form.get('eventTitle').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('eventTitle').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('eventTitle').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('eventTitle').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('eventTitle').touched ||
+                form.get('eventTitle').dirty) &&
+                !form.get('eventTitle').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="eventTitle"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("eventTitle").hasError("required")
+            ? " Event title is required."
+            : ""
+        }}
+        {{
+          form.get("eventTitle").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("eventTitle").hasError("maxlength")
+            ? " 40 letters required."
+            : ""
+        }}
+        {{ form.get("eventTitle").hasError("pattern") ? " One letters." : "" }}
+      </div>
     </div>
-    <label class="col-sm-2 col-form-label">descriptionOfTheEvent</label>
+    <label class="col-sm-2 col-form-label"
+      >Description&nbsp;of&nbsp;the&nbsp;event</label
+    >
     <div class="col-sm-10">
-      <input
-        type="text"
+      <textarea
+        type=""
         class="form-control"
-        [(ngModel)]="descriptionOfTheEvent"
-        placeholder="Enter descriptionOfTheEvent"
-      />
+        style="height: 100px"
+        placeholder="Enter description of the event"
+        [ngClass]="
+          (form.get('descriptionOfTheEvent').touched ||
+            form.get('descriptionOfTheEvent').dirty) &&
+          form.get('descriptionOfTheEvent').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('descriptionOfTheEvent').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('descriptionOfTheEvent').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('descriptionOfTheEvent').touched ||
+                form.get('descriptionOfTheEvent').dirty) &&
+                !form.get('descriptionOfTheEvent').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="descriptionOfTheEvent"
+      >
+      </textarea>
+      <div class="invalid-feedback">
+        {{
+          form.get("descriptionOfTheEvent").hasError("required")
+            ? " Description of the event is required."
+            : ""
+        }}
+        {{
+          form.get("descriptionOfTheEvent").hasError("minlength")
+            ? " 20 letters required."
+            : ""
+        }}
+        {{
+          form.get("descriptionOfTheEvent").hasError("maxlength")
+            ? " 150 letters required."
+            : ""
+        }}
+      </div>
     </div>
-    <label class="col-sm-2 col-form-label">plannedStartDate</label>
+    <label class="col-sm-2 col-form-label">Date event</label>
     <div class="col-sm-10">
       <input
         type="datetime-local"
         class="form-control"
-        [(ngModel)]="plannedStartDate"
-        placeholder="Enter plannedStartDate"
+        [ngClass]="
+          (form.get('plannedStartDate').touched ||
+            form.get('plannedStartDate').dirty) &&
+          form.get('plannedStartDate').hasError('required')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('plannedStartDate').touched ||
+                form.get('plannedStartDate').dirty) &&
+                !form.get('plannedStartDate').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="plannedStartDate"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("plannedStartDate").hasError("required")
+            ? " Data is required."
+            : ""
+        }}
+      </div>
     </div>
-    <label class="col-sm-2 col-form-label">imageEvents</label>
+    <label class="col-sm-2 col-form-label">Image event</label>
     <div class="col-sm-10">
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="imageEvents"
-        placeholder="Enter imageEvents"
+        placeholder="Enter image event"
+        [ngClass]="
+          (form.get('imageEvents').touched || form.get('imageEvents').dirty) &&
+          form.get('imageEvents').hasError('required')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('imageEvents').touched ||
+                form.get('imageEvents').dirty) &&
+                !form.get('imageEvents').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="imageEvents"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("imageEvents").hasError("required")
+            ? " Image is required."
+            : ""
+        }}
+      </div>
     </div>
-    <label class="col-sm-2 col-form-label">isConsidered</label>
+    <label class="col-sm-2 col-form-label">Is considered</label>
     <div class="col-sm-10">
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="isConsidered"
-        placeholder="Enter isConsidered"
+        placeholder="Enter is considered"
+        [ngClass]="
+          (form.get('isConsidered').touched ||
+            form.get('isConsidered').dirty) &&
+          form.get('isConsidered').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('isConsidered').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('isConsidered').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('isConsidered').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('isConsidered').touched ||
+                form.get('isConsidered').dirty) &&
+                !form.get('isConsidered').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="isConsidered"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("isConsidered").hasError("required")
+            ? " Is considered is required."
+            : ""
+        }}
+        {{
+          form.get("isConsidered").hasError("minlength")
+            ? " 4 letters required."
+            : ""
+        }}
+        {{
+          form.get("isConsidered").hasError("maxlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("isConsidered").hasError("pattern") ? " One letters." : ""
+        }}
+      </div>
     </div>
-    <label class="col-sm-2 col-form-label">User usersId</label>
+    <label class="col-sm-2 col-form-label">User Id</label>
     <div class="col-sm-10">
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="usersId"
-        placeholder="Enter usersId"
+        placeholder="Enter user Id"
+        [ngClass]="
+          (form.get('usersId').touched || form.get('usersId').dirty) &&
+          form.get('usersId').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('usersId').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('usersId').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('usersId').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('usersId').touched || form.get('usersId').dirty) &&
+                !form.get('usersId').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="usersId"
       />
+      <div class="invalid-feedback">
+        {{
+          form.get("usersId").hasError("required") ? " Guid is required." : ""
+        }}
+        {{
+          form.get("usersId").hasError("minlength")
+            ? " 36 letters required."
+            : ""
+        }}
+        {{
+          form.get("usersId").hasError("maxlength")
+            ? " 36 letters required."
+            : ""
+        }}
+        {{ form.get("usersId").hasError("pattern") ? " Guid type." : "" }}
+      </div>
     </div>
-  </div>
-  
-  <button
-    (click)="addEvent()"
-    *ngIf="event.guidEventsId == 0"
-    class="btn btn-primary"
-  >
-    Add
-  </button>
-  
-  <button
-    (click)="updateEvent()"
-    *ngIf="event.guidEventsId != 0"
-    class="btn btn-primary"
-  >
-    Update
-  </button>
+    <div class="col-sm-10">
+      <button
+        style="margin-top: 20px"
+        [disabled]="form.invalid"
+        (click)="addEvent()"
+        *ngIf="event.guidEventsId == 0"
+        class="btn btn-primary"
+      >
+        Add
+      </button>
+
+      <button
+        style="margin-top: 20px"
+        [disabled]="form.invalid"
+        (click)="updateEvent()"
+        *ngIf="event.guidEventsId != 0"
+        class="btn btn-primary"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>

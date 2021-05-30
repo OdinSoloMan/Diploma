@@ -65,9 +65,9 @@ namespace WebApplication.Repositories
             {
                 users1.TypeOfEnterprise = users.TypeOfEnterprise;
             }
-            if (users1.Password != Md5.Convert(users.Password) & users.Password != "")
+            if (users1.Password != users.Password & users.Password != "")
             {
-                users1.Password = Md5.Convert(users.Password);
+                users1.Password = Md5.Encrypt(users.Password);
             }
             if (users1.Role != users.Role & users.Role != "")
             {

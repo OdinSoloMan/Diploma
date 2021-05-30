@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
+
 @Component({
   selector: 'app-add-edit-user',
   templateUrl: './add-edit-user.component.html',
@@ -15,34 +17,38 @@ export class AddEditUserComponent implements OnInit {
 
   @Input() user: any;
   guidUsersId: string;
-  fullName: string;
-  email: string;
-  telephone: string;
-  position: string;
-  typeOfEnterprise: string;
-  password: string;
-  role: string;
+
+  form = new FormGroup({
+    fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.email]),
+    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^(1|1\\s)?(\\d{11}|(\\d{3}\\-){2}\\d{4}|\\(\\d{3}\\)\\s?\\d{3}\\-\\d{4}|(\\d{3}\\s){2}\\d{4})$')]),
+    position: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
+    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)]),
+    role: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
+  })
+
   ngOnInit(): void {
     this.guidUsersId = this.user.guidUsersId;
-    this.fullName = this.user.fullName;
-    this.email = this.user.email;
-    this.telephone = this.user.telephone;
-    this.position = this.user.position;
-    this.typeOfEnterprise = this.user.typeOfEnterprise;
-    this.password = this.user.password;
-    this.role = this.user.role;
+    this.form.controls['fullName'].setValue(this.user.fullName);
+    this.form.controls['email'].setValue(this.user.email);
+    this.form.controls['telephone'].setValue(this.user.telephone);
+    this.form.controls['position'].setValue(this.user.position);
+    this.form.controls['typeOfEnterprise'].setValue(this.user.typeOfEnterprise);
+    this.form.controls['password'].setValue(this.user.password);
+    this.form.controls['role'].setValue(this.user.role);
   }
 
   addUser() {
     var val = {
       //guidUsersId: this.guidUsersId,
-      fullName: this.fullName,
-      email: this.email,
-      telephone: this.telephone,
-      position: this.position,
-      typeOfEnterprise: this.typeOfEnterprise,
-      password: this.password,
-      role: this.role,
+      fullName: this.form.value.fullName,
+      email: this.form.value.email,
+      telephone: this.form.value.telephone,
+      position: this.form.value.position,
+      typeOfEnterprise: this.form.value.typeOfEnterprise,
+      password: this.form.value.password,
+      role: this.form.value.role,
     }
 
     const http$ = this.service.addUser(val);
@@ -66,13 +72,13 @@ export class AddEditUserComponent implements OnInit {
   updateUser() {
     var val = {
       guidUsersId: this.guidUsersId,
-      fullName: this.fullName,
-      email: this.email,
-      telephone: this.telephone,
-      position: this.position,
-      typeOfEnterprise: this.typeOfEnterprise,
-      password: this.password,
-      role: this.role,
+      fullName: this.form.value.fullName,
+      email: this.form.value.email,
+      telephone: this.form.value.telephone,
+      position: this.form.value.position,
+      typeOfEnterprise: this.form.value.typeOfEnterprise,
+      password: this.form.value.password,
+      role: this.form.value.role,
     }
 
     const http$ = this.service.updateUser(val);
@@ -90,6 +96,6 @@ export class AddEditUserComponent implements OnInit {
           closeButton: true
         });
       }, () => console.log('HTTP request completed.')
-    );    
+    );
   }
 }

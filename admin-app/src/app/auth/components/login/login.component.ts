@@ -10,9 +10,9 @@ import { SharedService } from '../../../shared.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)]),
   })
 
   constructor(
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const http$ = this.service.login(this.loginForm.value);
+    const http$ = this.service.login(this.form.value);
 
     http$.subscribe(
       res => {

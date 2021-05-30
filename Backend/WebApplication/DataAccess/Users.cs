@@ -44,7 +44,7 @@ namespace WebApplication.DataAccess
             Telephone = _Telephone;
             TypeOfEnterprise = _TypeOfEnterprise;
             Position = _Position;
-            Password = Md5.Convert(_Password);
+            Password = Md5.Encrypt(_Password);
             Role = "users";
         }
 
@@ -55,7 +55,7 @@ namespace WebApplication.DataAccess
             Telephone = _Telephone;
             TypeOfEnterprise = _TypeOfEnterprise;
             Position = _Position;
-            Password = Md5.Convert(_Password);
+            Password = Md5.Encrypt(_Password);
             if (_Role != "")
             {
                 Role = _Role;
