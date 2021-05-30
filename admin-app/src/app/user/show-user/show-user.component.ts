@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
+
 @Component({
   selector: 'app-show-user',
   templateUrl: './show-user.component.html',
@@ -11,6 +13,7 @@ export class ShowUserComponent implements OnInit {
   constructor(
     private service: SharedService,
     private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   UserList: any = [];
@@ -64,7 +67,7 @@ export class ShowUserComponent implements OnInit {
     this.ActivateAddEditUserComp = true;
   }
 
-  deleteItemFn(any){
+  deleteItemFn(any) {
     this.guidUsersIdDel = any.guidUsersId;
     this.dataItemDel = any;
     console.log(any);
@@ -96,12 +99,32 @@ export class ShowUserComponent implements OnInit {
   }
 
   refrechUserList() {
-    this.service.getUserList().subscribe(data => {
-      this.UserList = data;
-      this.UserListWithoutFilter = data;
-      this.totalRecords = data.length;//
-      console.log(this.totalRecords)//
-    })
+    const http$ = this.service.getUserList();
+    http$.subscribe(
+      res => {
+        this.UserList = res;
+        this.UserListWithoutFilter = res;
+        this.totalRecords = res.length;
+        console.log(this.totalRecords)
+        console.log('HTTP response', res)
+        // this.toastr.success('Yes', 'User', {
+        //   timeOut: 500,
+        //   closeButton: true
+        // });
+      }, err => {
+        console.log('HTTP Error', err)
+        err.status
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+        if (err.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+        }
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   filterFn() {

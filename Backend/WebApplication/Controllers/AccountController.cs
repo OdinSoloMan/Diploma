@@ -73,7 +73,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> GetRole()
         {
-            return "gg";
+            return new OkObjectResult(new { admin = "Ok()" });
             //return new OkObjectResult(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
         }
 

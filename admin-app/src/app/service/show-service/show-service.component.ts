@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
@@ -12,6 +13,7 @@ export class ShowServiceComponent implements OnInit {
   constructor(
     private serv: SharedService,
     private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   ServiceList: any = [];
@@ -85,12 +87,32 @@ export class ShowServiceComponent implements OnInit {
   }
 
   refrechServiceList() {
-    this.serv.getServiceList().subscribe(data => {
-      this.ServiceList = data;
-      this.ServiceListWithoutFilter = data;
-      this.totalRecords = data.length;
-      console.log(this.totalRecords)
-    })
+    const http$ = this.serv.getServiceList();
+    http$.subscribe(
+      res => {
+        this.ServiceList = res;
+        this.ServiceListWithoutFilter = res;
+        this.totalRecords = res.length;
+        console.log(this.totalRecords)
+        console.log('HTTP response', res)
+        // this.toastr.success('Yes', 'Service', {
+        //   timeOut: 500,
+        //   closeButton: true
+        // });
+      }, err => {
+        console.log('HTTP Error', err)
+        err.status
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+        if (err.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+        }
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   filterFn() {

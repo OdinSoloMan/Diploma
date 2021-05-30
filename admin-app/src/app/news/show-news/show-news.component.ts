@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
 
@@ -12,6 +13,7 @@ export class ShowNewsComponent implements OnInit {
   constructor(
     private service: SharedService,
     private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   NewsList: any = [];
@@ -94,12 +96,32 @@ export class ShowNewsComponent implements OnInit {
   }
 
   refrechNewsList() {
-    this.service.getNewsList().subscribe(data => {
-      this.NewsList = data;
-      this.NewsListWithoutFilter = data;
-      this.totalRecords = data.length;
-      console.log(this.totalRecords);
-    })
+    const http$ = this.service.getNewsList();
+    http$.subscribe(
+      res => {
+        this.NewsList = res;
+        this.NewsListWithoutFilter = res;
+        this.totalRecords = res.length;
+        console.log(this.totalRecords)
+        console.log('HTTP response', res)
+        // this.toastr.success('Yes', 'News', {
+        //   timeOut: 500,
+        //   closeButton: true
+        // });
+      }, err => {
+        console.log('HTTP Error', err)
+        err.status
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+        if (err.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+        }
+      }, () => console.log('HTTP request completed.')
+    );
   }
 
   filterFn() {
