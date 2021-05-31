@@ -17,6 +17,7 @@ export class ShowConsultationrequestComponent implements OnInit {
   ) { }
 
   ConsultationrequestList: any = [];
+  consultation: any = [];
 
   ModalTitle: string;
   ActivateAddEditConsultationrequesComp: boolean = false;
@@ -162,5 +163,71 @@ export class ShowConsultationrequestComponent implements OnInit {
     console.log(e);
     this.countPage = e;
     //this.countPage;
+  }
+
+  isNumber(val: any): boolean {
+    return !(val instanceof Array) && (val - parseFloat(val) + 1) >= 0;
+  }
+
+  telephone(any) {
+    console.log(any);
+    const http$ = this.service.getInfUserAndListService({
+      guiduser: any.usersId,
+      guidlistservice: any.listServicesId
+    });
+
+    http$.subscribe(
+      res => {
+        console.log('HTTP response USER', res)
+        this.consultation = {
+          guidConsul: any.guidConsultationRequestsId,
+          fullname: res.userinfo.fullName,
+          phone: any.reverseCommunication,
+          namelistservice: res.listservice.description,
+          description: any.description,
+        }
+        console.log(this.consultation)
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+        if (err.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+        }
+      }, () => console.log('HTTP request completed.')
+    );
+  }
+
+  updatePhone(any) {
+    console.log(any);
+    const http$ = this.service.updateConsultationStatus(
+      any
+    );
+
+    http$.subscribe(
+      res => {
+        console.log('HTTP response USER', res)
+        this.toastr.success('Yes', 'Update consultation request status', {
+          timeOut: 500,
+          closeButton: true
+        });
+        this.refrechConsultationrequestList()
+      }, err => {
+        console.log('HTTP Error', err)
+        this.toastr.error('Eror', err.status, {
+          timeOut: 500,
+          closeButton: true
+        });
+        if (err.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+        }
+      }, () => console.log('HTTP request completed.')
+    );
   }
 }

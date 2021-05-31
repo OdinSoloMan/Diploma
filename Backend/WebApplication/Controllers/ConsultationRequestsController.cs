@@ -15,10 +15,14 @@ namespace WebApplication.Controllers
     public class ConsultationRequestsController : ControllerBase
     {
         private IConsultationRequestsRepository db;
+        private IUsersRepository db1;
+        private IListSevicesRepository db2;
 
         public ConsultationRequestsController()
         {
             db = new ConsultationRequestsRepository();
+            db1 = new UsersRepository();
+            db2 = new ListServicesRepoitory();
         }
 
         [Authorize(Roles = "admin, users")]
@@ -57,6 +61,31 @@ namespace WebApplication.Controllers
             consultationRequests.GuidConsultationRequestsId = guid;
             db.Delete(consultationRequests.GuidConsultationRequestsId);
             return new OkObjectResult(new { delete_consultationRequests = guid });
+        }
+
+        public class Consultation
+        {
+            public Guid Guiduser { get; set; }
+            public Guid Guidlistservice { get; set; }
+        }
+
+        [Authorize(Roles = "admin")]
+        [Route("getInfUserAndListService")]
+        [HttpPost]
+        public ActionResult<string> ReadInf([FromBody] Consultation consultation)
+        {
+            return new OkObjectResult(new { userinfo = db1.Read(consultation.Guiduser), listservice = db2.Read(consultation.Guidlistservice) });
+        }
+
+        [Authorize(Roles = "admin")]
+        [Route("updateconsultation/{guid}")]
+        [HttpPut]
+        public ActionResult<string> UpdateConsult(Guid guid)
+        {
+            var s = db.Read(guid);
+            s.IsVerified = true;
+            db.Update(s);
+            return new OkObjectResult(s);
         }
     }
 }

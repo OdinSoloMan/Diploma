@@ -100,8 +100,6 @@
             ? 'is-invalid'
             : '' || form.get('reverseCommunication').hasError('maxlength')
             ? 'is-invalid'
-            : '' || form.get('reverseCommunication').hasError('pattern')
-            ? 'is-invalid'
             : '' ||
               ((form.get('reverseCommunication').touched ||
                 form.get('reverseCommunication').dirty) &&
@@ -127,7 +125,6 @@
             ? " 50 letters required."
             : ""
         }}
-        {{ form.get("reverseCommunication").hasError("pattern") ? " One letters." : "" }}
       </div>
     </div>
     <label class="col-sm-2 col-form-label">Is&nbsp;verified</label>

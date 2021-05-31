@@ -21,34 +21,30 @@ export class AddEditConsultationrequestComponent implements OnInit {
   form = new FormGroup({
     description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]),
     message: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]),
-    reverseCommunication: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(50), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    reverseCommunication: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(50)]),
     isVerified: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
     usersId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
     listServicesId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
   })
-  
+
   ngOnInit(): void {
     this.guidConsultationRequestsId = this.consultationrequest.guidConsultationRequestsId;
     this.form.controls['description'].setValue(this.consultationrequest.description);
     this.form.controls['message'].setValue(this.consultationrequest.message);
-      this.form.controls['reverseCommunication'].setValue(this.consultationrequest.reverseCommunication);
-        this.form.controls['isVerified'].setValue(this.consultationrequest.isVerified);
-          this.form.controls['usersId'].setValue(this.consultationrequest.usersId);
-            this.form.controls['listServicesId'].setValue(this.consultationrequest.listServicesId);
+    this.form.controls['reverseCommunication'].setValue(this.consultationrequest.reverseCommunication);
+    this.form.controls['isVerified'].setValue(this.consultationrequest.isVerified);
+    this.form.controls['usersId'].setValue(this.consultationrequest.usersId);
+    this.form.controls['listServicesId'].setValue(this.consultationrequest.listServicesId);
   }
-  s: any = false;
+  
   addConsultationRequest() {
-    this.s = false;
-    if (this.form.value.isVerified == "true") {
-      this.s = true;
-    }
     var val = {
       description: this.form.value.description,
       message: this.form.value.message,
       reverseCommunication: this.form.value.reverseCommunication,
       usersId: this.form.value.usersId,
       listServicesId: this.form.value.listServicesId,
-      isVerified: this.s
+      isVerified: JSON.parse(this.form.value.isVerified),
     }
 
     const http$ = this.service.addConsultationrequest(val);
@@ -70,10 +66,6 @@ export class AddEditConsultationrequestComponent implements OnInit {
   }
 
   updateConsultationRequest() {
-    this.s = false;
-    if (this.form.value.isVerified == "true") {
-      this.s = true;
-    }
     var val = {
       guidConsultationRequestsId: this.guidConsultationRequestsId,
       description: this.form.value.description,
@@ -81,9 +73,9 @@ export class AddEditConsultationrequestComponent implements OnInit {
       reverseCommunication: this.form.value.reverseCommunication,
       usersId: this.form.value.usersId,
       listServicesId: this.form.value.listServicesId,
-      isVerified: this.s
+      isVerified: JSON.parse(this.form.value.isVerified),
     }
-    
+
     const http$ = this.service.updateConsultationrequest(val);
     http$.subscribe(
       res => {
