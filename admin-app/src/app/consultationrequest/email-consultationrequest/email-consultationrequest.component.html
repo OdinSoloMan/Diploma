@@ -1,0 +1,164 @@
+<div class="form-froup row">
+  <form [formGroup]="form">
+    <label class="col-sm-2 col-form-label">Name list services</label>
+    <div class="col-sm-10">
+      <input
+        readonly
+        type="text"
+        class="form-control"
+        placeholder="Enter listServicesId"
+        [value]="consultation.listservice"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">Full name</label>
+    <div class="col-sm-10">
+      <input
+        readonly
+        type="text"
+        class="form-control"
+        placeholder="Enter usersId"
+        [value]="consultation.fullname"
+      />
+    </div>
+    <label class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <textarea
+        readonly
+        type=""
+        style="height: 100px"
+        class="form-control"
+        placeholder="Enter description"
+        [ngClass]="
+          (form.get('description').touched || form.get('description').dirty) &&
+          form.get('description').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('description').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('description').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('description').touched ||
+                form.get('description').dirty) &&
+                !form.get('description').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="description"
+      >
+      </textarea>
+      <div class="invalid-feedback">
+        {{
+          form.get("description").hasError("required")
+            ? " Description is required."
+            : ""
+        }}
+        {{
+          form.get("description").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("description").hasError("maxlength")
+            ? " 150 letters required."
+            : ""
+        }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Reverse&nbsp;Communication</label>
+    <div class="col-sm-10">
+      <input
+        readonly
+        type="text"
+        class="form-control"
+        placeholder="Enter reverseCommunication"
+        [ngClass]="
+          (form.get('reverseCommunication').touched ||
+            form.get('reverseCommunication').dirty) &&
+          form.get('reverseCommunication').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('reverseCommunication').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('reverseCommunication').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('reverseCommunication').touched ||
+                form.get('reverseCommunication').dirty) &&
+                !form.get('reverseCommunication').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="reverseCommunication"
+      />
+      <div class="invalid-feedback">
+        {{
+          form.get("reverseCommunication").hasError("required")
+            ? " Reverse communication is required."
+            : ""
+        }}
+        {{
+          form.get("reverseCommunication").hasError("minlength")
+            ? " 7 letters required."
+            : ""
+        }}
+        {{
+          form.get("reverseCommunication").hasError("maxlength")
+            ? " 50 letters required."
+            : ""
+        }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Message</label>
+    <div class="col-sm-10">
+      <textarea
+        type=""
+        style="height: 100px"
+        class="form-control"
+        placeholder="Enter message"
+        [ngClass]="
+          (form.get('message').touched || form.get('message').dirty) &&
+          form.get('message').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('message').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('message').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('message').touched || form.get('message').dirty) &&
+                !form.get('message').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="message"
+      >
+      </textarea>
+      <div class="invalid-feedback">
+        {{
+          form.get("message").hasError("required")
+            ? " Message is required."
+            : ""
+        }}
+        {{
+          form.get("message").hasError("minlength")
+            ? " 5 letters required."
+            : ""
+        }}
+        {{
+          form.get("message").hasError("maxlength")
+            ? " 150 letters required."
+            : ""
+        }}
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <button
+        style="margin-top: 20px"
+        [disabled]="form.invalid"
+        (click)="emailUpdate()"
+        *ngIf="consultationrequest.guidConsultationRequestsId != 0"
+        class="btn btn-primary"
+      >
+        Send message
+      </button>
+    </div>
+  </form>
+</div>

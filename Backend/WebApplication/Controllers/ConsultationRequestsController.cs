@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using WebApplication.DataAccess;
 using WebApplication.Repositories;
@@ -86,6 +88,39 @@ namespace WebApplication.Controllers
             s.IsVerified = true;
             db.Update(s);
             return new OkObjectResult(s);
+        }
+
+        public class ConsultationMail
+        {
+            public Guid Guidconsultation { get; set; }
+            public string Message { get; set; }
+            public string Theme { get; set; }
+        }
+
+        [Authorize(Roles = "admin")]
+        [Route("messageEmail")]
+        [HttpPost]
+        public ActionResult<string> MailMesseage([FromBody] ConsultationMail consultationMail)
+        {
+            var s = db.Read(consultationMail.Guidconsultation);
+            s.IsVerified = true;
+            s.Message = consultationMail.Message;
+            db.Update(s);
+            SendEmailAsync(s.ReverseCommunication, consultationMail.Theme, consultationMail.Message).GetAwaiter();
+            return new OkObjectResult(Ok());
+        }
+
+        private static async Task SendEmailAsync(string _to, string _themeSub, string _messBody)
+        {
+            MailAddress from = new MailAddress("galinaburova1@gmail.com", "Company OdinSolo");
+            MailAddress to = new MailAddress(_to);
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = _themeSub;
+            m.Body = _messBody;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("galinaburova1@gmail.com", "a93bfg510mtk17a");
+            smtp.EnableSsl = true;
+            await smtp.SendMailAsync(m);
         }
     }
 }

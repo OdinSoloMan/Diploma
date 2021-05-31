@@ -34,6 +34,7 @@ import { AddEditEventComponent } from './event/add-edit-event/add-edit-event.com
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
+import { EmailConsultationrequestComponent } from './consultationrequest/email-consultationrequest/email-consultationrequest.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ToastrModule } from 'ngx-toastr';
     EventComponent,
     ShowEventComponent,
     AddEditEventComponent,
+    EmailConsultationrequestComponent,
   ],
   imports: [
     BrowserAnimationsModule,

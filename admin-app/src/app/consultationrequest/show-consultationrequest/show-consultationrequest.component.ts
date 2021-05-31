@@ -26,7 +26,7 @@ export class ShowConsultationrequestComponent implements OnInit {
   totalRecords: String //
   page: Number = 1 //
 
-  countPage: any = 1;
+  countPage: any = 2;
 
   guidConsultationRequestsIdDel: any;
   dataItemDel: any;
@@ -67,6 +67,12 @@ export class ShowConsultationrequestComponent implements OnInit {
     this.guidConsultationRequestsIdDel = any.guidConsultationRequestsId;
     this.dataItemDel = any;
     console.log(any);
+  }
+
+  emailConsul(item){
+    this.consultationrequest = item;
+    this.ModalTitle = "Email Consultation Request"
+    this.ActivateAddEditConsultationrequesComp = true;
   }
 
   deleteClick(item) {

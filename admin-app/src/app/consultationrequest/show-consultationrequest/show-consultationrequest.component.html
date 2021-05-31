@@ -23,9 +23,43 @@
         {{ countPage }}
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem (click)="switchFnCountPage(1)">1</button>
+        <button ngbDropdownItem (click)="switchFnCountPage(2)">2</button>
         <button ngbDropdownItem (click)="switchFnCountPage(5)">5</button>
         <button ngbDropdownItem (click)="switchFnCountPage(10)">10</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="emailModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ ModalTitle }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeClick()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-email-consultationrequest
+          [consultationrequest]="consultationrequest"
+          *ngIf="ActivateAddEditConsultationrequesComp"
+        >
+        </app-email-consultationrequest>
       </div>
     </div>
   </div>
@@ -333,7 +367,8 @@
               type="button"
               class="btn btn-light mr-1"
               data-toggle="modal"
-              (click)="telephone(dataItem)"
+              data-target="#emailModal"
+              (click)="emailConsul(dataItem)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -375,12 +410,6 @@
               consultation.description
             }}</textarea>
           </p>
-          <!-- <p class="text-secondary">
-            <small
-              >Unique consultation request key
-              {{ guidConsultationRequestsIdDel }}</small
-            >
-          </p> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">

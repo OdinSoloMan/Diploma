@@ -124,8 +124,13 @@ export class SharedService {
     return this.http.post<any>(this.APIUrl + '/consultationRequests/getInfUserAndListService', val, { headers: this.headers() })
   }
 
-  //update status Consultation Request
+  //update status Consultation Request phone
   updateConsultationStatus(val: any) {
-    return this.http.put(this.APIUrl + '/consultationRequests/updateconsultation/'+ val, null, { headers: this.headers() })
+    return this.http.put(this.APIUrl + '/consultationRequests/updateconsultation/' + val, null, { headers: this.headers() })
+  }
+
+  //email meassage
+  mailMesseage(val: any) {
+    return this.http.post(this.APIUrl + '/consultationRequests/messageEmail', val, { headers: this.headers() })
   }
 }
