@@ -112,13 +112,13 @@ namespace WebApplication.Controllers
 
         private static async Task SendEmailAsync(string _to, string _themeSub, string _messBody)
         {
-            MailAddress from = new MailAddress("galinaburova1@gmail.com", "Company OdinSolo");
+            MailAddress from = new MailAddress("", "Company OdinSolo");
             MailAddress to = new MailAddress(_to);
             MailMessage m = new MailMessage(from, to);
             m.Subject = _themeSub;
             m.Body = _messBody;
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("galinaburova1@gmail.com", "a93bfg510mtk17a");
+            smtp.Credentials = new NetworkCredential("", "");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
         }
