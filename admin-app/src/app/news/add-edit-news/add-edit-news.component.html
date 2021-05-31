@@ -110,8 +110,27 @@
         }}
       </div>
     </div>
-    <label class="col-sm-2 col-form-label">Image news</label>
+    <label class="col-sm-2 col-form-label" [hidden]="true">Image news</label>
+    <div class="col-sm-10" style="margin-top: 20px;">
+      Image news: 
+      <input
+        type="file"
+        (change)="handleFileSelect($event)"
+        accept=".png, .jpg, .jpeg"
+      />
+    </div>
     <div class="col-sm-10">
+      <img
+        [src]="this.form.value.imageNew"
+        alt=""
+        style="
+          margin-top: 20px;
+          width: 480px;
+          height: 240px;
+        "
+      />
+    </div>
+    <div class="col-sm-10" [hidden]="true">
       <input
         type="text"
         class="form-control"
@@ -198,8 +217,7 @@
             : '' || form.get('usersId').hasError('pattern')
             ? 'is-invalid'
             : '' ||
-              ((form.get('usersId').touched ||
-                form.get('usersId').dirty) &&
+              ((form.get('usersId').touched || form.get('usersId').dirty) &&
                 !form.get('usersId').invalid)
             ? 'is-valid'
             : ''
@@ -208,9 +226,7 @@
       />
       <div class="invalid-feedback">
         {{
-          form.get("usersId").hasError("required")
-            ? " Guid is required."
-            : ""
+          form.get("usersId").hasError("required") ? " Guid is required." : ""
         }}
         {{
           form.get("usersId").hasError("minlength")

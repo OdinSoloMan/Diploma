@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared.service';
+import NotImage from '../../image/notimage.json';
 
 @Component({
   selector: 'app-add-edit-news',
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./add-edit-news.component.css']
 })
 export class AddEditNewsComponent implements OnInit {
-
+  base64textString: any;
   constructor(
     private service: SharedService,
     private toastr: ToastrService,
@@ -32,24 +33,22 @@ export class AddEditNewsComponent implements OnInit {
     this.form.controls['newTitle'].setValue(this.news.newTitle);
     this.form.controls['newDescription'].setValue(this.news.newDescription);
     this.form.controls['dataNew'].setValue(this.news.dataNew);
-    this.form.controls['imageNew'].setValue(this.news.imageNew);
+    if (this.news.imageNew)
+      this.form.controls['imageNew'].setValue(this.news.imageNew);
+    else
+      this.form.controls['imageNew'].setValue(NotImage.img);
     this.form.controls['isConsidered'].setValue(this.news.isConsidered);
     this.form.controls['usersId'].setValue(this.news.usersId);
   }
-  
-  s: any = false;
+
   addNews() {
-    this.s = false;
-    if(this.form.value.isConsidered == "true"){
-      this.s = true;
-    } 
     var val = {
-      newTitle : this.form.value.newTitle,
-      newDescription : this.form.value.newDescription,
-      dataNew : this.form.value.dataNew,
-      imageNew : this.form.value.imageNew,
-      usersId : this.form.value.usersId,
-      isConsidered : this.s,
+      newTitle: this.form.value.newTitle,
+      newDescription: this.form.value.newDescription,
+      dataNew: this.form.value.dataNew,
+      imageNew: this.form.value.imageNew,
+      usersId: this.form.value.usersId,
+      isConsidered: JSON.parse(this.form.value.isConsidered),
     }
 
     const http$ = this.service.addNews(val);
@@ -71,18 +70,14 @@ export class AddEditNewsComponent implements OnInit {
   }
 
   updateNews() {
-    this.s = false;
-    if(this.form.value.isConsidered  == "true"){
-      this.s = true;
-    } 
     var val = {
-      guidNewsId : this.guidNewsId,
-      newTitle : this.form.value.newTitle,
-      newDescription : this.form.value.newDescription,
-      dataNew : this.form.value.dataNew,
-      imageNew : this.form.value.imageNew,
-      usersId : this.form.value.usersId,
-      isConsidered : this.s,
+      guidNewsId: this.guidNewsId,
+      newTitle: this.form.value.newTitle,
+      newDescription: this.form.value.newDescription,
+      dataNew: this.form.value.dataNew,
+      imageNew: this.form.value.imageNew,
+      usersId: this.form.value.usersId,
+      isConsidered: JSON.parse(this.form.value.isConsidered),
     }
 
     const http$ = this.service.updateNews(val);
@@ -102,4 +97,41 @@ export class AddEditNewsComponent implements OnInit {
       }, () => console.log('HTTP request completed.')
     );
   }
+
+  handleFileSelect(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+
+    if (files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.base64textString = btoa(binaryString);    
+    this.compressImage('data:image/png;base64,' + btoa(binaryString), 640, 320).then(compressed => {
+      console.log(compressed);
+      this.form.controls['imageNew'].setValue(compressed)
+    })
+  }
+
+  compressImage(src, newX, newY) {
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        const elem = document.createElement('canvas');
+        elem.width = newX;
+        elem.height = newY;
+        const ctx = elem.getContext('2d');
+        ctx.drawImage(img, 0, 0, newX, newY);
+        const data = ctx.canvas.toDataURL();
+        res(data);
+      }
+      img.onerror = error => rej(error);
+    })
+  }  
 }
