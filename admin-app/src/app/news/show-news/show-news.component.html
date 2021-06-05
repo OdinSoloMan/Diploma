@@ -272,7 +272,7 @@
           placeholder="Filter"
         />Is considered
       </th>
-      <th>
+      <th [hidden]="true">
         <input
           [(ngModel)]="usersIdFilter"
           class="form-control"
@@ -315,7 +315,7 @@
         />
       </td>
       <td>{{ dataItem.isConsidered }}</td>
-      <td>{{ dataItem.usersId }}</td>
+      <td [hidden]="true">{{ dataItem.usersId }}</td>
       <td>
         <button
           type="button"

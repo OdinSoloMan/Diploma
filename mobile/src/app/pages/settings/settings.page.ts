@@ -80,8 +80,8 @@ export class SettingsPage implements OnInit {
 
   onChange(fontsize) {
     console.log(localStorage.getItem("theme"));
-    console.log(fontsize);
-    localStorage.setItem("fontSize", fontsize);
+    console.log(fontsize.detail.value);
+    localStorage.setItem("fontSize", fontsize.detail.value);
     if (localStorage.getItem("theme") == "light") {
       this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
     } else if (localStorage.getItem("theme") == "dark") {

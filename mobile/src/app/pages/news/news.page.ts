@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { News, NewsService } from '../service/news.service';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -16,12 +17,13 @@ export class NewsPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private service : NewsService,
+    private service: NewsService,
+    private router: Router,
   ) { }
 
   async ngOnInit() {
     this.checkLanguage();
-    const loading = await this.loadingCtrl.create({message: this.textForm.messageLoading});
+    const loading = await this.loadingCtrl.create({ message: this.textForm.messageLoading });
     await loading.present();
 
     this.service.getAll().subscribe(
@@ -30,10 +32,15 @@ export class NewsPage implements OnInit {
         console.log(response);
         loading.dismiss();
       },
-      async () => {
-        const alert = await this.alertCtrl.create({message : this.textForm.messageLoadingErr, buttons: ['OK']});
-        await alert.present();
-        loading.dismiss();
+      async (error) => {
+        if (error.status == 401) {
+          const alert = await this.alertCtrl.create({ message: this.textForm.messageLoadingErr, buttons: ['OK'] });
+          await alert.present();
+          loading.dismiss();
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login")
+        }
       }
     )
   }

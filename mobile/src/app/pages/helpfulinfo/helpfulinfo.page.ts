@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { DeteailService } from '../service/deteail.service';
 
 @Component({
   selector: 'app-helpfulinfo',
@@ -14,6 +15,7 @@ export class HelpfulinfoPage implements OnInit {
   infos: any;
   constructor(
     private router: Router,
+    private dataService: DeteailService,
   ) { }
 
   ngOnInit() {
@@ -37,8 +39,9 @@ export class HelpfulinfoPage implements OnInit {
   }
 
   onClick(event) {
-    console.log(event);
-    this.router.navigateByUrl('/moredetailsinfo', { state: { id: event } })
+    console.log(event.id);
+    this.dataService.setData(event.id)
+    this.router.navigateByUrl('/moredetailsinfo')
   }
 
 }

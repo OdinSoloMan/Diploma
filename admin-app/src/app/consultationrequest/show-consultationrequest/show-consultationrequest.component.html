@@ -252,7 +252,7 @@
           placeholder="Filter"
         />Is verified
       </th>
-      <th>
+      <th [hidden]="true">
         <input
           [(ngModel)]="usersIdFilter"
           class="form-control"
@@ -260,7 +260,7 @@
           placeholder="Filter"
         />Users Id
       </th>
-      <th>
+      <th [hidden]="true">
         <input
           [(ngModel)]="listServicesIdFilter"
           class="form-control"
@@ -289,8 +289,8 @@
       <td [hidden]="true">{{ dataItem.guidConsultationRequestsId }}</td>
       <td>{{ dataItem.description }}</td>
       <td>{{ dataItem.reverseCommunication }}</td>
-      <td>{{ dataItem.isVerified }}</td>
-      <td>{{ dataItem.usersId }}</td>
+      <td [hidden]="true">{{ dataItem.isVerified }}</td>
+      <td [hidden]="true">{{ dataItem.usersId }}</td>
       <td>{{ dataItem.listServicesId }}</td>
       <td>
         <button

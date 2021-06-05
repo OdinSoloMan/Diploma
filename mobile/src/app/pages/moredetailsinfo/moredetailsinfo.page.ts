@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import info from './articles/articlesInfo.json';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { Input } from '@angular/core';
+import { DeteailService } from '../service/deteail.service';
 
 @Component({
   selector: 'app-moredetailsinfo',
@@ -14,20 +14,18 @@ export class MoredetailsinfoPage implements OnInit {
   language = localStorage.getItem("radioLanguage");
   textForm: any;
   public segment: string = "list1";
-  state: Observable<object>;
   moreInfs: any;
   infoList = info;
   classSize: any;
-  constructor(public activatedRoute: ActivatedRoute) { }
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    private dataService: DeteailService,
+  ) { }
 
   ngOnInit() {
     this.checkLanguage();
-    this.state = this.activatedRoute.paramMap
-      .pipe(map(() => window.history.state))
-    console.log("ww", window.history.state.id);
-
-    console.log(this.infoList[0]);
-    this.moreInfs = window.history.state.id;
+    console.log("dataSerivce",this.dataService.getData())
+    this.moreInfs = this.dataService.getData();
     this.classSize = "fontSize" + localStorage.getItem("fontSize");
     console.log(this.classSize);
   }
