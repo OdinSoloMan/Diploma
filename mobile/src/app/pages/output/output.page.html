@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{textForm.title}}</ion-title>
+    <ion-title>{{ 'OUTPUTFORM.title' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -9,6 +9,6 @@
 
 <ion-content class="ion-padding">
   <ion-button (click)="onExit()" expand="block">
-    {{textForm.btn_output}}
+    {{ 'OUTPUTFORM.btn_output' | translate}}
   </ion-button>
 </ion-content>

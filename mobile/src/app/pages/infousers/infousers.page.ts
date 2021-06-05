@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { User, UsersinfoService } from '../service/usersinfo.service';
-import languageDesign from '../../pages/jsonfile/language-design.json';
 import { DeteailService } from '../service/deteail.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-infousers',
@@ -12,8 +12,6 @@ import { DeteailService } from '../service/deteail.service';
   styleUrls: ['./infousers.page.scss'],
 })
 export class InfousersPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
   public segment: string = "list1";
   infousers: User[] = [];
 
@@ -24,8 +22,9 @@ export class InfousersPage implements OnInit {
     private loadingCtrl: LoadingController,
     private service: UsersinfoService,
     private detail: DeteailService,
+    private translate: TranslateService,
   ) { }
-  url = this.detail.getURL() +'/users';
+  url = this.detail.getURL() + '/users';
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -63,18 +62,18 @@ export class InfousersPage implements OnInit {
     console.log("postDataNews", postData);
     console.log("form", this.form.value);
 
-    const loading = await this.loadingCtrl.create({ message: this.textForm.updateInfoUser.messsageLoading });
+    const loading = await this.loadingCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEINFOUSER.messsageLoading') });
     await loading.present();
 
     this.http.put(this.url + "/updateusers", postData, { headers }).subscribe(
       async () => {
-        const toast = await this.toastCtrl.create({ message: this.textForm.updateInfoUser.messageUpdateDataTrue, duration: 2000, color: 'dark' })
+        const toast = await this.toastCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEINFOUSER.messageUpdateDataTrue'), duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         // this.form.reset();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: this.textForm.updateInfoUser.messageUpdateDataErr, buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEINFOUSER.messageUpdateDataErr'), buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }
@@ -94,18 +93,18 @@ export class InfousersPage implements OnInit {
     console.log("postDataNews", postData);
     console.log("form", this.form1.value);
 
-    const loading = await this.loadingCtrl.create({ message: this.textForm.updatePassword.messsageLoading });
+    const loading = await this.loadingCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEPASSWORD.messsageLoading') });
     await loading.present();
 
     this.http.put(this.url + "/updateusers", postData, { headers }).subscribe(
       async () => {
-        const toast = await this.toastCtrl.create({ message: this.textForm.updatePassword.messageUpdateDataTrue, duration: 2000, color: 'dark' })
+        const toast = await this.toastCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEPASSWORD.messageUpdateDataTrue'), duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         // this.form.reset();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: this.textForm.updatePassword.messageUpdateDataErr, buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEPASSWORD.messageUpdateDataErr'), buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }
@@ -113,9 +112,7 @@ export class InfousersPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.checkLanguage();
-
-    const loading = await this.loadingCtrl.create({ message: this.textForm.loadingingInfo });
+    const loading = await this.loadingCtrl.create({ message: this.translate.instant('INFOUSERFORM.loadingingInfo') });
     await loading.present();
 
     this.service.readUserId().subscribe(
@@ -133,20 +130,11 @@ export class InfousersPage implements OnInit {
         loading.dismiss();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: this.textForm.loadingingInfoErr, buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: this.translate.instant('INFOUSERFORM.loadingingInfoErr'), buttons: ['OK'] });
         await alert.present();
         loading.dismiss();
       }
     )
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.infoUserForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.infoUserForm;
-    }
   }
 
   segmentChanged(ev: any) {

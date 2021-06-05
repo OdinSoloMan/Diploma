@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{textForm.title}}</ion-title>
+    <ion-title>{{ 'INFOUSERFORM.title' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -10,17 +10,17 @@
 <ion-content class="ion-padding">
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
-      <ion-label> {{textForm.personal.label}} </ion-label>
+      <ion-label> {{ 'INFOUSERFORM.PERSONAL.label' | translate}} </ion-label>
     </ion-segment-button>
     <ion-segment-button value="list2">
-      <ion-label> {{textForm.password.label}} </ion-label>
+      <ion-label> {{ 'INFOUSERFORM.PASSWORD.label' | translate}} </ion-label>
     </ion-segment-button>
   </ion-segment>
 
   <ion-list *ngIf="segment === 'list1'">
     <form [formGroup]="form" (submit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">{{textForm.personal.FIO}}</ion-label>
+        <ion-label position="floating">{{ 'INFOUSERFORM.PERSONAL.FIO' | translate}}</ion-label>
         <ion-input
           type="text"
           required
@@ -29,7 +29,7 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">{{textForm.personal.email}}</ion-label>
+        <ion-label position="floating">{{ 'INFOUSERFORM.PERSONAL.email' | translate}}</ion-label>
         <ion-input
           type="text"
           required
@@ -39,7 +39,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"
-          >{{textForm.personal.telephone}}</ion-label
+          >{{ 'INFOUSERFORM.PERSONAL.telephone' | translate}}</ion-label
         >
         <ion-input
           type="text"
@@ -50,7 +50,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"
-          >{{textForm.personal.position}}</ion-label
+          >{{ 'INFOUSERFORM.PERSONAL.position' | translate}}</ion-label
         >
         <ion-input
           type="text"
@@ -61,7 +61,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"
-          >{{textForm.personal.typeOfEnterprise}}</ion-label
+          >{{ 'INFOUSERFORM.PERSONAL.typeOfEnterprise' | translate}}</ion-label
         >
         <ion-input
           type="text"
@@ -76,7 +76,7 @@
         expand="block"
         [disabled]="form.invalid"
       >
-        {{textForm.personal.btn_updateInfoUser}}
+      {{ 'INFOUSERFORM.PERSONAL.btn_updateInfoUser' | translate}}
       </ion-button>
     </form>
   </ion-list>
@@ -85,7 +85,7 @@
     <form [formGroup]="form1" (submit)="onSubmit1()">
       <ion-item>
         <ion-label position="floating"
-          >{{textForm.password.label_password}}</ion-label
+          >{{ 'INFOUSERFORM.PASSWORD.label_password' | translate}}</ion-label
         >
         <ion-input
           type="password"
@@ -95,7 +95,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating"
-          >{{textForm.password.label_confirmPassword}}</ion-label
+          >{{ 'INFOUSERFORM.PASSWORD.label_confirmPassword' | translate}}</ion-label
         >
         <ion-input
           type="password"
@@ -110,7 +110,7 @@
         expand="block"
         [disabled]="form1.invalid"
       >
-        {{textForm.password.btn_updatePassword}}
+      {{ 'INFOUSERFORM.PASSWORD.btn_updatePassword' | translate}}
       </ion-button>
     </form>
   </ion-list>

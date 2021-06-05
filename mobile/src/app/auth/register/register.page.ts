@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
-import languageDesign from '../../pages/jsonfile/language-design.json'
 
 @Component({
   selector: 'app-register',
@@ -11,8 +10,6 @@ import languageDesign from '../../pages/jsonfile/language-design.json'
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
 
   constructor(
     private authService: AuthService,
@@ -22,18 +19,7 @@ export class RegisterPage {
     private router: Router,
   ) { }
 
-  ngOnInit(){
-    this.checkLanguage();
-  }
-
-  checkLanguage() {
-    if(this.language == "ru"){
-      this.textForm = languageDesign.ru.registrationForm;
-    }
-    if(this.language == "eng"){
-      this.textForm = languageDesign.eng.registrationForm;
-    }
-  }
+  ngOnInit() { }
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -50,7 +36,7 @@ export class RegisterPage {
     this.authService.register(this.form.value).subscribe(
       async () => {
         // если успешно
-        const toast = await this.toastCtrl.create({message : 'User Created', duration: 2000, color: 'dark'})
+        const toast = await this.toastCtrl.create({ message: 'User Created', duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         this.form.reset();
@@ -58,7 +44,7 @@ export class RegisterPage {
       },
       // если ошибка
       async () => {
-        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons:['OK'] });
+        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }

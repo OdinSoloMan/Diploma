@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{textForm.title}}</ion-title>
+    <ion-title>{{ 'SUGGESTNEWSOREVENTFORM.title' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -11,52 +11,104 @@
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
       <ion-label>
-        {{textForm.news.segmentTitleLabel}}
+        {{ 'SUGGESTNEWSOREVENTFORM.NEWS.segmentTitleLabel' | translate}}
       </ion-label>
     </ion-segment-button>
     <ion-segment-button value="list2">
       <ion-label>
-        {{textForm.event.segmentTitleLabel}}
+        {{ 'SUGGESTNEWSOREVENTFORM.EVENT.segmentTitleLabel' | translate}}
       </ion-label>
     </ion-segment-button>
   </ion-segment>
-  
+
   <ion-list *ngIf="segment === 'list1'">
     <form [formGroup]="form" (submit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">{{textForm.news.labelTitle}}</ion-label>
-        <ion-input type="text" required formControlName="newTitle"  [placeholder]="textForm.news.labelTitlePlaceholder"></ion-input>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelTitle' | translate}}</ion-label
+        >
+        <ion-input
+          type="text"
+          required
+          formControlName="newTitle"
+          [placeholder]="'SUGGESTNEWSOREVENTFORM.NEWS.labelTitlePlaceholder' | translate"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >{{textForm.news.labelData}}</ion-label>
-        <ion-datetime type="datetime-local" required formControlName="dataNew"></ion-datetime>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelData' | translate}}</ion-label
+        >
+        <ion-datetime
+          type="datetime-local"
+          required
+          formControlName="dataNew"
+        ></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >{{textForm.news.labelDescription}}</ion-label>
-        <ion-textarea rows="6" cols="20" [placeholder]="textForm.news.labelDescriptionPlaceholder" formControlName="newDescription"></ion-textarea>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelDescription' |
+          translate}}</ion-label
+        >
+        <ion-textarea
+          rows="6"
+          cols="20"
+          [placeholder]="'SUGGESTNEWSOREVENTFORM.NEWS.labelDescriptionPlaceholder' | translate"
+          formControlName="newDescription"
+        ></ion-textarea>
       </ion-item>
-      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form.invalid">
-        {{textForm.news.btn_suggest}}
+      <ion-button
+        type="submit"
+        class="ion-margin-top"
+        expand="block"
+        [disabled]="form.invalid"
+      >
+        {{ 'SUGGESTNEWSOREVENTFORM.NEWS.btn_suggest' | translate}}
       </ion-button>
     </form>
   </ion-list>
-  
+
   <ion-list *ngIf="segment === 'list2'">
     <form [formGroup]="form1" (submit)="onSubmit1()">
       <ion-item>
-        <ion-label position="floating">{{textForm.event.labelTitle}}</ion-label>
-        <ion-input type="text" required formControlName="eventTitle" [placeholder]="textForm.event.labelTitlePlaceholder"></ion-input>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelTitle' | translate}}</ion-label
+        >
+        <ion-input
+          type="text"
+          required
+          formControlName="eventTitle"
+          [placeholder]="'SUGGESTNEWSOREVENTFORM.EVENT.labelTitlePlaceholder' | translate"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >{{textForm.event.labelData}}</ion-label>
-        <ion-datetime type="datetime-local" required formControlName="plannedStartDate"></ion-datetime>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelData' | translate}}</ion-label
+        >
+        <ion-datetime
+          type="datetime-local"
+          required
+          formControlName="plannedStartDate"
+        ></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" >{{textForm.event.labelDescription}}</ion-label>
-        <ion-textarea rows="6" cols="20" [placeholder]="textForm.event.labelDescriptionPlaceholder" formControlName="descriptionOfTheEvent"></ion-textarea>
+        <ion-label position="floating"
+          >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelDescription' |
+          translate}}</ion-label
+        >
+        <ion-textarea
+          rows="6"
+          cols="20"
+          [placeholder]="'SUGGESTNEWSOREVENTFORM.EVENT.labelDescriptionPlaceholder' | translate"
+          formControlName="descriptionOfTheEvent"
+        ></ion-textarea>
       </ion-item>
-      <ion-button type="submit" class="ion-margin-top" expand="block" [disabled]="form1.invalid">
-        {{textForm.event.btn_suggest}}
+      <ion-button
+        type="submit"
+        class="ion-margin-top"
+        expand="block"
+        [disabled]="form1.invalid"
+      >
+        {{ 'SUGGESTNEWSOREVENTFORM.EVENT.btn_suggest' | translate}}
       </ion-button>
     </form>
   </ion-list>

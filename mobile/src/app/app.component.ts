@@ -1,6 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import languageDesign from '../app/pages/jsonfile/language-design.json';
+import { LanguageService } from './pages/service/language.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,7 @@ export class AppComponent {
   constructor(
     private router: Router,
     private renderer: Renderer2,
+    private languageService: LanguageService
   ) { }
 
   ngOnInit() {
@@ -40,15 +41,6 @@ export class AppComponent {
     if (localStorage.getItem("radioLanguage") == null) {
       localStorage.setItem("radioLanguage", "ru")
     }
-    this.checkLanguage()
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.menuForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.menuForm;
-    }
+    this.languageService.setInitialAppLanguage(localStorage.getItem("radioLanguage").toString());
   }
 }

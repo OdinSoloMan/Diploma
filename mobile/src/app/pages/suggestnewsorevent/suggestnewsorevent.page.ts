@@ -2,8 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { from } from 'rxjs';
-import languageDesign from '../../pages/jsonfile/language-design.json';
 import { DeteailService } from '../service/deteail.service';
 
 @Component({
@@ -12,8 +10,6 @@ import { DeteailService } from '../service/deteail.service';
   styleUrls: ['./suggestnewsorevent.page.scss'],
 })
 export class SuggestnewsoreventPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
   public segment: string = "list1";
   constructor(
     private http: HttpClient,
@@ -22,20 +18,11 @@ export class SuggestnewsoreventPage implements OnInit {
     private alertCtrl: AlertController,
     private detail: DeteailService,
   ) { }
-  url = this.detail.getURL() +'/news';
-  url1  = this.detail.getURL() +'/events';
-  ngOnInit() {
-    this.checkLanguage()
-  }
 
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.suggestnewsoreventForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.suggestnewsoreventForm;
-    }
-  }
+  url = this.detail.getURL() + '/news';
+  url1 = this.detail.getURL() + '/events';
+
+  ngOnInit() { }
 
   form = new FormGroup({
     newTitle: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -52,29 +39,29 @@ export class SuggestnewsoreventPage implements OnInit {
   async onSubmit() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      Authorization : 'Bearer ' + token
+      Authorization: 'Bearer ' + token
     });
     let postData = {
-      newTitle:this.form.controls["newTitle"].value,
-      dataNew:this.form.controls["dataNew"].value,
-      newDescription:this.form.controls["newDescription"].value,
+      newTitle: this.form.controls["newTitle"].value,
+      dataNew: this.form.controls["dataNew"].value,
+      newDescription: this.form.controls["newDescription"].value,
       usersId: localStorage.getItem("user_id")
     }
     console.log("postDataNews", postData);
     console.log("news", this.form.value);
-    
+
     const loading = await this.loadingCtrl.create({ message: 'Request in progress ...' });
     await loading.present();
 
-    this.http.post(this.url+"/addnews", postData, {headers}).subscribe(
+    this.http.post(this.url + "/addnews", postData, { headers }).subscribe(
       async () => {
-        const toast = await this.toastCtrl.create({message : 'News offered', duration: 2000, color: 'dark'})
+        const toast = await this.toastCtrl.create({ message: 'News offered', duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         this.form.reset();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons:['OK'] });
+        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }
@@ -84,29 +71,29 @@ export class SuggestnewsoreventPage implements OnInit {
   async onSubmit1() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      Authorization : 'Bearer ' + token
+      Authorization: 'Bearer ' + token
     });
     let postData = {
-      eventTitle:this.form1.controls["eventTitle"].value,
-      plannedStartDate:this.form1.controls["plannedStartDate"].value,
-      descriptionOfTheEvent:this.form1.controls["descriptionOfTheEvent"].value,
+      eventTitle: this.form1.controls["eventTitle"].value,
+      plannedStartDate: this.form1.controls["plannedStartDate"].value,
+      descriptionOfTheEvent: this.form1.controls["descriptionOfTheEvent"].value,
       usersId: localStorage.getItem("user_id")
     }
     console.log("postDataEvent", postData);
     console.log("event", this.form1.value);
-    
+
     const loading = await this.loadingCtrl.create({ message: 'Request in progress ...' });
     await loading.present();
 
-    this.http.post(this.url1+"/addevents", postData, {headers}).subscribe(
+    this.http.post(this.url1 + "/addevents", postData, { headers }).subscribe(
       async () => {
-        const toast = await this.toastCtrl.create({message : 'Event offered', duration: 2000, color: 'dark'})
+        const toast = await this.toastCtrl.create({ message: 'Event offered', duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         this.form1.reset();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons:['OK'] });
+        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }

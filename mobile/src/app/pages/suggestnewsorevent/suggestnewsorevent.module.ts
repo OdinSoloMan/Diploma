@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SuggestnewsoreventPageRoutingModule } from './suggestnewsorevent-routing.module';
 
 import { SuggestnewsoreventPage } from './suggestnewsorevent.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,8 +15,9 @@ import { SuggestnewsoreventPage } from './suggestnewsorevent.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SuggestnewsoreventPageRoutingModule
+    SuggestnewsoreventPageRoutingModule,
+    TranslateModule
   ],
   declarations: [SuggestnewsoreventPage]
 })
-export class SuggestnewsoreventPageModule {}
+export class SuggestnewsoreventPageModule { }

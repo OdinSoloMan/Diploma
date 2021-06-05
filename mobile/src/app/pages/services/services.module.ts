@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ServicesPageRoutingModule } from './services-routing.module';
 
 import { ServicesPage } from './services.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServicesPageRoutingModule
+    ServicesPageRoutingModule,
+    TranslateModule
   ],
   declarations: [ServicesPage]
 })
-export class ServicesPageModule {}
+export class ServicesPageModule { }

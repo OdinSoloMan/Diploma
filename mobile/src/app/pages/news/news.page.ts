@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { News, NewsService } from '../service/news.service';
-import languageDesign from '../../pages/jsonfile/language-design.json';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-news',
@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./news.page.scss'],
 })
 export class NewsPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
   news: News[];
 
   constructor(
@@ -19,11 +17,11 @@ export class NewsPage implements OnInit {
     private loadingCtrl: LoadingController,
     private service: NewsService,
     private router: Router,
+    private tranlate: TranslateService,
   ) { }
 
   async ngOnInit() {
-    this.checkLanguage();
-    const loading = await this.loadingCtrl.create({ message: this.textForm.messageLoading });
+    const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("NEWSFORM.messageLoading") });
     await loading.present();
 
     this.service.getAll().subscribe(
@@ -34,7 +32,7 @@ export class NewsPage implements OnInit {
       },
       async (error) => {
         if (error.status == 401) {
-          const alert = await this.alertCtrl.create({ message: this.textForm.messageLoadingErr, buttons: ['OK'] });
+          const alert = await this.alertCtrl.create({ message: this.tranlate.instant("NEWSFORM.messageLoadingErr"), buttons: ['OK'] });
           await alert.present();
           loading.dismiss();
           localStorage.removeItem("token");
@@ -43,14 +41,5 @@ export class NewsPage implements OnInit {
         }
       }
     )
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.newsForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.newsForm;
-    }
   }
 }

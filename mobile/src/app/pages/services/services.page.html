@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{textForm.title}}</ion-title>
+    <ion-title>{{ 'SERVICESFORM.title' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -61,7 +61,7 @@
       <ion-item *ngFor="let g of item.ListServices">
         <ion-label>{{g.Description}}</ion-label>
         <ion-button (click)="onCreateRequst(g)" expand="block">
-          {{textForm.btn_apply}}
+          {{ 'SERVICESFORM.btn_apply' | translate}}
         </ion-button>
       </ion-item>
       <!-- <ion-list
@@ -83,7 +83,7 @@
     </div>
     <ion-item *ngIf="item.ListServices.length === 0 && item.open">
       <ion-label class="ion-text-center"
-        >{{textForm.infoNotServices}}</ion-label
+        >{{ 'SERVICESFORM.infoNotServices' | translate}}</ion-label
       >
     </ion-item>
   </ion-list>

@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Services, ServicesService } from '../service/services.service';
-import languageDesign from '../../pages/jsonfile/language-design.json';
 import { DeteailService } from '../service/deteail.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-services',
@@ -11,8 +11,6 @@ import { DeteailService } from '../service/deteail.service';
   styleUrls: ['./services.page.scss'],
 })
 export class ServicesPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
   services: Services[];
   userAnswer: any;
 
@@ -26,18 +24,18 @@ export class ServicesPage implements OnInit {
     private service: ServicesService,
     private http: HttpClient,
     private detail: DeteailService,
-  ) { 
+    private translate: TranslateService
+  ) {
     this.service.getAll().subscribe(res => {
       this.servicesInformation = res;
       console.log(this.servicesInformation);
       //this.servicesInformation[0].open = true;
     })
   }
-  url = this.detail.getURL() +'/consultationRequests';
+  url = this.detail.getURL() + '/consultationRequests';
 
   async ngOnInit() {
-    this.checkLanguage();
-    const loading = await this.loadingCtrl.create({ message: this.textForm.messageLoading });
+    const loading = await this.loadingCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoading") });
     await loading.present();
     this.service.getAll().subscribe(
       async response => {
@@ -46,20 +44,11 @@ export class ServicesPage implements OnInit {
         loading.dismiss();
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: this.textForm.messageLoadingErr, buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingErr"), buttons: ['OK'] });
         await alert.present();
         loading.dismiss();
       }
     )
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.servicesForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.servicesForm;
-    }
   }
 
   async onCreateRequst(ans) {
@@ -68,23 +57,23 @@ export class ServicesPage implements OnInit {
 
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: this.textForm.alertConsultationHeader + ans.Description,
+      header: this.translate.instant("SERVICESFORM.alertConsultationHeader") + ans.Description,
       inputs: [
         {
           name: 'reverseCommunication',
           type: 'text',
-          placeholder: this.textForm.alertConsultationContactPlaceholder
+          placeholder: this.translate.instant("SERVICESFORM.alertConsultationContactPlaceholder")
         },
         {
           name: 'description',
           type: 'textarea',
           cssClass: 'minAlertMessage',
-          placeholder: this.textForm.alertConsultationDescriptionPlaceholder
+          placeholder: this.translate.instant("SERVICESFORM.alertConsultationDescriptionPlaceholder")
         },
       ],
       buttons: [
         {
-          text: this.textForm.alertConsultationBtnCancel,
+          text: this.translate.instant("SERVICESFORM.alertConsultationBtnCancel"),
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
@@ -104,16 +93,16 @@ export class ServicesPage implements OnInit {
             const headers = new HttpHeaders({
               Authorization: 'Bearer ' + token
             });
-            const loading = await this.loadingCtrl.create({ message: this.textForm.messageLoadingSending });
+            const loading = await this.loadingCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSending") });
             await loading.present();
             this.http.post(this.url + "/addconsultationRequests", postData, { headers }).subscribe(
               async () => {
-                const toast = await this.toastCtrl.create({ message: this.textForm.messageLoadingSendingTrue, duration: 2000, color: 'dark' })
+                const toast = await this.toastCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSendingTrue"), duration: 2000, color: 'dark' })
                 await toast.present();
                 loading.dismiss();
               },
               async () => {
-                const alert = await this.alertCtrl.create({ message: this.textForm.messageLoadingSendingErr, buttons: ['OK'] });
+                const alert = await this.alertCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSendingErr"), buttons: ['OK'] });
                 loading.dismiss();
                 await alert.present();
               }
@@ -126,18 +115,18 @@ export class ServicesPage implements OnInit {
     }).then(res => res.present())
   }
 
-  toggleSection(index){
-      console.log(index)
-      this.servicesInformation[index].open  = !this.servicesInformation[index].open;
+  toggleSection(index) {
+    console.log(index)
+    this.servicesInformation[index].open = !this.servicesInformation[index].open;
 
-      if(this.automaticClose && this.servicesInformation[index].open){
-        this.servicesInformation
+    if (this.automaticClose && this.servicesInformation[index].open) {
+      this.servicesInformation
         .filter((item, itemIndex) => itemIndex != index)
         .map(item => item.open = false)
-      }
+    }
   }
 
-  toggleItem(index, childIndex){
+  toggleItem(index, childIndex) {
     this.servicesInformation[index].children[childIndex].open != this.servicesInformation[index].children[childIndex].open
   }
 }

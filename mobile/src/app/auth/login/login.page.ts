@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
-import languageDesign from '../../pages/jsonfile/language-design.json';
 
 @Component({
   selector: 'app-login',
@@ -25,18 +24,7 @@ export class LoginPage implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   })
 
-  ngOnInit() {
-    this.checkLanguage();
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.loginForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.loginForm;
-    }
-  }
+  ngOnInit() { }
 
   async onSubmit() {
     //console.log(this.infoList);

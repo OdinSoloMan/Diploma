@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import languageDesign from '../../pages/jsonfile/language-design.json';
+import { LanguageService } from '../service/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,11 +7,10 @@ import languageDesign from '../../pages/jsonfile/language-design.json';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
   textForm: any;
   defaultSelectedRadio = localStorage.getItem("radioLanguage");
-  selectedRadioGroup:any;
-  selectedRadioItem:any;
+  selectedRadioGroup: any;
+  selectedRadioItem: any;
 
   radio_list = [
     {
@@ -34,23 +33,14 @@ export class SettingsPage implements OnInit {
   fontsize;
 
   constructor(
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private languageService: LanguageService
   ) { }
 
   ngOnInit() {
     this.checkStatusTheme();
     this.checkFontSize();
     this.checkRadio();
-    this.checkLanguage();
-  }
-
-  checkLanguage() {
-    if (this.language == "ru") {
-      this.textForm = languageDesign.ru.settingForm;
-    }
-    if (this.language == "eng") {
-      this.textForm = languageDesign.eng.settingForm;
-    }
   }
 
   checkStatusTheme() {
@@ -63,7 +53,7 @@ export class SettingsPage implements OnInit {
     return localStorage.getItem("fontSize");
   }
 
-  checkRadio(){
+  checkRadio() {
     console.log(this.defaultSelectedRadio);
   }
 
@@ -90,16 +80,20 @@ export class SettingsPage implements OnInit {
   }
 
   radioGroupChange(event) {
-    console.log("radioGroupChange",event.detail);
+    console.log("radioGroupChange", event.detail);
     this.selectedRadioGroup = event.detail;
     localStorage.setItem("radioLanguage", event.detail.value);
+    if (event.detail.value == "ru")
+      this.languageService.setLanguage("ru")
+    else
+      this.languageService.setLanguage("en")
   }
 
   radioFocus() {
     console.log("radioFocus");
   }
   radioSelect(event) {
-    console.log("radioSelect",event.detail);
+    console.log("radioSelect", event.detail);
     this.selectedRadioItem = event.detail;
   }
   radioBlur() {

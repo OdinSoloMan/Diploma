@@ -1,0 +1,122 @@
+{
+    "LOGINFORM": {
+        "title": "Вход",
+        "email": "Почта",
+        "password": "Пароль",
+        "btn_login": "Войти",
+        "btn_registration": "Регистрация"
+    },
+    "REGISTRATIONFORM": {
+        "title": "Регистрация",
+        "lableFIO": "ФИО",
+        "email": "Почта",
+        "telephone": "Телефон",
+        "position": "Должность",
+        "typeOfEnterprise": "Тип предприятия",
+        "password": "Пароль",
+        "btn_registration": "Регистрация"
+    },
+    "NEWSFORM": {
+        "messageLoading": "Загрузка новостей...",
+        "messageLoadingErr": "Загрузка не удалась...",
+        "title": "Новости"
+    },
+    "EVENTSFORM": {
+        "messageLoading": "Загрузка мероприятий...",
+        "messageLoadingErr": "Загрузка не удалась...",
+        "title": "Мероприятия"
+    },
+    "SERVICESFORM": {
+        "messageLoading": "Загрузка услуг...",
+        "messageLoadingErr": "Загрузка не удалась...",
+        "messageLoadingSending": "Отправка заявки...",
+        "messageLoadingSendingTrue": "Заявка отправлена",
+        "messageLoadingSendingErr": "Произошла ошибка",
+        "title": "Услуги",
+        "btn_apply": "Записаться",
+        "infoNotServices": "Извините, здесь ничего нет!",
+        "alertConsultationHeader": "Записаться на консультацию ",
+        "alertConsultationContactPlaceholder": "Как связаться",
+        "alertConsultationDescriptionPlaceholder": "Описание",
+        "alertConsultationBtnCancel": "Отмена"
+    },
+    "HELPFULINFOFORM": {
+        "title": "Статьи",
+        "btn_detail": "Детали"
+    },
+    "MOREDETAILSINFORM": {
+        "title": "Описание"
+    },
+    "SUGGESTNEWSOREVENTFORM": {
+        "title": "Предложить",
+        "NEWS": {
+            "segmentTitleLabel": "Новость",
+            "labelTitle": "Заголовок",
+            "labelTitlePlaceholder": "Введите заголовок новости...",
+            "labelData": "Дата",
+            "labelDescription": "Описание",
+            "labelDescriptionPlaceholder": "Введите описание новости...",
+            "btn_suggest": "Предложить новость"
+        },
+        "EVENT": {
+            "segmentTitleLabel": "Мероприятие",
+            "labelTitle": "Заголовок",
+            "labelTitlePlaceholder": "Введите заголовок мероприятия...",
+            "labelData": "Дата",
+            "labelDescription": "Описание",
+            "labelDescriptionPlaceholder": "Введите описание мероприятия...",
+            "btn_suggest": "Предложить мероприятие"
+        }
+    },
+    "INFOUSERFORM": {
+        "UPDATEINFOUSER": {
+            "messsageLoading": "Обновление личных данных...",
+            "messageUpdateDataTrue": "Данные обновлены",
+            "messageUpdateDataErr": "Произошла ошибка"
+        },
+        "UPDATEPASSWORD": {
+            "messsageLoading": "Обновление личного пароля...",
+            "messageUpdateDataTrue": "Пароль обновлен",
+            "messageUpdateDataErr": "Произошла ошибка"
+        },
+        "loadingingInfo": "Загрузка личных данных...",
+        "loadingingInfoErr": "Произошла ошибка",
+        "title": "Информация",
+        "PERSONAL": {
+            "label": "Общая",
+            "FIO": "ФИО",
+            "email": "Почта",
+            "telephone": "Телефон",
+            "position": "Должность",
+            "typeOfEnterprise": "Тип предприятия",
+            "btn_updateInfoUser": "Обновить"
+        },
+        "PASSWORD": {
+            "label": "Пароль",
+            "label_password": "Пароль",
+            "label_confirmPassword": "Повторить пароль",
+            "btn_updatePassword": "Изменить пароль"
+        }
+    },
+    "SETTINGFORM": {
+        "title": "Настройки",
+        "darkMode": "Темная тема",
+        "adjustText": "Размер шрифта",
+        "language": "Язык"
+    },
+    "OUTPUTFORM": {
+        "title": "Выход",
+        "btn_output": "Выйти"
+    },
+    "MENUFORM": {
+        "menu": "Меню",
+        "label_news":"Новости",
+        "label_events":"Мероприятия",
+        "label_services":"Услуги",
+        "label_records":"Статьи",
+        "label_suggest":"Предложить",
+        "label_userInfo":"Личная инф.",
+        "label_settings":"Настройки",
+        "label_exit":"Выход"
+    }
+}

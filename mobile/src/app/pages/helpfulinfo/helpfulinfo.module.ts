@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { HelpfulinfoPageRoutingModule } from './helpfulinfo-routing.module';
 
 import { HelpfulinfoPage } from './helpfulinfo.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HelpfulinfoPageRoutingModule
+    HelpfulinfoPageRoutingModule,
+    TranslateModule
   ],
   declarations: [HelpfulinfoPage]
 })
-export class HelpfulinfoPageModule {}
+export class HelpfulinfoPageModule { }
