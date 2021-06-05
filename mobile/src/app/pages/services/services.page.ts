@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Services, ServicesService } from '../service/services.service';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { DeteailService } from '../service/deteail.service';
 
 @Component({
   selector: 'app-services',
@@ -12,7 +13,6 @@ import languageDesign from '../../pages/jsonfile/language-design.json';
 export class ServicesPage implements OnInit {
   language = localStorage.getItem("radioLanguage");
   textForm: any;
-  private url = 'https://localhost:44367/consultationRequests';
   services: Services[];
   userAnswer: any;
 
@@ -25,6 +25,7 @@ export class ServicesPage implements OnInit {
     private loadingCtrl: LoadingController,
     private service: ServicesService,
     private http: HttpClient,
+    private detail: DeteailService,
   ) { 
     this.service.getAll().subscribe(res => {
       this.servicesInformation = res;
@@ -32,6 +33,7 @@ export class ServicesPage implements OnInit {
       //this.servicesInformation[0].open = true;
     })
   }
+  url = this.detail.getURL() +'/consultationRequests';
 
   async ngOnInit() {
     this.checkLanguage();

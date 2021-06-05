@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DeteailService } from './deteail.service';
 
 export interface User{
   guidUsersId: string;
@@ -16,8 +17,8 @@ export interface User{
   providedIn: 'root'
 })
 export class UsersinfoService {
-  private url = 'https://localhost:44367/users';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private detail: DeteailService) { }
+  url = this.detail.getURL() +'/users';
 
   readUserId(){
     const token = localStorage.getItem('token');

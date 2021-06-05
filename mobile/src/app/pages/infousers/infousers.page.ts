@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { User, UsersinfoService } from '../service/usersinfo.service';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { DeteailService } from '../service/deteail.service';
 
 @Component({
   selector: 'app-infousers',
@@ -13,7 +14,6 @@ import languageDesign from '../../pages/jsonfile/language-design.json';
 export class InfousersPage implements OnInit {
   language = localStorage.getItem("radioLanguage");
   textForm: any;
-  private url = 'https://localhost:44367/users';
   public segment: string = "list1";
   infousers: User[] = [];
 
@@ -22,8 +22,10 @@ export class InfousersPage implements OnInit {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private service: UsersinfoService
+    private service: UsersinfoService,
+    private detail: DeteailService,
   ) { }
+  url = this.detail.getURL() +'/users';
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),

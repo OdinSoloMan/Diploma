@@ -73,8 +73,8 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> GetRole()
         {
-            string s = Md5.Encrypt("test@admin.com");
-            string s1 = Md5.Decrypt(s);
+            string s = Md5.Encrypt("modile@test.com");
+            string s1 = Md5.Decrypt("MVYaN/FEdZ3/wzRXwtDnNg==");
             return new OkObjectResult(new { EncodeTo64 = s, DecodeFrom64 = s1});
             //return new OkObjectResult(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
         }

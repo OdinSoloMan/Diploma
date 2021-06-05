@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DeteailService } from './deteail.service';
 
 export interface ListSevice {
   guidListSevicesId: string,
@@ -18,9 +19,8 @@ export interface Services {
   providedIn: 'root'
 })
 export class ServicesService {
-  private url = 'https://localhost:44367/services';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private detail: DeteailService) { }
+  url = this.detail.getURL() +'/services';
 
   getAll(){
     const token = localStorage.getItem('token')

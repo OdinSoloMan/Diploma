@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { from } from 'rxjs';
 import languageDesign from '../../pages/jsonfile/language-design.json';
+import { DeteailService } from '../service/deteail.service';
 
 @Component({
   selector: 'app-suggestnewsorevent',
@@ -13,16 +14,16 @@ import languageDesign from '../../pages/jsonfile/language-design.json';
 export class SuggestnewsoreventPage implements OnInit {
   language = localStorage.getItem("radioLanguage");
   textForm: any;
-  private url = 'https://localhost:44367/news';
-  private url1 = 'https://localhost:44367/events';
   public segment: string = "list1";
   constructor(
     private http: HttpClient,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
+    private detail: DeteailService,
   ) { }
-
+  url = this.detail.getURL() +'/news';
+  url1  = this.detail.getURL() +'/events';
   ngOnInit() {
     this.checkLanguage()
   }

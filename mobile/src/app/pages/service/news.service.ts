@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DeteailService } from './deteail.service';
 
-export interface News{
+export interface News {
   guidNewsId: string;
   newTitle: string;
   newDescription: string;
@@ -15,14 +16,14 @@ export interface News{
   providedIn: 'root'
 })
 export class NewsService {
-  private url = 'https://localhost:44367/news';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private detail: DeteailService) { }
+  url = this.detail.getURL() + '/news';
 
-  getAll(){
+  getAll() {
     const token = localStorage.getItem('token')
     const headers = new HttpHeaders({
-      Authorization : 'Bearer ' + token
+      Authorization: 'Bearer ' + token
     });
-    return this.http.get<[News]>(this.url+'/readalltnews', {headers});
+    return this.http.get<[News]>(this.url + '/readalltnews', { headers });
   }
 }

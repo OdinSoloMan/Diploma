@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DeteailService {
-
+  url: any = "https://localhost:44367"
   constructor() { }
 
   data: string;
@@ -16,4 +16,8 @@ export class DeteailService {
   getData(){
      return this.data;
   }
+
+  getURL(){
+    return this.url;
+ }
 }
