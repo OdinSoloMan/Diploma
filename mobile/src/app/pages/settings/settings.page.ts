@@ -8,7 +8,7 @@ import { LanguageService } from '../service/language.service';
 })
 export class SettingsPage implements OnInit {
   textForm: any;
-  defaultSelectedRadio = localStorage.getItem("radioLanguage");
+  defaultSelectedRadio = localStorage.getItem("language");
   selectedRadioGroup: any;
   selectedRadioItem: any;
 
@@ -82,7 +82,7 @@ export class SettingsPage implements OnInit {
   radioGroupChange(event) {
     console.log("radioGroupChange", event.detail);
     this.selectedRadioGroup = event.detail;
-    localStorage.setItem("radioLanguage", event.detail.value);
+    localStorage.setItem("language", event.detail.value);
     if (event.detail.value == "ru")
       this.languageService.setLanguage("ru")
     else

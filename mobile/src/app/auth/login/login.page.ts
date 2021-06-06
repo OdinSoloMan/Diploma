@@ -10,8 +10,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  language = localStorage.getItem("radioLanguage");
-  textForm: any;
+  src_logo: any;
   constructor(
     private authService: AuthService,
     private alertCtrl: AlertController,
@@ -25,6 +24,16 @@ export class LoginPage implements OnInit {
   })
 
   ngOnInit() { }
+
+  ionViewWillEnter() {
+    if (localStorage.getItem("theme") === "light") {
+      this.src_logo = "../../../assets/logo-light.svg"
+    }
+    else {
+      this.src_logo = "../../../assets/logo-dark.svg"
+    }
+    console.log(this.src_logo)
+  }
 
   async onSubmit() {
     //console.log(this.infoList);

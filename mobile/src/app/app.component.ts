@@ -8,7 +8,7 @@ import { LanguageService } from './pages/service/language.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  language = localStorage.getItem("radioLanguage");
+  language = localStorage.getItem("language");
   textForm: any;
 
   constructor(
@@ -38,9 +38,9 @@ export class AppComponent {
     if (localStorage.getItem('theme') == "light") {
       this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
     }
-    if (localStorage.getItem("radioLanguage") == null) {
-      localStorage.setItem("radioLanguage", "ru")
+    if (localStorage.getItem("language") == null) {
+      localStorage.setItem("language", "ru")
     }
-    this.languageService.setInitialAppLanguage(localStorage.getItem("radioLanguage").toString());
+    this.languageService.setInitialAppLanguage(localStorage.getItem("language").toString());
   }
 }

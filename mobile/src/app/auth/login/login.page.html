@@ -5,12 +5,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="logo">
-    <ion-img
-      src="https://cdn.worldvectorlogo.com/logos/world-of-warcraft.svg"
-      style="box-sizing: border-box; width: 100%; padding: 1px"
-    ></ion-img>
-  </div>
+  <ion-img
+    [src]="src_logo"
+    style="box-sizing: border-box; width: 100%; padding: 1px"
+  ></ion-img>
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="form">
       <ion-item>
