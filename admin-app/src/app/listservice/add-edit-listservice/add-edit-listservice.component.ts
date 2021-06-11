@@ -19,7 +19,7 @@ export class AddEditListserviceComponent implements OnInit {
   guidListSevicesId: string;
 
   form = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
     servicesId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
   })
 

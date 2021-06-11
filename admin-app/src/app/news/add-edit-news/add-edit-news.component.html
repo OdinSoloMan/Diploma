@@ -14,8 +14,6 @@
             ? 'is-invalid'
             : '' || form.get('newTitle').hasError('maxlength')
             ? 'is-invalid'
-            : '' || form.get('newTitle').hasError('pattern')
-            ? 'is-invalid'
             : '' ||
               ((form.get('newTitle').touched || form.get('newTitle').dirty) &&
                 !form.get('newTitle').invalid)
@@ -37,10 +35,9 @@
         }}
         {{
           form.get("newTitle").hasError("maxlength")
-            ? " 40 letters required."
+            ? " 70 letters required."
             : ""
         }}
-        {{ form.get("newTitle").hasError("pattern") ? " One letters." : "" }}
       </div>
     </div>
     <label class="col-sm-2 col-form-label">New description</label>
@@ -82,7 +79,7 @@
         }}
         {{
           form.get("newDescription").hasError("maxlength")
-            ? " 150 letters required."
+            ? " 500 letters required."
             : ""
         }}
       </div>

@@ -19,8 +19,8 @@ export class AddEditEventComponent implements OnInit {
   guidEventsId: string;
 
   form = new FormGroup({
-    eventTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
-    descriptionOfTheEvent: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(150)]),
+    eventTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
+    descriptionOfTheEvent: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
     plannedStartDate: new FormControl('', [Validators.required]),
     imageEvents: new FormControl('', [Validators.required]),
     isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),

@@ -54,12 +54,12 @@
         name="chevron-down-outline"
         *ngIf="item.open"
       ></ion-icon>
-      <ion-label lines="full"> {{item.Name}} </ion-label>
+      <p lines="full"> {{item.Name}} </p>
     </ion-item>
 
     <div *ngIf="item.ListServices && item.open">
       <ion-item *ngFor="let g of item.ListServices">
-        <ion-label>{{g.Description}}</ion-label>
+        <p>{{g.Description}}</p>
         <ion-button (click)="onCreateRequst(g)" expand="block">
           {{ 'SERVICESFORM.btn_apply' | translate}}
         </ion-button>

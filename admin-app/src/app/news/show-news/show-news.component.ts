@@ -25,7 +25,7 @@ export class ShowNewsComponent implements OnInit {
   totalRecords: String;
   page: Number = 1
 
-  countPage: any = 1;
+  countPage: any = 5;
 
   guidNewsIdDel: any;
   dataItemDel: any;

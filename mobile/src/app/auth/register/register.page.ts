@@ -23,10 +23,10 @@ export class RegisterPage {
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    telephone: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    position: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
+    position: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   })
 

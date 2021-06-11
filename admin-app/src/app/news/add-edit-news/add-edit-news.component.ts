@@ -20,8 +20,8 @@ export class AddEditNewsComponent implements OnInit {
   guidNewsId: string;
 
   form = new FormGroup({
-    newTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
-    newDescription: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(150)]),
+    newTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
+    newDescription: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
     dataNew: new FormControl('', [Validators.required]),
     imageNew: new FormControl('', [Validators.required]),
     isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),

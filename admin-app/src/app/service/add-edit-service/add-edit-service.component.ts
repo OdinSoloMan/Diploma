@@ -19,7 +19,7 @@ export class AddEditServiceComponent implements OnInit {
   guidServicesId: string;
   
   form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
   })
 
   ngOnInit(): void {

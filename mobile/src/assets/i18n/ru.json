@@ -41,7 +41,7 @@
         "alertConsultationBtnCancel": "Отмена"
     },
     "HELPFULINFOFORM": {
-        "title": "Статьи",
+        "title": "Документация",
         "btn_detail": "Детали"
     },
     "MOREDETAILSINFORM": {
@@ -113,7 +113,7 @@
         "label_news":"Новости",
         "label_events":"Мероприятия",
         "label_services":"Услуги",
-        "label_records":"Статьи",
+        "label_records":"Документация",
         "label_suggest":"Предложить",
         "label_userInfo":"Личная инф.",
         "label_settings":"Настройки",

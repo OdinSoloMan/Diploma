@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col">
     <div ngbDropdown class="d-inline-block">
-      Page
+      Count
       <button
         class="btn btn-outline-primary"
         id="dropdownBasic1"
@@ -23,9 +23,9 @@
         {{ countPage }}
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem (click)="switchFnCountPage(2)">2</button>
         <button ngbDropdownItem (click)="switchFnCountPage(5)">5</button>
         <button ngbDropdownItem (click)="switchFnCountPage(10)">10</button>
+        <button ngbDropdownItem (click)="switchFnCountPage(25)">20</button>
       </div>
     </div>
   </div>
@@ -289,9 +289,9 @@
       <td [hidden]="true">{{ dataItem.guidConsultationRequestsId }}</td>
       <td>{{ dataItem.description }}</td>
       <td>{{ dataItem.reverseCommunication }}</td>
-      <td [hidden]="true">{{ dataItem.isVerified }}</td>
+      <td>{{ dataItem.isVerified }}</td>
       <td [hidden]="true">{{ dataItem.usersId }}</td>
-      <td>{{ dataItem.listServicesId }}</td>
+      <td [hidden]="true">{{ dataItem.listServicesId }}</td>
       <td>
         <button
           type="button"

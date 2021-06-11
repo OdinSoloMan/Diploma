@@ -25,7 +25,7 @@ export class ShowListserviceComponent implements OnInit {
   totalRecords: String;
   page: Number = 1;
 
-  countPage: any = 1;
+  countPage: any = 5;
 
   guidListSevicesIdDel: any;
   dataItemDel: any;

@@ -59,8 +59,7 @@
             : '' || form.get('message').hasError('maxlength')
             ? 'is-invalid'
             : '' ||
-              ((form.get('message').touched ||
-                form.get('message').dirty) &&
+              ((form.get('message').touched || form.get('message').dirty) &&
                 !form.get('message').invalid)
             ? 'is-valid'
             : ''
@@ -93,7 +92,8 @@
         class="form-control"
         placeholder="Enter reverseCommunication"
         [ngClass]="
-          (form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
+          (form.get('reverseCommunication').touched ||
+            form.get('reverseCommunication').dirty) &&
           form.get('reverseCommunication').hasError('required')
             ? 'is-invalid'
             : '' || form.get('reverseCommunication').hasError('minlength')
@@ -188,8 +188,7 @@
             : '' || form.get('usersId').hasError('pattern')
             ? 'is-invalid'
             : '' ||
-              ((form.get('usersId').touched ||
-                form.get('usersId').dirty) &&
+              ((form.get('usersId').touched || form.get('usersId').dirty) &&
                 !form.get('usersId').invalid)
             ? 'is-valid'
             : ''
@@ -198,9 +197,7 @@
       />
       <div class="invalid-feedback">
         {{
-          form.get("usersId").hasError("required")
-            ? " Guid is required."
-            : ""
+          form.get("usersId").hasError("required") ? " Guid is required." : ""
         }}
         {{
           form.get("usersId").hasError("minlength")
@@ -222,7 +219,8 @@
         class="form-control"
         placeholder="Enter listServicesId"
         [ngClass]="
-          (form.get('listServicesId').touched || form.get('listServicesId').dirty) &&
+          (form.get('listServicesId').touched ||
+            form.get('listServicesId').dirty) &&
           form.get('listServicesId').hasError('required')
             ? 'is-invalid'
             : '' || form.get('listServicesId').hasError('minlength')
@@ -256,7 +254,9 @@
             ? " 36 letters required."
             : ""
         }}
-        {{ form.get("listServicesId").hasError("pattern") ? " Guid type." : "" }}
+        {{
+          form.get("listServicesId").hasError("pattern") ? " Guid type." : ""
+        }}
       </div>
     </div>
     <div class="col-sm-10">
