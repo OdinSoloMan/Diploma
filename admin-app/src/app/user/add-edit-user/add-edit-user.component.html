@@ -217,8 +217,8 @@
         }}
       </div>
     </div>
-    <label class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
+    <label class="col-sm-2 col-form-label" *ngIf="user.guidUsersId == 0">Password</label>
+    <div class="col-sm-10" *ngIf="user.guidUsersId == 0">
       <input
         type="text"
         class="form-control"

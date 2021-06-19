@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebApplication.DataAccess;
 
@@ -18,10 +19,19 @@ namespace WebApplication.Repositories
             db = new AppDatabaseContext();
         }
 
-        public void Create(Services services)
+        public object Create(Services services)
         {
-            db.Services.Add(services);
-            db.SaveChanges();
+            try
+            {
+                db.Services.Add(services);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                if(Regex.IsMatch(e.InnerException.Message, "Name_Index", RegexOptions.IgnoreCase))
+                    return new { message = "Error name busy" };
+            }
+            return new { message = "not error" };
         }
 
         public void Delete(Guid GuidServicesId)
@@ -51,10 +61,19 @@ namespace WebApplication.Repositories
             return json;
         }
 
-        public void Update(Services services)
+        public object Update(Services services)
         {
-            db.Entry(services).State = EntityState.Modified;
-            db.SaveChanges();
+            try
+            {
+                db.Entry(services).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                if (Regex.IsMatch(e.InnerException.Message, "Name_Index", RegexOptions.IgnoreCase))
+                    return new { message = "Error name busy" };
+            }
+            return new { message = "not error" };
         }
     }
 }

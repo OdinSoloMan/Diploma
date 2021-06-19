@@ -61,7 +61,7 @@ export class AddEditUserComponent implements OnInit {
         });
       }, err => {
         console.log('HTTP Error', err)
-        this.toastr.error('Eror', err.status, {
+        this.toastr.error(err.error, err.status, {
           timeOut: 500,
           closeButton: true
         });
@@ -91,7 +91,7 @@ export class AddEditUserComponent implements OnInit {
         });
       }, err => {
         console.log('HTTP Error', err)
-        this.toastr.error('Eror', err.status, {
+        this.toastr.error(err.error, err.status, {
           timeOut: 500,
           closeButton: true
         });

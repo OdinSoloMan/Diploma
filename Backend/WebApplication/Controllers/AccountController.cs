@@ -29,9 +29,13 @@ namespace WebApplication.Controllers
         [Route("registration")]
         [HttpPost]
         public ActionResult<string> registrationPost([FromBody] Users users)
-        {            
+        {
             users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, "users");
-            db.Create(users);
+            dynamic info = db.Create(users);
+            if (info.message != "not error")
+            {
+                return BadRequest(info.message);
+            }
             return new OkObjectResult(users);
         }
 
@@ -79,16 +83,9 @@ namespace WebApplication.Controllers
             //return new OkObjectResult(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
         }
 
-        private ClaimsIdentity GetIdentity(string login, string password)
+        private ClaimsIdentity GetIdentity(string email, string password)
         {
-            var Base = db.ReadAll();
-
-            Users users = null;
-            foreach (Users Elm in Base)
-            {
-                if (Elm.Email == login && Elm.Password == Md5.Encrypt(password)) 
-                    users = Elm;
-            }
+            Users users = db.isUsers(email, password);
             if (users != null)
             {
                 var claims = new List<Claim>

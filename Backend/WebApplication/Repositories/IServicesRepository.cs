@@ -10,9 +10,9 @@ namespace WebApplication.Repositories
     interface IServicesRepository
     {
         IEnumerable ReadAll();
-        void Create(Services services);
+        object Create(Services services);
         Services Read(Guid GuidServicesId);
-        void Update(Services services);
+        object Update(Services services);
         void Delete(Guid GuidServicesId);
         IEnumerable ReadAllFullInfo();
     }

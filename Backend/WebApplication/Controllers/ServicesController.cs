@@ -27,7 +27,11 @@ namespace WebApplication.Controllers
         public ActionResult<string> AddNewServices([FromBody] Services services)
         {
             services.AddServices(services.Name);
-            db.Create(services);
+            dynamic info = db.Create(services);
+            if (info.message != "not error")
+            {
+                return BadRequest(info.message);
+            }
             return new OkObjectResult(services);
         }
 
@@ -51,8 +55,12 @@ namespace WebApplication.Controllers
         [Route("updateservices")]
         [HttpPut]
         public ActionResult<string> UpdateServices([FromBody] Services services)
-        {
-            db.Update(services);
+        {            
+            dynamic info = db.Update(services);
+            if (info.message != "not error")
+            {
+                return BadRequest(info.message);
+            }
             return new OkObjectResult(services);
         }
 

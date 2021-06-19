@@ -22,12 +22,12 @@ export class RegisterPage {
   ngOnInit() { }
 
   form = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
-    position: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.email]),
+    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^(1|1\\s)?(\\d{11}|(\\d{3}\\-){2}\\d{4}|\\(\\d{3}\\)\\s?\\d{3}\\-\\d{4}|(\\d{3}\\s){2}\\d{4})$')]),
+    position: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
+    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)]),
   })
 
   async onSubmit() {

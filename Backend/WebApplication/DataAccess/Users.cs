@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Domain;
 
 namespace WebApplication.DataAccess
 {
+    [Index("Email", IsUnique = true, Name = "Email_Index")]
+    [Index("Telephone", IsUnique = true, Name = "Telephone_Index")]
     public class Users
     {
         [Key]

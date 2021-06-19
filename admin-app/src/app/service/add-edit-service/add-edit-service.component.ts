@@ -17,7 +17,7 @@ export class AddEditServiceComponent implements OnInit {
 
   @Input() service: any;
   guidServicesId: string;
-  
+
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
   })
@@ -41,8 +41,8 @@ export class AddEditServiceComponent implements OnInit {
         });
       }, err => {
         console.log('HTTP Error', err)
-        this.toastr.error('Eror', err.status, {
-          timeOut: 500,
+        this.toastr.error(err.error, err.status, {
+          timeOut: 1000,
           closeButton: true
         });
       }, () => console.log('HTTP request completed.')
@@ -64,8 +64,8 @@ export class AddEditServiceComponent implements OnInit {
         });
       }, err => {
         console.log('HTTP Error', err)
-        this.toastr.error('Eror', err.status, {
-          timeOut: 500,
+        this.toastr.error(err.error, err.status, {
+          timeOut: 1000,
           closeButton: true
         });
       }, () => console.log('HTTP request completed.')

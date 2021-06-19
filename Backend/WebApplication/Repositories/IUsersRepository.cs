@@ -10,9 +10,10 @@ namespace WebApplication.Repositories
     interface IUsersRepository
     {
         IEnumerable ReadAll();
-        void Create(Users users);
+        object Create(Users users);
         Users Read(Guid GuidUsersId);
-        void Update(Users users);
+        object Update(Users users);
         void Delete(Guid GuidUsersId);
+        Users isUsers(string email, string password);
     }
 }

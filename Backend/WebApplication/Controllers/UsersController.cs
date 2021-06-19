@@ -27,7 +27,11 @@ namespace WebApplication.Controllers
         public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
             users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, users.Role);
-            db.Create(users);
+            dynamic info = db.Create(users);
+            if (info.message != "not error")
+            {
+                return BadRequest(info.message);
+            }
             return new OkObjectResult(users);
         }
 
@@ -52,16 +56,12 @@ namespace WebApplication.Controllers
         [HttpPut]
         public ActionResult<string> UpdateUsers([FromBody] Users users)
         {
-            try
+            dynamic info = db.Update(users);
+            if (info.message != "not error")
             {
-                db.Update(users);
-                return new OkObjectResult(db.Read(users.GuidUsersId));
+                return BadRequest(info.message);
             }
-            catch
-            {
-                return BadRequest();
-            }
-           
+            return new OkObjectResult(db.Read(users.GuidUsersId));
         }
 
         [Authorize(Roles = "admin")]
