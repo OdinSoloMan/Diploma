@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> registrationPost([FromBody] Users users)
         {
-            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, "users");
+            users.Recording(users.FullName, users.Email, users.Telephone, users.TypeOfEnterprise, users.Position,  users.Password, "users");
             dynamic info = db.Create(users);
             if (info.message != "not error")
             {

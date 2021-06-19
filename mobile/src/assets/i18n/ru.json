@@ -127,6 +127,19 @@
             "labelDescription": "Описание",
             "labelDescriptionPlaceholder": "Введите описание мероприятия...",
             "btn_suggest": "Предложить мероприятие"
+        },
+        "messageError": {
+            "title": {
+                "titleIsNULL": "Загаловок обязательное поле.",
+                "titleIsMinLenght": "Минимум 5 знаков.",
+                "titleIsMaxLenght": "Максимум 70 знаков."
+            },
+            "date": "Дата обязательное поле.",
+            "description": {
+                "descriptionIsNULL": "Описание обязательное поле.",
+                "descriptionIsMinLenght": "Минимум 20 знаков.",
+                "descriptionIsMaxLenght": "Максимум 500 знаков."
+            }
         }
     },
     "INFOUSERFORM": {
@@ -157,6 +170,50 @@
             "label_password": "Пароль",
             "label_confirmPassword": "Повторить пароль",
             "btn_updatePassword": "Изменить пароль"
+        },
+        "messageError": {
+            "fullName": {
+                "fullNameIsNULL": "Полное имя обязательное поле.",
+                "fullNameIsMinLenght": "Минимум 5 знаков.",
+                "fullNameIsMaxLenght": "Максимум 40 знаков.",
+                "fullNameIsType": "Только буквы."
+            },
+            "email": {
+                "emailIsNULL": "Почта обязательное поле.",
+                "emailIsMinLenght": "Минимум 5 знаков.",
+                "emailIsMaxLenght": "Максимум 40 знаков.",
+                "emailIsType": "Тип электронной почты."
+            },
+            "telephone": {
+                "telephoneIsNULL": "Номер телефона обязательное поле.",
+                "telephoneIsMinLenght": "Минимум 11 знаков.",
+                "telephoneIsMaxLenght": "Максимум 11 знаков.",
+                "telephoneIsType": "Только цифры."
+            },
+            "position": {
+                "positionIsNULL": "Должность обязательное поле.",
+                "positionIsMinLenght": "Минимум 2 знака.",
+                "positionIsMaxLenght": "Максимум 10 знаков.",
+                "positionIsType": "Только буквы."
+            },
+            "typeOfEnterprise": {
+                "typeOfEnterpriseIsNULL": "Тип предприятия обязательное поле.",
+                "typeOfEnterpriseIsMinLenght": "Минимум 5 знаков.",
+                "typeOfEnterpriseIsMaxLenght": "Максимум 10 знаков.",
+                "typeOfEnterpriseIsType": "Только буквы."
+            },
+            "password": {
+                "passwordIsNULL": "Пароль обязательное поле.",
+                "passwordIsMinLenght": "Минимум 6 знаков.",
+                "passwordIsMaxLenght": "Максимум 45 знаков.",
+                "passwordCoincide" : "Пароли должны совпадать."
+            }
+        },
+        "messageBusy": {
+            "email": "Ошибка почта ",
+            "telephone": "Ошибка телефон ",
+            "busyT": "занят",
+            "busyE": "занята"
         }
     },
     "SETTINGFORM": {

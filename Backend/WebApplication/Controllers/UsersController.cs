@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult<string> AddNewUsers([FromBody] Users users)
         {
-            users.Recording(users.FullName, users.Email, users.Telephone, users.Position, users.TypeOfEnterprise, users.Password, users.Role);
+            users.Recording(users.FullName, users.Email, users.Telephone, users.TypeOfEnterprise, users.Position,  users.Password, users.Role);
             dynamic info = db.Create(users);
             if (info.message != "not error")
             {

@@ -35,7 +35,7 @@
     "
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("fullName").hasError("required") ?
       ('REGISTRATIONFORM.messageError.fullName.fullNameIsNULL' | translate) : ""
       }} {{ form.get("fullName").hasError("minlength") ?
@@ -72,7 +72,7 @@
         formControlName="email"
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("email").hasError("required") ?
       ("REGISTRATIONFORM.messageError.email.emailIsNULL" | translate) : "" }} {{
       form.get("email").hasError("minlength") ?
@@ -108,7 +108,7 @@
         formControlName="telephone"
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("telephone").hasError("required") ?
       ("REGISTRATIONFORM.messageError.telephone.telephoneIsNULL" | translate) :
       "" }} {{ form.get("telephone").hasError("minlength") ?
@@ -116,8 +116,8 @@
       translate) : "" }} {{ form.get("telephone").hasError("maxlength") ?
       ("REGISTRATIONFORM.messageError.telephone.telephoneIsMaxLenght" |
       translate) : "" }} {{ form.get("telephone").hasError("pattern") ?
-      ("REGISTRATIONFORM.messageError.telephone.typeOfEnterpriseIsType" |
-      translate) : "" }}
+      ("REGISTRATIONFORM.messageError.telephone.telephoneIsType" | translate) :
+      "" }}
     </div>
     <ion-item>
       <ion-label position="floating"
@@ -145,7 +145,7 @@
         formControlName="position"
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("position").hasError("required") ?
       ("REGISTRATIONFORM.messageError.position.positionIsNULL" | translate) : ""
       }} {{ form.get("position").hasError("minlength") ?
@@ -184,15 +184,16 @@
         formControlName="typeOfEnterprise"
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("typeOfEnterprise").hasError("required") ?
       ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsNULL" |
       translate) : "" }} {{ form.get("typeOfEnterprise").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.position.typeOfEnterpriseIsMinLenght" |
-      translate) : "" }} {{ form.get("typeOfEnterprise").hasError("maxlength") ?
-      ("REGISTRATIONFORM.messageError.position.typeOfEnterpriseIsMaxLenght" |
-      translate) : "" }} {{ form.get("typeOfEnterprise").hasError("pattern") ?
-      ("REGISTRATIONFORM.messageError.position.typeOfEnterpriseIsType" |
+      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMinLenght"
+      | translate) : "" }} {{ form.get("typeOfEnterprise").hasError("maxlength")
+      ?
+      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMaxLenght"
+      | translate) : "" }} {{ form.get("typeOfEnterprise").hasError("pattern") ?
+      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsType" |
       translate) : "" }}
     </div>
     <ion-item>
@@ -219,7 +220,7 @@
         formControlName="password"
       ></ion-input>
     </ion-item>
-    <div style="color: red; max-height: 18px; min-height: 18px">
+    <div class="messageError">
       {{ form.get("password").hasError("required") ?
       ("REGISTRATIONFORM.messageError.password.passwordIsNULL" | translate) : ""
       }} {{ form.get("password").hasError("minlength") ?

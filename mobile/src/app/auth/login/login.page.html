@@ -37,7 +37,7 @@
           formControlName="email"
         ></ion-input>
       </ion-item>
-      <div style="color: red; max-height: 18px; min-height: 18px">
+      <div class="messageError">
         {{ form.get("email").hasError("required") ?
         ("LOGINFORM.messageError.email.emailIsNULL" | translate) : "" }} {{
         form.get("email").hasError("minlength") ?
@@ -71,7 +71,7 @@
           formControlName="password"
         ></ion-input>
       </ion-item>
-      <div style="color: red; max-height: 18px; min-height: 18px">
+      <div class="messageError">
         {{ form.get("password").hasError("required") ?
         ("LOGINFORM.messageError.password.passwordIsNULL" | translate) : "" }}
         {{ form.get("password").hasError("minlength") ?

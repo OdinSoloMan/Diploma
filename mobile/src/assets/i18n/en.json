@@ -127,6 +127,19 @@
             "labelDescription": "Description",
             "labelDescriptionPlaceholder": "Enter event description...",
             "btn_suggest": "Suggest an event"
+        },
+        "messageError": {
+            "title": {
+                "titleIsNULL": "Title is required.",
+                "titleIsMinLenght": "5 letters required.",
+                "titleIsMaxLenght": "70 letters required."
+            },
+            "date": "Date is required.",
+            "description": {
+                "descriptionIsNULL": "Description is required.",
+                "descriptionIsMinLenght": "20 letters required.",
+                "descriptionIsMaxLenght": "500 letters required."
+            }
         }
     },
     "INFOUSERFORM": {
@@ -157,6 +170,51 @@
             "label_password": "Password",
             "label_confirmPassword": "Confirm password",
             "btn_updatePassword": "Update password"
+        },
+        "messageError": {
+            "fullName": {
+                "fullNameIsNULL": "Full Name is required.",
+                "fullNameIsMinLenght": "5 letters required.",
+                "fullNameIsMaxLenght": "40 letters required.",
+                "fullNameIsType": "One letters."
+            },
+            "email": {
+                "emailIsNULL": "Email is required.",
+                "emailIsMinLenght": "5 letters required.",
+                "emailIsMaxLenght": "40 letters required.",
+                "emailIsType": "Email type."
+            },
+            "telephone": {
+                "telephoneIsNULL": "Telephone is required.",
+                "telephoneIsMinLenght": "11 letters required.",
+                "telephoneIsMaxLenght": "11 letters required.",
+                "telephoneIsType": "Only numbers."
+            },
+            "position": {
+                "positionIsNULL": "Position is required.",
+                "positionIsMinLenght": "2 letters required.",
+                "positionIsMaxLenght": "10 letters required.",
+                "positionIsType": "One letters."
+            },
+            "typeOfEnterprise": {
+                "typeOfEnterpriseIsNULL": "Type enterprise is required.",
+                "typeOfEnterpriseIsMinLenght": "5 letters required.",
+                "typeOfEnterpriseIsMaxLenght": "10 letters required.",
+                "typeOfEnterpriseIsType": "One letters."
+            },
+            "password": {
+                "passwordIsNULL": "Password is required.",
+                "passwordIsMinLenght": "6 letters required.",
+                "passwordIsMaxLenght": "45 letters required.",
+                "passwordCoincide": "Пароли должны совпадать."
+            }
+        },
+        "messageLoadingErr": "Failed, ",
+        "messageBusy": {
+            "email": "Error email ",
+            "telephone": "Error telephone ",
+            "busyT": "busy.",
+            "busyE": "busy."
         }
     },
     "SETTINGFORM": {

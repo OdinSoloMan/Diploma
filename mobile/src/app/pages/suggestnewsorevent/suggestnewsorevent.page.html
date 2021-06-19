@@ -30,10 +30,33 @@
         <ion-input
           type="text"
           required
+          [ngClass]="
+          (form.get('newTitle').touched || form.get('newTitle').dirty) &&
+          form.get('newTitle').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('newTitle').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('newTitle').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('newTitle').touched || form.get('newTitle').dirty) &&
+                !form.get('newTitle').invalid)
+            ? 'is-valid'
+            : ''
+        "
           formControlName="newTitle"
           [placeholder]="'SUGGESTNEWSOREVENTFORM.NEWS.labelTitlePlaceholder' | translate"
         ></ion-input>
       </ion-item>
+      <div class="messageError">
+        {{ form.get("newTitle").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsNULL' | translate) :
+        "" }} {{ form.get("newTitle").hasError("minlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsMinLenght' |
+        translate) : "" }} {{ form.get("newTitle").hasError("maxlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsMaxLenght' |
+        translate) : "" }}
+      </div>
       <ion-item>
         <ion-label position="floating"
           >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelData' | translate}}</ion-label
@@ -41,9 +64,23 @@
         <ion-datetime
           type="datetime-local"
           required
+          [ngClass]="
+          (form.get('dataNew').touched || form.get('dataNew').dirty) &&
+          form.get('dataNew').hasError('required')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('dataNew').touched || form.get('dataNew').dirty) &&
+                !form.get('dataNew').invalid)
+            ? 'is-valid'
+            : ''
+        "
           formControlName="dataNew"
         ></ion-datetime>
       </ion-item>
+      <div class="messageError">
+        {{ form.get("dataNew").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.date' | translate) : "" }}
+      </div>
       <ion-item>
         <ion-label position="floating"
           >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelDescription' |
@@ -52,10 +89,36 @@
         <ion-textarea
           rows="6"
           cols="20"
+          [ngClass]="
+          (form.get('newDescription').touched ||
+            form.get('newDescription').dirty) &&
+          form.get('newDescription').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('newDescription').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('newDescription').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('newDescription').touched ||
+                form.get('newDescription').dirty) &&
+                !form.get('newDescription').invalid)
+            ? 'is-valid'
+            : ''
+        "
           [placeholder]="'SUGGESTNEWSOREVENTFORM.NEWS.labelDescriptionPlaceholder' | translate"
           formControlName="newDescription"
         ></ion-textarea>
       </ion-item>
+      <div class="messageError">
+        {{ form.get("newDescription").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsNULL' |
+        translate) : "" }} {{ form.get("newDescription").hasError("minlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsMinLenght'
+        | translate) : "" }} {{ form.get("newDescription").hasError("maxlength")
+        ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsMaxLenght'
+        | translate) : "" }}
+      </div>
       <ion-button
         type="submit"
         class="ion-margin-top"
@@ -76,10 +139,34 @@
         <ion-input
           type="text"
           required
+          [ngClass]="
+          (form1.get('eventTitle').touched || form1.get('eventTitle').dirty) &&
+          form1.get('eventTitle').hasError('required')
+            ? 'is-invalid'
+            : '' || form1.get('eventTitle').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form1.get('eventTitle').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form1.get('eventTitle').touched ||
+                form1.get('eventTitle').dirty) &&
+                !form1.get('eventTitle').invalid)
+            ? 'is-valid'
+            : ''
+        "
           formControlName="eventTitle"
           [placeholder]="'SUGGESTNEWSOREVENTFORM.EVENT.labelTitlePlaceholder' | translate"
         ></ion-input>
       </ion-item>
+      <div class="messageError">
+        {{ form1.get("eventTitle").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsNULL' | translate) :
+        "" }} {{ form1.get("eventTitle").hasError("minlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsMinLenght' |
+        translate) : "" }} {{ form1.get("eventTitle").hasError("maxlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.title.titleIsMaxLenght' |
+        translate) : "" }}
+      </div>
       <ion-item>
         <ion-label position="floating"
           >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelData' | translate}}</ion-label
@@ -87,9 +174,25 @@
         <ion-datetime
           type="datetime-local"
           required
+          [ngClass]="
+          (form1.get('plannedStartDate').touched ||
+            form1.get('plannedStartDate').dirty) &&
+          form1.get('plannedStartDate').hasError('required')
+            ? 'is-invalid'
+            : '' ||
+              ((form1.get('plannedStartDate').touched ||
+                form1.get('plannedStartDate').dirty) &&
+                !form1.get('plannedStartDate').invalid)
+            ? 'is-valid'
+            : ''
+        "
           formControlName="plannedStartDate"
         ></ion-datetime>
       </ion-item>
+      <div class="messageError">
+        {{ form1.get("plannedStartDate").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.date' | translate) : "" }}
+      </div>
       <ion-item>
         <ion-label position="floating"
           >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelDescription' |
@@ -98,10 +201,37 @@
         <ion-textarea
           rows="6"
           cols="20"
+          [ngClass]="
+          (form1.get('descriptionOfTheEvent').touched ||
+            form1.get('descriptionOfTheEvent').dirty) &&
+          form1.get('descriptionOfTheEvent').hasError('required')
+            ? 'is-invalid'
+            : '' || form1.get('descriptionOfTheEvent').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form1.get('descriptionOfTheEvent').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form1.get('descriptionOfTheEvent').touched ||
+                form1.get('descriptionOfTheEvent').dirty) &&
+                !form1.get('descriptionOfTheEvent').invalid)
+            ? 'is-valid'
+            : ''
+        "
           [placeholder]="'SUGGESTNEWSOREVENTFORM.EVENT.labelDescriptionPlaceholder' | translate"
           formControlName="descriptionOfTheEvent"
         ></ion-textarea>
       </ion-item>
+      <div class="messageError">
+        {{ form1.get("descriptionOfTheEvent").hasError("required") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsNULL' |
+        translate) : "" }} {{
+        form1.get("descriptionOfTheEvent").hasError("minlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsMinLenght'
+        | translate) : "" }} {{
+        form1.get("descriptionOfTheEvent").hasError("maxlength") ?
+        ('SUGGESTNEWSOREVENTFORM.messageError.description.descriptionIsMaxLenght'
+        | translate) : "" }}
+      </div>
       <ion-button
         type="submit"
         class="ion-margin-top"

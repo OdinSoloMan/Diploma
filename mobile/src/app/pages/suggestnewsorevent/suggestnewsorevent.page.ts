@@ -25,15 +25,15 @@ export class SuggestnewsoreventPage implements OnInit {
   ngOnInit() { }
 
   form = new FormGroup({
-    newTitle: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    dataNew: new FormControl('', [Validators.required, Validators.minLength(7)]),
-    newDescription: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    newTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
+    dataNew: new FormControl('', [Validators.required]),
+    newDescription: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
   })
 
   form1 = new FormGroup({
-    eventTitle: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    plannedStartDate: new FormControl('', [Validators.required, Validators.minLength(7)]),
-    descriptionOfTheEvent: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    eventTitle: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
+    plannedStartDate: new FormControl('', [Validators.required]),
+    descriptionOfTheEvent: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
   })
 
   async onSubmit() {

@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./infousers.page.scss'],
 })
 export class InfousersPage implements OnInit {
+  messageIsErrorCombo: any;
   public segment: string = "list1";
   infousers: User[] = [];
 
@@ -27,23 +28,26 @@ export class InfousersPage implements OnInit {
   url = this.detail.getURL() + '/users';
 
   form = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
-    position: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(4)])
+    fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
+    email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.email]),
+    telephone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^(1|1\\s)?(\\d{11}|(\\d{3}\\-){2}\\d{4}|\\(\\d{3}\\)\\s?\\d{3}\\-\\d{4}|(\\d{3}\\s){2}\\d{4})$')]),
+    position: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
+    typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
   })
 
   form1 = new FormGroup({
-    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(5)])
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)])
   }, { validators: this.checkPasswords })
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     const password = group.get('password').value;
     const confirmPassword = group.get('confirmPassword').value;
-
-    return password === confirmPassword ? null : { notSame: true }
+    if (password === confirmPassword) {
+      return null
+    } else {
+      return { notSame: true }
+    }
   }
 
   async onSubmit() {
@@ -72,8 +76,17 @@ export class InfousersPage implements OnInit {
         loading.dismiss();
         // this.form.reset();
       },
-      async () => {
-        const alert = await this.alertCtrl.create({ message: this.translate.instant('INFOUSERFORM.UPDATEINFOUSER.messageUpdateDataErr'), buttons: ['OK'] });
+      async (error) => {
+        if (error.error.includes("email")) {
+          this.messageIsErrorCombo = this.translate.instant("INFOUSERFORM.messageBusy.email") + this.translate.instant("INFOUSERFORM.messageBusy.busyE")
+          console.log(this.messageIsErrorCombo)
+        } else if (error.error.includes("telephone")) {
+          this.messageIsErrorCombo = this.translate.instant("INFOUSERFORM.messageBusy.telephone") + this.translate.instant("INFOUSERFORM.messageBusy.busyT")
+        }
+        else {
+          this.messageIsErrorCombo = this.translate.instant('INFOUSERFORM.UPDATEINFOUSER.messageUpdateDataErr')
+        }
+        const alert = await this.alertCtrl.create({ message: this.messageIsErrorCombo, buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }
