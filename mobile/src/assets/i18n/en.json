@@ -4,7 +4,22 @@
         "email": "Email",
         "password": "Password",
         "btn_login": "Login",
-        "btn_registration": "Registration"
+        "btn_registration": "Registration",
+        "messageError": {
+            "email": {
+                "emailIsNULL": "Email is required.",
+                "emailIsMinLenght": "5 letters required.",
+                "emailIsMaxLenght": "40 letters required.",
+                "emailIsType": "Email type."
+            },
+            "password": {
+                "passwordIsNULL": "Password is required.",
+                "passwordIsMinLenght": "6 letters required.",
+                "passwordIsMaxLenght": "45 letters required."
+            }
+        },
+        "messageLoading": "Logging in ...",
+        "messageLoadingErr": "Loading Failed..."
     },
     "REGISTRATIONFORM": {
         "title": "Check in",
@@ -14,7 +29,53 @@
         "position": "Position",
         "typeOfEnterprise": "TypeOfEnterprise",
         "password": "Password",
-        "btn_registration": "Registration"
+        "btn_registration": "Registration",
+        "messageError": {
+            "fullName": {
+                "fullNameIsNULL": "Full Name is required.",
+                "fullNameIsMinLenght": "5 letters required.",
+                "fullNameIsMaxLenght": "40 letters required.",
+                "fullNameIsType": "One letters."
+            },
+            "email": {
+                "emailIsNULL": "Email is required.",
+                "emailIsMinLenght": "5 letters required.",
+                "emailIsMaxLenght": "40 letters required.",
+                "emailIsType": "Email type."
+            },
+            "telephone": {
+                "telephoneIsNULL": "Telephone is required.",
+                "telephoneIsMinLenght": "11 letters required.",
+                "telephoneIsMaxLenght": "11 letters required.",
+                "typeOfEnterpriseIsType": "Only numbers."
+            },
+            "position": {
+                "positionIsNULL": "Position is required.",
+                "positionIsMinLenght": "2 letters required.",
+                "positionIsMaxLenght": "10 letters required.",
+                "positionIsType": "One letters."
+            },
+            "typeOfEnterprise": {
+                "typeOfEnterpriseIsNULL": "Type enterprise is required.",
+                "typeOfEnterpriseIsMinLenght": "5 letters required.",
+                "typeOfEnterpriseIsMaxLenght": "10 letters required.",
+                "typeOfEnterpriseIsType": "One letters."
+            },
+            "password": {
+                "passwordIsNULL": "Password is required.",
+                "passwordIsMinLenght": "6 letters required.",
+                "passwordIsMaxLenght": "45 letters required."
+            }
+        },
+        "messageLoading": "Registering ...",
+        "messageCreateUsersTrue": "Account created",
+        "messageLoadingErr": "Failed, ",
+        "messageBusy": {
+            "email": "email ",
+            "telephone": "telephone ",
+            "busyT": "busy.",
+            "busyE": "busy."
+        }
     },
     "NEWSFORM": {
         "messageLoading": "Loading in news...",

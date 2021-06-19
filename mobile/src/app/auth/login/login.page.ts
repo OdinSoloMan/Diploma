@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private router: Router,
+    private tranlate: TranslateService,
   ) { }
 
   form = new FormGroup({
@@ -37,7 +39,7 @@ export class LoginPage implements OnInit {
 
   async onSubmit() {
     //console.log(this.infoList);
-    const loading = await this.loadingCtrl.create({ message: 'Logging in ...' });
+    const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("LOGINFORM.messageLoading") });
     await loading.present();
 
     this.authService.login(this.form.value).subscribe(
@@ -48,7 +50,7 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/news');
       },
       async () => {
-        const alert = await this.alertCtrl.create({ message: "Login Failed", buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: this.tranlate.instant("LOGINFORM.messageLoadingErr"), buttons: ['OK'] });
         await alert.present();
         loading.dismiss();
       }

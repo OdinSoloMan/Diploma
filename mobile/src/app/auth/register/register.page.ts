@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,13 +11,14 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-
+  messageIsErrorCombo: any;
   constructor(
     private authService: AuthService,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private router: Router,
+    private tranlate: TranslateService,
   ) { }
 
   ngOnInit() { }
@@ -31,20 +33,29 @@ export class RegisterPage {
   })
 
   async onSubmit() {
-    const loading = await this.loadingCtrl.create({ message: 'Registering ...' });
+    const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("REGISTRATIONFORM.messageLoading") });
     await loading.present();
     this.authService.register(this.form.value).subscribe(
       async () => {
         // если успешно
-        const toast = await this.toastCtrl.create({ message: 'User Created', duration: 2000, color: 'dark' })
+        const toast = await this.toastCtrl.create({ message: this.tranlate.instant("REGISTRATIONFORM.messageCreateUsersTrue"), duration: 2000, color: 'dark' })
         await toast.present();
         loading.dismiss();
         this.form.reset();
         this.router.navigateByUrl('/login');
       },
       // если ошибка
-      async () => {
-        const alert = await this.alertCtrl.create({ message: 'This is an error ...', buttons: ['OK'] });
+      async (error) => {
+        this.messageIsErrorCombo = this.tranlate.instant("REGISTRATIONFORM.messageLoadingErr");
+        console.log(error);
+        if (error.error.includes("email")) {
+          this.messageIsErrorCombo += this.tranlate.instant("REGISTRATIONFORM.messageBusy.email") + this.tranlate.instant("REGISTRATIONFORM.messageBusy.busyE")
+          console.log(this.messageIsErrorCombo)
+        }
+        if (error.error.includes("telephone")) {
+          this.messageIsErrorCombo += this.tranlate.instant("REGISTRATIONFORM.messageBusy.telephone") + this.tranlate.instant("REGISTRATIONFORM.messageBusy.busyT")
+        }
+        const alert = await this.alertCtrl.create({ message: this.messageIsErrorCombo, buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }

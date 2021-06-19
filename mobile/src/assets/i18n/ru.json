@@ -4,7 +4,22 @@
         "email": "Почта",
         "password": "Пароль",
         "btn_login": "Войти",
-        "btn_registration": "Регистрация"
+        "btn_registration": "Регистрация",
+        "messageError": {
+            "email": {
+                "emailIsNULL": "Почта обязательное поле.",
+                "emailIsMinLenght": "Минимум 5 знаков.",
+                "emailIsMaxLenght": "Максимум 40 знаков.",
+                "emailIsType": "Тип электронной почты."
+            },
+            "password": {
+                "passwordIsNULL": "Пароль обязательное поле.",
+                "passwordIsMinLenght": "Минимум 6 знаков.",
+                "passwordIsMaxLenght": "Максимум 45 знаков."
+            }
+        },
+        "messageLoading": "Вход ...",
+        "messageLoadingErr": "Ошибка входа..."
     },
     "REGISTRATIONFORM": {
         "title": "Регистрация",
@@ -14,7 +29,53 @@
         "position": "Должность",
         "typeOfEnterprise": "Тип предприятия",
         "password": "Пароль",
-        "btn_registration": "Регистрация"
+        "btn_registration": "Регистрация",
+        "messageError": {
+            "fullName": {
+                "fullNameIsNULL": "Полное имя обязательное поле.",
+                "fullNameIsMinLenght": "Минимум 5 знаков.",
+                "fullNameIsMaxLenght": "Максимум 40 знаков.",
+                "fullNameIsType": "Только буквы."
+            },
+            "email": {
+                "emailIsNULL": "Почта обязательное поле.",
+                "emailIsMinLenght": "Минимум 5 знаков.",
+                "emailIsMaxLenght": "Максимум 40 знаков.",
+                "emailIsType": "Тип электронной почты."
+            },
+            "telephone": {
+                "telephoneIsNULL": "Номер телефона обязательное поле.",
+                "telephoneIsMinLenght": "Минимум 11 знаков.",
+                "telephoneIsMaxLenght": "Максимум 11 знаков.",
+                "typeOfEnterpriseIsType": "Только цифры."
+            },
+            "position": {
+                "positionIsNULL": "Должность обязательное поле.",
+                "positionIsMinLenght": "Минимум 2 знака.",
+                "positionIsMaxLenght": "Максимум 10 знаков.",
+                "positionIsType": "Только буквы."
+            },
+            "typeOfEnterprise": {
+                "typeOfEnterpriseIsNULL": "Тип предприятия обязательное поле.",
+                "typeOfEnterpriseIsMinLenght": "Минимум 5 знаков.",
+                "typeOfEnterpriseIsMaxLenght": "Максимум 10 знаков.",
+                "typeOfEnterpriseIsType": "Только буквы."
+            },
+            "password": {
+                "passwordIsNULL": "Пароль обязательное поле.",
+                "passwordIsMinLenght": "Минимум 6 знаков.",
+                "passwordIsMaxLenght": "Максимум 45 знаков."
+            }
+        },
+        "messageLoading": "Регистрация ...",
+        "messageCreateUsersTrue": "Аккаунт создан",
+        "messageLoadingErr": "Ошибка, ",
+        "messageBusy": {
+            "email": "почта ",
+            "telephone": "телефон ",
+            "busyT": "занят",
+            "busyE": "занята"
+        }
     },
     "NEWSFORM": {
         "messageLoading": "Загрузка новостей...",
@@ -110,13 +171,13 @@
     },
     "MENUFORM": {
         "menu": "Меню",
-        "label_news":"Новости",
-        "label_events":"Мероприятия",
-        "label_services":"Услуги",
-        "label_records":"Документация",
-        "label_suggest":"Предложить",
-        "label_userInfo":"Личная инф.",
-        "label_settings":"Настройки",
-        "label_exit":"Выход"
+        "label_news": "Новости",
+        "label_events": "Мероприятия",
+        "label_services": "Услуги",
+        "label_records": "Документация",
+        "label_suggest": "Предложить",
+        "label_userInfo": "Личная инф.",
+        "label_settings": "Настройки",
+        "label_exit": "Выход"
     }
 }
