@@ -22,39 +22,42 @@
       <ion-input
         type="text"
         required
-        [ngClass]="
-          (form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
-          form.get('reverseCommunication').hasError('required')
-            ? 'is-invalid'
-            : '' || form.get('reverseCommunication').hasError('minlength')
-            ? 'is-invalid'
-            : '' || form.get('reverseCommunication').hasError('maxlength')
-            ? 'is-invalid'
-            : '' || form.get('reverseCommunication').hasError('pattern')
-            ? 'is-invalid'
-            : '' ||
-              ((form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
-                !form.get('reverseCommunication').invalid)
-            ? 'is-valid'
-            : ''
-        "
         formControlName="reverseCommunication"
         value="[data.reverseCommunication]"
       ></ion-input>
     </ion-item>
-    <div class="messageError">
-      {{ form.get("reverseCommunication").hasError("required") ?
-      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsNULL'
-      | translate) : "" }} {{
-      form.get("reverseCommunication").hasError("minlength") ?
-      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMinLenght'
-      | translate) : "" }} {{
-      form.get("reverseCommunication").hasError("maxlength") ?
-      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMaxLenght'
-      | translate) : "" }} {{
-      form.get("reverseCommunication").hasError("pattern") ?
-      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationCoincide'
-      | translate) : "" }}
+    <div class="messageError" style="max-height: 36px !important; min-height: 36px !important;">
+      <div
+        *ngIf="
+      (form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
+      form.get('reverseCommunication').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('reverseCommunication').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('reverseCommunication').hasError('maxlength')
+        ? 'is-invalid'
+        : '' || form.get('reverseCommunication').hasError('pattern')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
+            !form.get('reverseCommunication').invalid)
+        ? 'is-valid'
+        : ''
+    "
+      >
+        {{ form.get("reverseCommunication").hasError("required") ?
+        ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsNULL'
+        | translate) : "" }} {{
+        form.get("reverseCommunication").hasError("minlength") ?
+        ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMinLenght'
+        | translate) : "" }} {{
+        form.get("reverseCommunication").hasError("maxlength") ?
+        ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMaxLenght'
+        | translate) : "" }} {{
+        form.get("reverseCommunication").hasError("pattern") ?
+        ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationCoincide'
+        | translate) : "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
@@ -66,32 +69,35 @@
         rows="5"
         cols="20"
         required
-        [ngClass]="
-          (form.get('description').touched || form.get('description').dirty) &&
-          form.get('description').hasError('required')
-            ? 'is-invalid'
-            : '' || form.get('description').hasError('minlength')
-            ? 'is-invalid'
-            : '' || form.get('description').hasError('maxlength')
-            ? 'is-invalid'
-            : '' ||
-              ((form.get('description').touched || form.get('description').dirty) &&
-                !form.get('description').invalid)
-            ? 'is-valid'
-            : ''
-        "
         formControlName="description"
         value="[data.description]"
       ></ion-textarea>
     </ion-item>
     <div class="messageError">
-      {{ form.get("description").hasError("required") ?
-      ('APPLYSERVICE.messageError.description.descriptionIsNULL' | translate) :
-      "" }} {{ form.get("description").hasError("minlength") ?
-      ('APPLYSERVICE.messageError.description.descriptionIsMinLenght' |
-      translate) : "" }} {{ form.get("description").hasError("maxlength") ?
-      ('APPLYSERVICE.messageError.description.descriptionIsMaxLenght' |
-      translate) : "" }}
+      <div
+        *ngIf="
+      (form.get('description').touched || form.get('description').dirty) &&
+      form.get('description').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('description').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('description').hasError('maxlength')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('description').touched || form.get('description').dirty) &&
+            !form.get('description').invalid)
+        ? 'is-valid'
+        : ''
+    "
+      >
+        {{ form.get("description").hasError("required") ?
+        ('APPLYSERVICE.messageError.description.descriptionIsNULL' | translate)
+        : "" }} {{ form.get("description").hasError("minlength") ?
+        ('APPLYSERVICE.messageError.description.descriptionIsMinLenght' |
+        translate) : "" }} {{ form.get("description").hasError("maxlength") ?
+        ('APPLYSERVICE.messageError.description.descriptionIsMaxLenght' |
+        translate) : "" }}
+      </div>
     </div>
     <ion-button
       type="submit"

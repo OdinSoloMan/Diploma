@@ -15,37 +15,36 @@
         <ion-label position="floating"
           >{{ 'LOGINFORM.email' | translate}}</ion-label
         >
-        <ion-input
-          type="text"
-          required
-          [ngClass]="
-          (form.get('email').touched || form.get('email').dirty) &&
-          form.get('email').hasError('required')
-            ? 'is-invalid'
-            : '' || form.get('email').hasError('minlength')
-            ? 'is-invalid'
-            : '' || form.get('email').hasError('maxlength')
-            ? 'is-invalid'
-            : '' || form.get('email').hasError('email')
-            ? 'is-invalid'
-            : '' ||
-              ((form.get('email').touched || form.get('email').dirty) &&
-                !form.get('email').invalid)
-            ? 'is-valid'
-            : ''
-        "
-          formControlName="email"
-        ></ion-input>
+        <ion-input type="text" required formControlName="email"></ion-input>
       </ion-item>
       <div class="messageError">
-        {{ form.get("email").hasError("required") ?
-        ("LOGINFORM.messageError.email.emailIsNULL" | translate) : "" }} {{
-        form.get("email").hasError("minlength") ?
-        ("LOGINFORM.messageError.email.emailIsMinLenght" | translate) : "" }} {{
-        form.get("email").hasError("maxlength") ?
-        ("LOGINFORM.messageError.email.emailIsMaxLenght" | translate) : "" }} {{
-        form.get("email").hasError("email") ?
-        ("LOGINFORM.messageError.email.emailIsType" | translate) : "" }}
+        <div
+          *ngIf="
+      (form.get('email').touched || form.get('email').dirty) &&
+      form.get('email').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('email').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('email').hasError('maxlength')
+        ? 'is-invalid'
+        : '' || form.get('email').hasError('email')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('email').touched || form.get('email').dirty) &&
+            !form.get('email').invalid)
+        ? 'is-valid'
+        : ''
+    "
+        >
+          {{ form.get("email").hasError("required") ?
+          ("LOGINFORM.messageError.email.emailIsNULL" | translate) : "" }} {{
+          form.get("email").hasError("minlength") ?
+          ("LOGINFORM.messageError.email.emailIsMinLenght" | translate) : "" }}
+          {{ form.get("email").hasError("maxlength") ?
+          ("LOGINFORM.messageError.email.emailIsMaxLenght" | translate) : "" }}
+          {{ form.get("email").hasError("email") ?
+          ("LOGINFORM.messageError.email.emailIsType" | translate) : "" }}
+        </div>
       </div>
       <ion-item>
         <ion-label position="floating"
@@ -54,30 +53,34 @@
         <ion-input
           type="password"
           required
-          [ngClass]="
-          (form.get('password').touched || form.get('password').dirty) &&
-          form.get('password').hasError('required')
-            ? 'is-invalid'
-            : '' || form.get('password').hasError('minlength')
-            ? 'is-invalid'
-            : '' || form.get('password').hasError('maxlength')
-            ? 'is-invalid'
-            : '' ||
-              ((form.get('password').touched || form.get('password').dirty) &&
-                !form.get('password').invalid)
-            ? 'is-valid'
-            : ''
-        "
           formControlName="password"
         ></ion-input>
       </ion-item>
       <div class="messageError">
-        {{ form.get("password").hasError("required") ?
-        ("LOGINFORM.messageError.password.passwordIsNULL" | translate) : "" }}
-        {{ form.get("password").hasError("minlength") ?
-        ("LOGINFORM.messageError.password.passwordIsMinLenght" | translate) : ""
-        }} {{ form.get("password").hasError("maxlength") ?
-        ("LOGINFORM.messageError.password.passwordIsMaxLenght" | translate): "" }}
+        <div
+          *ngIf="
+      (form.get('password').touched || form.get('password').dirty) &&
+      form.get('password').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('password').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('password').hasError('maxlength')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('password').touched || form.get('password').dirty) &&
+            !form.get('password').invalid)
+        ? 'is-valid'
+        : ''
+    "
+        >
+          {{ form.get("password").hasError("required") ?
+          ("LOGINFORM.messageError.password.passwordIsNULL" | translate) : "" }}
+          {{ form.get("password").hasError("minlength") ?
+          ("LOGINFORM.messageError.password.passwordIsMinLenght" | translate) :
+          "" }} {{ form.get("password").hasError("maxlength") ?
+          ("LOGINFORM.messageError.password.passwordIsMaxLenght" | translate):
+          "" }}
+        </div>
       </div>
       <ion-button
         type="submit"

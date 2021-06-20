@@ -13,120 +13,118 @@
       <ion-label position="floating"
         >{{ 'REGISTRATIONFORM.lableFIO' | translate}}</ion-label
       >
-      <ion-input
-        type="text"
-        required
-        formControlName="fullName"
-        [ngClass]="
-      (form.get('fullName').touched || form.get('fullName').dirty) &&
-      form.get('fullName').hasError('required')
-        ? 'is-invalid'
-        : '' || form.get('fullName').hasError('minlength')
-        ? 'is-invalid'
-        : '' || form.get('fullName').hasError('maxlength')
-        ? 'is-invalid'
-        : '' || form.get('fullName').hasError('pattern')
-        ? 'is-invalid'
-        : '' ||
-          ((form.get('fullName').touched || form.get('fullName').dirty) &&
-            !form.get('fullName').invalid)
-        ? 'is-valid'
-        : ''
-    "
-      ></ion-input>
+      <ion-input type="text" required formControlName="fullName"></ion-input>
     </ion-item>
     <div class="messageError">
-      {{ form.get("fullName").hasError("required") ?
-      ('REGISTRATIONFORM.messageError.fullName.fullNameIsNULL' | translate) : ""
-      }} {{ form.get("fullName").hasError("minlength") ?
-      ('REGISTRATIONFORM.messageError.fullName.fullNameIsMinLenght' | translate)
-      : "" }} {{ form.get("fullName").hasError("maxlength") ?
-      ('REGISTRATIONFORM.messageError.fullName.fullNameIsMaxLenght' | translate)
-      : "" }} {{ form.get("fullName").hasError("pattern") ?
-      ('REGISTRATIONFORM.messageError.fullName.fullNameIsType' | translate) : ""
-      }}
+      <div
+        *ngIf="
+    (form.get('fullName').touched || form.get('fullName').dirty) &&
+    form.get('fullName').hasError('required')
+      ? 'is-invalid'
+      : '' || form.get('fullName').hasError('minlength')
+      ? 'is-invalid'
+      : '' || form.get('fullName').hasError('maxlength')
+      ? 'is-invalid'
+      : '' || form.get('fullName').hasError('pattern')
+      ? 'is-invalid'
+      : '' ||
+        ((form.get('fullName').touched || form.get('fullName').dirty) &&
+          !form.get('fullName').invalid)
+      ? 'is-valid'
+      : ''
+  "
+      >
+        {{ form.get("fullName").hasError("required") ?
+        ('REGISTRATIONFORM.messageError.fullName.fullNameIsNULL' | translate) :
+        "" }} {{ form.get("fullName").hasError("minlength") ?
+        ('REGISTRATIONFORM.messageError.fullName.fullNameIsMinLenght' |
+        translate) : "" }} {{ form.get("fullName").hasError("maxlength") ?
+        ('REGISTRATIONFORM.messageError.fullName.fullNameIsMaxLenght' |
+        translate) : "" }} {{ form.get("fullName").hasError("pattern") ?
+        ('REGISTRATIONFORM.messageError.fullName.fullNameIsType' | translate) :
+        "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
         >{{ 'REGISTRATIONFORM.email' | translate}}</ion-label
       >
-      <ion-input
-        type="text"
-        required
-        [ngClass]="
-      (form.get('email').touched || form.get('email').dirty) &&
-      form.get('email').hasError('required')
-        ? 'is-invalid'
-        : '' || form.get('email').hasError('minlength')
-        ? 'is-invalid'
-        : '' || form.get('email').hasError('maxlength')
-        ? 'is-invalid'
-        : '' || form.get('email').hasError('email')
-        ? 'is-invalid'
-        : '' ||
-          ((form.get('email').touched || form.get('email').dirty) &&
-            !form.get('email').invalid)
-        ? 'is-valid'
-        : ''
-    "
-        formControlName="email"
-      ></ion-input>
+      <ion-input type="text" required formControlName="email"></ion-input>
     </ion-item>
     <div class="messageError">
-      {{ form.get("email").hasError("required") ?
-      ("REGISTRATIONFORM.messageError.email.emailIsNULL" | translate) : "" }} {{
-      form.get("email").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.email.emailIsMinLenght" | translate) : ""
-      }} {{ form.get("email").hasError("maxlength") ?
-      ("REGISTRATIONFORM.messageError.email.emailIsMaxLenght" | translate) : ""
-      }} {{ form.get("email").hasError("email") ?
-      ("REGISTRATIONFORM.messageError.email.emailIsType" | translate) : "" }}
+      <div
+        *ngIf="
+    (form.get('email').touched || form.get('email').dirty) &&
+    form.get('email').hasError('required')
+      ? 'is-invalid'
+      : '' || form.get('email').hasError('minlength')
+      ? 'is-invalid'
+      : '' || form.get('email').hasError('maxlength')
+      ? 'is-invalid'
+      : '' || form.get('email').hasError('email')
+      ? 'is-invalid'
+      : '' ||
+        ((form.get('email').touched || form.get('email').dirty) &&
+          !form.get('email').invalid)
+      ? 'is-valid'
+      : ''
+  "
+      >
+        {{ form.get("email").hasError("required") ?
+        ("REGISTRATIONFORM.messageError.email.emailIsNULL" | translate) : "" }}
+        {{ form.get("email").hasError("minlength") ?
+        ("REGISTRATIONFORM.messageError.email.emailIsMinLenght" | translate) :
+        "" }} {{ form.get("email").hasError("maxlength") ?
+        ("REGISTRATIONFORM.messageError.email.emailIsMaxLenght" | translate) :
+        "" }} {{ form.get("email").hasError("email") ?
+        ("REGISTRATIONFORM.messageError.email.emailIsType" | translate) : "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
         >{{ 'REGISTRATIONFORM.telephone' | translate}}</ion-label
       >
-      <ion-input
-        type="text"
-        required
-        [ngClass]="
-      (form.get('telephone').touched || form.get('telephone').dirty) &&
-      form.get('telephone').hasError('required')
-        ? 'is-invalid'
-        : '' || form.get('telephone').hasError('minlength')
-        ? 'is-invalid'
-        : '' || form.get('telephone').hasError('maxlength')
-        ? 'is-invalid'
-        : '' || form.get('telephone').hasError('pattern')
-        ? 'is-invalid'
-        : '' ||
-          ((form.get('telephone').touched || form.get('telephone').dirty) &&
-            !form.get('telephone').invalid)
-        ? 'is-valid'
-        : ''
-    "
-        formControlName="telephone"
-      ></ion-input>
+      <ion-input type="text" required formControlName="telephone"></ion-input>
     </ion-item>
     <div class="messageError">
-      {{ form.get("telephone").hasError("required") ?
-      ("REGISTRATIONFORM.messageError.telephone.telephoneIsNULL" | translate) :
-      "" }} {{ form.get("telephone").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.telephone.telephoneIsMinLenght" |
-      translate) : "" }} {{ form.get("telephone").hasError("maxlength") ?
-      ("REGISTRATIONFORM.messageError.telephone.telephoneIsMaxLenght" |
-      translate) : "" }} {{ form.get("telephone").hasError("pattern") ?
-      ("REGISTRATIONFORM.messageError.telephone.telephoneIsType" | translate) :
-      "" }}
+      <div
+        *ngIf="
+        (form.get('telephone').touched || form.get('telephone').dirty) &&
+        form.get('telephone').hasError('required')
+          ? 'is-invalid'
+          : '' || form.get('telephone').hasError('minlength')
+          ? 'is-invalid'
+          : '' || form.get('telephone').hasError('maxlength')
+          ? 'is-invalid'
+          : '' || form.get('telephone').hasError('telephone')
+          ? 'is-invalid'
+          : '' ||
+            ((form.get('telephone').touched || form.get('telephone').dirty) &&
+              !form.get('telephone').invalid)
+          ? 'is-valid'
+          : ''
+    "
+      >
+        {{ form.get("telephone").hasError("required") ?
+        ("REGISTRATIONFORM.messageError.telephone.telephoneIsNULL" | translate)
+        : "" }} {{ form.get("telephone").hasError("minlength") ?
+        ("REGISTRATIONFORM.messageError.telephone.telephoneIsMinLenght" |
+        translate) : "" }} {{ form.get("telephone").hasError("maxlength") ?
+        ("REGISTRATIONFORM.messageError.telephone.telephoneIsMaxLenght" |
+        translate) : "" }} {{ form.get("telephone").hasError("pattern") ?
+        ("REGISTRATIONFORM.messageError.telephone.telephoneIsType" | translate)
+        : "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
         >{{ 'REGISTRATIONFORM.position' | translate}}</ion-label
       >
-      <ion-input
-        type="text"
-        required
-        [ngClass]="
+      <ion-input type="text" required formControlName="position"></ion-input>
+    </ion-item>
+    <div class="messageError">
+      <div
+        *ngIf="
       (form.get('position').touched || form.get('position').dirty) &&
       form.get('position').hasError('required')
         ? 'is-invalid'
@@ -142,19 +140,17 @@
         ? 'is-valid'
         : ''
     "
-        formControlName="position"
-      ></ion-input>
-    </ion-item>
-    <div class="messageError">
-      {{ form.get("position").hasError("required") ?
-      ("REGISTRATIONFORM.messageError.position.positionIsNULL" | translate) : ""
-      }} {{ form.get("position").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.position.positionIsMinLenght" | translate)
-      : "" }} {{ form.get("position").hasError("maxlength") ?
-      ("REGISTRATIONFORM.messageError.position.positionIsMaxLenght" | translate)
-      : "" }} {{ form.get("position").hasError("pattern") ?
-      ("REGISTRATIONFORM.messageError.position.positionIsType" | translate) : ""
-      }}
+      >
+        {{ form.get("position").hasError("required") ?
+        ("REGISTRATIONFORM.messageError.position.positionIsNULL" | translate) :
+        "" }} {{ form.get("position").hasError("minlength") ?
+        ("REGISTRATIONFORM.messageError.position.positionIsMinLenght" |
+        translate) : "" }} {{ form.get("position").hasError("maxlength") ?
+        ("REGISTRATIONFORM.messageError.position.positionIsMaxLenght" |
+        translate) : "" }} {{ form.get("position").hasError("pattern") ?
+        ("REGISTRATIONFORM.messageError.position.positionIsType" | translate) :
+        "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
@@ -163,38 +159,43 @@
       <ion-input
         type="text"
         required
-        [ngClass]="
-        (form.get('typeOfEnterprise').touched ||
-          form.get('typeOfEnterprise').dirty) &&
-        form.get('typeOfEnterprise').hasError('required')
-          ? 'is-invalid'
-          : '' || form.get('typeOfEnterprise').hasError('minlength')
-          ? 'is-invalid'
-          : '' || form.get('typeOfEnterprise').hasError('maxlength')
-          ? 'is-invalid'
-          : '' || form.get('typeOfEnterprise').hasError('pattern')
-          ? 'is-invalid'
-          : '' ||
-            ((form.get('typeOfEnterprise').touched ||
-              form.get('typeOfEnterprise').dirty) &&
-              !form.get('typeOfEnterprise').invalid)
-          ? 'is-valid'
-          : ''
-      "
         formControlName="typeOfEnterprise"
       ></ion-input>
     </ion-item>
     <div class="messageError">
-      {{ form.get("typeOfEnterprise").hasError("required") ?
-      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsNULL" |
-      translate) : "" }} {{ form.get("typeOfEnterprise").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMinLenght"
-      | translate) : "" }} {{ form.get("typeOfEnterprise").hasError("maxlength")
-      ?
-      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMaxLenght"
-      | translate) : "" }} {{ form.get("typeOfEnterprise").hasError("pattern") ?
-      ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsType" |
-      translate) : "" }}
+      <div
+        *ngIf="
+      (form.get('typeOfEnterprise').touched ||
+        form.get('typeOfEnterprise').dirty) &&
+      form.get('typeOfEnterprise').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('typeOfEnterprise').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('typeOfEnterprise').hasError('maxlength')
+        ? 'is-invalid'
+        : '' || form.get('typeOfEnterprise').hasError('pattern')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('typeOfEnterprise').touched ||
+            form.get('typeOfEnterprise').dirty) &&
+            !form.get('typeOfEnterprise').invalid)
+        ? 'is-valid'
+        : ''
+    "
+      >
+        {{ form.get("typeOfEnterprise").hasError("required") ?
+        ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsNULL"
+        | translate) : "" }} {{
+        form.get("typeOfEnterprise").hasError("minlength") ?
+        ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMinLenght"
+        | translate) : "" }} {{
+        form.get("typeOfEnterprise").hasError("maxlength") ?
+        ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsMaxLenght"
+        | translate) : "" }} {{ form.get("typeOfEnterprise").hasError("pattern")
+        ?
+        ("REGISTRATIONFORM.messageError.typeOfEnterprise.typeOfEnterpriseIsType"
+        | translate) : "" }}
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating"
@@ -203,31 +204,34 @@
       <ion-input
         type="password"
         required
-        [ngClass]="
-        (form.get('password').touched || form.get('password').dirty) &&
-        form.get('password').hasError('required')
-          ? 'is-invalid'
-          : '' || form.get('password').hasError('minlength')
-          ? 'is-invalid'
-          : '' || form.get('password').hasError('maxlength')
-          ? 'is-invalid'
-          : '' ||
-            ((form.get('password').touched || form.get('password').dirty) &&
-              !form.get('password').invalid)
-          ? 'is-valid'
-          : ''
-      "
         formControlName="password"
       ></ion-input>
     </ion-item>
     <div class="messageError">
-      {{ form.get("password").hasError("required") ?
-      ("REGISTRATIONFORM.messageError.password.passwordIsNULL" | translate) : ""
-      }} {{ form.get("password").hasError("minlength") ?
-      ("REGISTRATIONFORM.messageError.password.passwordIsMinLenght" | translate)
-      : "" }} {{ form.get("password").hasError("maxlength") ?
-      ("REGISTRATIONFORM.messageError.password.passwordIsMaxLenght" |
-      translate): "" }}
+      <div
+        *ngIf="
+      (form.get('password').touched || form.get('password').dirty) &&
+      form.get('password').hasError('required')
+        ? 'is-invalid'
+        : '' || form.get('password').hasError('minlength')
+        ? 'is-invalid'
+        : '' || form.get('password').hasError('maxlength')
+        ? 'is-invalid'
+        : '' ||
+          ((form.get('password').touched || form.get('password').dirty) &&
+            !form.get('password').invalid)
+        ? 'is-valid'
+        : ''
+    "
+      >
+        {{ form.get("password").hasError("required") ?
+        ("REGISTRATIONFORM.messageError.password.passwordIsNULL" | translate) :
+        "" }} {{ form.get("password").hasError("minlength") ?
+        ("REGISTRATIONFORM.messageError.password.passwordIsMinLenght" |
+        translate) : "" }} {{ form.get("password").hasError("maxlength") ?
+        ("REGISTRATIONFORM.messageError.password.passwordIsMaxLenght" |
+        translate): "" }}
+      </div>
     </div>
     <ion-button
       type="submit"

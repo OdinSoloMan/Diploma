@@ -47,7 +47,7 @@
                 "telephoneIsNULL": "Номер телефона обязательное поле.",
                 "telephoneIsMinLenght": "Минимум 11 знаков.",
                 "telephoneIsMaxLenght": "Максимум 11 знаков.",
-                "typeOfEnterpriseIsType": "Только цифры."
+                "telephoneIsType": "Только цифры."
             },
             "position": {
                 "positionIsNULL": "Должность обязательное поле.",

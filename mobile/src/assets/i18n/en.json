@@ -47,7 +47,7 @@
                 "telephoneIsNULL": "Telephone is required.",
                 "telephoneIsMinLenght": "11 letters required.",
                 "telephoneIsMaxLenght": "11 letters required.",
-                "typeOfEnterpriseIsType": "Only numbers."
+                "telephoneIsType": "Only numbers."
             },
             "position": {
                 "positionIsNULL": "Position is required.",
