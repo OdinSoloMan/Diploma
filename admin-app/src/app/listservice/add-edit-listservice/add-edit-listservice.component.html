@@ -44,8 +44,8 @@
         {{ form.get("description").hasError("pattern") ? " One letters." : "" }}
       </div>
     </div>
-    <label class="col-sm-2 col-form-label">Services Id</label>
-    <div class="col-sm-10">
+    <label [hidden]="true" class="col-sm-2 col-form-label">Services Id</label>
+    <div [hidden]="true" class="col-sm-10">
       <input
         type="text"
         class="form-control"
@@ -86,6 +86,41 @@
             : ""
         }}
         {{ form.get("servicesId").hasError("pattern") ? " Guid type." : "" }}
+      </div>
+    </div>
+    <label class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <div>
+        <div class="row">
+          <div class="col">
+            <input
+              readonly
+              type="text"
+              class="form-control"
+              placeholder="Required field"
+              formControlName="name"
+            />
+            <div class="invalid-feedback">
+              {{ sName }}
+            </div>
+          </div>
+          <div class="col col-lg-2">
+            <div ngbDropdown class="d-inline-block">
+              <button
+                class="btn btn-outline-primary"
+                id="dropdownBasic1"
+                ngbDropdownToggle
+              ></button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div *ngFor="let e of serv">
+                  <button ngbDropdownItem (click)="infoName(e)">
+                    {{ e.name }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-sm-10">

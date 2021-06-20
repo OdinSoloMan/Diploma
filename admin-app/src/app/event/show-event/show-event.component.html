@@ -266,7 +266,6 @@
       </th>
       <th>
         <input
-          [hidden]="true"
           [(ngModel)]="isConsideredFilter"
           class="form-control"
           (keyup)="filterFn()"
@@ -306,7 +305,7 @@
       <td>
         <img
           [src]="dataItem.imageEvents"
-          alt="Avatar"
+          alt="Not image"
           style="
             vertical-align: middle;
             width: 50px;

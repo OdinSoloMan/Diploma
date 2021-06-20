@@ -163,7 +163,7 @@
         </div>
         Description
       </th>
-      <th>
+      <th [hidden]="true">
         <div class="d-flex flex-row">
           <input
             [(ngModel)]="servicesIdFilter"
@@ -210,6 +210,17 @@
         </div>
         Services Id
       </th>
+      <th>
+        <div class="d-flex flex-row">
+          <input
+            [(ngModel)]="nameFilter"
+            class="form-control"
+            (keyup)="filterFn()"
+            placeholder="Filter"
+          />
+        </div>
+        Name
+      </th>
       <th>Options</th>
     </tr>
   </thead>
@@ -230,7 +241,8 @@
       <td>{{ i + 1 }}</td>
       <td [hidden]="true">{{ dataItem.guidListSevicesId }}</td>
       <td>{{ dataItem.description }}</td>
-      <td>{{ dataItem.servicesId }}</td>
+      <td [hidden]="true">{{ dataItem.servicesId }}</td>
+      <td>{{ dataItem.name }}</td>
       <td>
         <button
           type="button"

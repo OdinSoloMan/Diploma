@@ -9,7 +9,6 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./show-listservice.component.css']
 })
 export class ShowListserviceComponent implements OnInit {
-
   constructor(
     private service: SharedService,
     private toastr: ToastrService,
@@ -38,6 +37,7 @@ export class ShowListserviceComponent implements OnInit {
   guidListSevicesIdFilter: string = "";
   descriptionFilter: string = "";
   servicesIdFilter: string = "";
+  nameFilter: string = "";
   ListServiceListWithoutFilter: any = [];
 
   addClick() {
@@ -87,13 +87,34 @@ export class ShowListserviceComponent implements OnInit {
     this.refrechListServiceList();
   }
 
+
   refrechListServiceList() {
-    const http$ = this.service.getListServiceList();
+    //this.showNamService()
+    const http$ = this.service.postFullInfoListServiceFromName();
     http$.subscribe(
       res => {
-        this.ListServiceList = res;
-        this.ListServiceListWithoutFilter = res;
-        this.totalRecords = res.length;
+        var createInfoListService = [{}];
+        var count = 0;
+        var lengthRes = JSON.parse(JSON.stringify(res))
+        console.log("lengt", lengthRes.length)
+        for (let i = 0; i < lengthRes.length; i++) {
+          //console.log(a[i].ListServices.length);
+          if (lengthRes[i].ListServices.length !== 0) {
+            for (let j = 0; j < lengthRes[i].ListServices.length; j++) {
+              //console.log("a[i].ListServices[j].length", lengthRes[i].ListServices[j])
+              createInfoListService[count] = { ...createInfoListService[count], guidListSevicesId: lengthRes[i].ListServices[j].GuidListSevicesId };
+              createInfoListService[count] = { ...createInfoListService[count], description: lengthRes[i].ListServices[j].Description };
+              createInfoListService[count] = { ...createInfoListService[count], name: lengthRes[i].Name };
+              createInfoListService[count] = { ...createInfoListService[count], servicesId: lengthRes[i].GuidServicesId };
+              count++
+            }
+          }
+        }
+        console.log("result", createInfoListService)
+        this.ListServiceList = createInfoListService;
+        this.ListServiceListWithoutFilter = createInfoListService;
+        var lengthResLast = JSON.parse(JSON.stringify(createInfoListService))
+        this.totalRecords = lengthResLast.length;
         console.log(this.totalRecords)
         console.log('HTTP response', res)
         // this.toastr.success('Yes', 'LIST SERVICE', {
@@ -114,12 +135,14 @@ export class ShowListserviceComponent implements OnInit {
         }
       }, () => console.log('HTTP request completed.')
     );
+
   }
 
   filterFn() {
     var guidListSevicesIdFilter = this.guidListSevicesIdFilter;
     var descriptionFilter = this.descriptionFilter;
     var servicesIdFilter = this.servicesIdFilter;
+    var nameFilter = this.nameFilter;
 
     this.ListServiceList = this.ListServiceListWithoutFilter.filter(function (el) {
       return el.guidListSevicesId.toString().toLowerCase().includes(
@@ -127,7 +150,9 @@ export class ShowListserviceComponent implements OnInit {
       ) && el.description.toString().toLowerCase().includes(
         descriptionFilter.toString().trim().toLowerCase()
       ) && el.servicesId.toString().toLowerCase().includes(
-        servicesIdFilter.toString().trim().toLowerCase())
+        servicesIdFilter.toString().trim().toLowerCase()
+      ) && el.name.toString().toLowerCase().includes(
+        nameFilter.toString().trim().toLowerCase())
     })
     this.totalRecords = this.ListServiceList.length;
   }

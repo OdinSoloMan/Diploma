@@ -25,7 +25,7 @@ export class AddEditUserComponent implements OnInit {
     position: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
     typeOfEnterprise: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10), Validators.pattern('[a-zA-ZА-Яа-я]*')]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(45)]),
-    role: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
+    role: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('(admin|users)?')]),
   })
 
   ngOnInit(): void {

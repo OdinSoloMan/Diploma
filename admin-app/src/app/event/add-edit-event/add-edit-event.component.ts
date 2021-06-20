@@ -23,7 +23,7 @@ export class AddEditEventComponent implements OnInit {
     descriptionOfTheEvent: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
     plannedStartDate: new FormControl('', [Validators.required]),
     imageEvents: new FormControl('', [Validators.required]),
-    isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
+    isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('(true|false)?')]),
     usersId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
   })
 
@@ -37,7 +37,10 @@ export class AddEditEventComponent implements OnInit {
     else
       this.form.controls['imageEvents'].setValue(NotImage.img);
     this.form.controls['isConsidered'].setValue(this.event.isConsidered);
-    this.form.controls['usersId'].setValue(this.event.usersId);
+    if (this.event.guidEventsId !== 0)
+      this.form.controls['usersId'].setValue(this.event.usersId);
+    else
+      this.form.controls['usersId'].setValue(localStorage.getItem("user_id"));
   }
 
   addEvent() {
@@ -110,7 +113,7 @@ export class AddEditEventComponent implements OnInit {
 
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
-    this.base64textString = btoa(binaryString);    
+    this.base64textString = btoa(binaryString);
     this.compressImage('data:image/png;base64,' + btoa(binaryString), 640, 320).then(compressed => {
       console.log(compressed);
       this.form.controls['imageEvents'].setValue(compressed)
@@ -132,5 +135,5 @@ export class AddEditEventComponent implements OnInit {
       }
       img.onerror = error => rej(error);
     })
-  }  
+  }
 }

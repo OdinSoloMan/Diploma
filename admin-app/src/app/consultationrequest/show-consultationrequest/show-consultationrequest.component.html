@@ -1,5 +1,6 @@
 <!-- Button trigger modal -->
 <button
+  [hidden]="true"
   type="button"
   class="btn btn-primary float-right m-2"
   data-toggle="modal"
@@ -293,7 +294,7 @@
       <td [hidden]="true">{{ dataItem.usersId }}</td>
       <td [hidden]="true">{{ dataItem.listServicesId }}</td>
       <td>
-        <button
+        <button 
           type="button"
           class="btn btn-light mr-1"
           data-toggle="modal"

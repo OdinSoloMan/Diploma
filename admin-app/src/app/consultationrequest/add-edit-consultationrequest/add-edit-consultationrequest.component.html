@@ -168,11 +168,11 @@
             ? " 5 letters required."
             : ""
         }}
-        {{ form.get("isVerified").hasError("pattern") ? " One letters." : "" }}
+        {{ form.get("isVerified").hasError("pattern") ? " true or false." : "" }}
       </div>
     </div>
-    <label class="col-sm-2 col-form-label">Users Id</label>
-    <div class="col-sm-10">
+    <label [hidden]="true" class="col-sm-2 col-form-label">Users Id</label>
+    <div  [hidden]="true" class="col-sm-10">
       <input
         type="text"
         class="form-control"
@@ -195,7 +195,7 @@
         "
         formControlName="usersId"
       />
-      <div class="invalid-feedback">
+      <div [hidden]="true" class="invalid-feedback">
         {{
           form.get("usersId").hasError("required") ? " Guid is required." : ""
         }}
@@ -212,8 +212,8 @@
         {{ form.get("usersId").hasError("pattern") ? " Guid type." : "" }}
       </div>
     </div>
-    <label class="col-sm-2 col-form-label">List services Id</label>
-    <div class="col-sm-10">
+    <label [hidden]="true" class="col-sm-2 col-form-label">List services Id</label>
+    <div [hidden]="true" class="col-sm-10">
       <input
         type="text"
         class="form-control"
@@ -238,7 +238,7 @@
         "
         formControlName="listServicesId"
       />
-      <div class="invalid-feedback">
+      <div [hidden]="true" class="invalid-feedback">
         {{
           form.get("listServicesId").hasError("required")
             ? " Guid is required."

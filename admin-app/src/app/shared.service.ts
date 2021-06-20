@@ -133,4 +133,8 @@ export class SharedService {
   mailMesseage(val: any) {
     return this.http.post(this.APIUrl + '/consultationRequests/messageEmail', val, { headers: this.headers() })
   }
+
+  postFullInfoListServiceFromName(){
+    return this.http.post(this.APIUrl + '/services/readallservicesfullinfo', null, { headers: this.headers() })
+  }
 }

@@ -24,7 +24,7 @@ export class AddEditNewsComponent implements OnInit {
     newDescription: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
     dataNew: new FormControl('', [Validators.required]),
     imageNew: new FormControl('', [Validators.required]),
-    isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('[a-zA-Z]*')]),
+    isConsidered: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('(true|false)?')]),
     usersId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
   })
 
@@ -38,7 +38,10 @@ export class AddEditNewsComponent implements OnInit {
     else
       this.form.controls['imageNew'].setValue(NotImage.img);
     this.form.controls['isConsidered'].setValue(this.news.isConsidered);
-    this.form.controls['usersId'].setValue(this.news.usersId);
+    if (this.news.guidNewsId !== 0)
+      this.form.controls['usersId'].setValue(this.news.usersId);
+    else
+      this.form.controls['usersId'].setValue(localStorage.getItem("user_id"));
   }
 
   addNews() {
@@ -111,7 +114,7 @@ export class AddEditNewsComponent implements OnInit {
 
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
-    this.base64textString = btoa(binaryString);    
+    this.base64textString = btoa(binaryString);
     this.compressImage('data:image/png;base64,' + btoa(binaryString), 640, 320).then(compressed => {
       console.log(compressed);
       this.form.controls['imageNew'].setValue(compressed)
@@ -133,5 +136,5 @@ export class AddEditNewsComponent implements OnInit {
       }
       img.onerror = error => rej(error);
     })
-  }  
+  }
 }
