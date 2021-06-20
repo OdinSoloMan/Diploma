@@ -90,16 +90,9 @@
     "SERVICESFORM": {
         "messageLoading": "Loading services...",
         "messageLoadingErr": "Loading failed...",
-        "messageLoadingSending": "Sending a ticket...",
-        "messageLoadingSendingTrue": "Application has been sent",
-        "messageLoadingSendingErr": "An error has occurred",
         "title": "Services",
         "btn_apply": "Apply",
-        "infoNotServices": "Sorry, nothing in here!",
-        "alertConsultationHeader": "Sign up for a consultation ",
-        "alertConsultationContactPlaceholder": "How to contact",
-        "alertConsultationDescriptionPlaceholder": "Description",
-        "alertConsultationBtnCancel": "Cancel"
+        "infoNotServices": "Sorry, nothing in here!"
     },
     "HELPFULINFOFORM": {
         "title": "Records",
@@ -237,5 +230,30 @@
         "label_userInfo": "Personal info.",
         "label_settings": "Settings",
         "label_exit": "Exit"
+    },
+    "APPLYSERVICE": {
+        "title" : "Recording",
+        "name": "Service name:",
+        "consultationHeader": "Sign up for a consultation ",
+        "consultationContactPlaceholder": "Communication method",
+        "consultationDescriptionPlaceholder": "Description",
+        "consultationBtnCancel": "Cancel",
+        "consultationBtnSubmit" : "Send a request",
+        "messageError": {
+            "description": {
+                "descriptionIsNULL": "Description is required.",
+                "descriptionIsMinLenght": "5 letters required.",
+                "descriptionIsMaxLenght": "150 letters required."
+            },
+            "reverseCommunication": {
+                "reverseCommunicationIsNULL": "Способ связи обязательное поле.",
+                "reverseCommunicationIsMinLenght": "6 letters required.",
+                "reverseCommunicationIsMaxLenght": "50 letters required.",
+                "reverseCommunicationCoincide": "Phone number (11 letters) or mail"
+            }
+        },
+        "messageLoadingSending": "Sending a ticket...",
+        "messageLoadingSendingTrue": "Application has been sent",
+        "messageLoadingSendingErr": "An error has occurred"
     }
 }

@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'APPLYSERVICE.title' | translate}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/services"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-item style="text-align: center" lines="none">
+    <ion-textarea readonly class="header" auto-grow style="margin: 0 auto"
+      >{{ 'APPLYSERVICE.name' | translate}} {{name}}.</ion-textarea
+    >
+  </ion-item> -->
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating"
+        >{{ 'APPLYSERVICE.consultationContactPlaceholder' |
+        translate}}</ion-label
+      >
+      <ion-input
+        type="text"
+        required
+        [ngClass]="
+          (form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
+          form.get('reverseCommunication').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('reverseCommunication').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('reverseCommunication').hasError('maxlength')
+            ? 'is-invalid'
+            : '' || form.get('reverseCommunication').hasError('pattern')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
+                !form.get('reverseCommunication').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="reverseCommunication"
+        value="[data.reverseCommunication]"
+      ></ion-input>
+    </ion-item>
+    <div class="messageError">
+      {{ form.get("reverseCommunication").hasError("required") ?
+      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsNULL'
+      | translate) : "" }} {{
+      form.get("reverseCommunication").hasError("minlength") ?
+      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMinLenght'
+      | translate) : "" }} {{
+      form.get("reverseCommunication").hasError("maxlength") ?
+      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationIsMaxLenght'
+      | translate) : "" }} {{
+      form.get("reverseCommunication").hasError("pattern") ?
+      ('APPLYSERVICE.messageError.reverseCommunication.reverseCommunicationCoincide'
+      | translate) : "" }}
+    </div>
+    <ion-item>
+      <ion-label position="floating"
+        >{{ 'APPLYSERVICE.consultationDescriptionPlaceholder' |
+        translate}}</ion-label
+      >
+      <ion-textarea
+        type="textarea"
+        rows="5"
+        cols="20"
+        required
+        [ngClass]="
+          (form.get('description').touched || form.get('description').dirty) &&
+          form.get('description').hasError('required')
+            ? 'is-invalid'
+            : '' || form.get('description').hasError('minlength')
+            ? 'is-invalid'
+            : '' || form.get('description').hasError('maxlength')
+            ? 'is-invalid'
+            : '' ||
+              ((form.get('description').touched || form.get('description').dirty) &&
+                !form.get('description').invalid)
+            ? 'is-valid'
+            : ''
+        "
+        formControlName="description"
+        value="[data.description]"
+      ></ion-textarea>
+    </ion-item>
+    <div class="messageError">
+      {{ form.get("description").hasError("required") ?
+      ('APPLYSERVICE.messageError.description.descriptionIsNULL' | translate) :
+      "" }} {{ form.get("description").hasError("minlength") ?
+      ('APPLYSERVICE.messageError.description.descriptionIsMinLenght' |
+      translate) : "" }} {{ form.get("description").hasError("maxlength") ?
+      ('APPLYSERVICE.messageError.description.descriptionIsMaxLenght' |
+      translate) : "" }}
+    </div>
+    <ion-button
+      type="submit"
+      class="ion-margin-top"
+      expand="block"
+      [disabled]="form.invalid"
+    >
+      {{ 'APPLYSERVICE.consultationBtnSubmit' | translate}}
+    </ion-button>
+  </form>
+</ion-content>

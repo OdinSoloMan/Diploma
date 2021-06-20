@@ -4,6 +4,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { Services, ServicesService } from '../service/services.service';
 import { DeteailService } from '../service/deteail.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-services',
@@ -24,7 +25,9 @@ export class ServicesPage implements OnInit {
     private service: ServicesService,
     private http: HttpClient,
     private detail: DeteailService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router,
+    private deteail: DeteailService,
   ) {
     this.service.getAll().subscribe(res => {
       this.servicesInformation = res;
@@ -52,67 +55,11 @@ export class ServicesPage implements OnInit {
   }
 
   async onCreateRequst(ans) {
-    this.userAnswer = ans;
-    console.log(ans);
-
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: this.translate.instant("SERVICESFORM.alertConsultationHeader") + ans.Description,
-      inputs: [
-        {
-          name: 'reverseCommunication',
-          type: 'text',
-          placeholder: this.translate.instant("SERVICESFORM.alertConsultationContactPlaceholder")
-        },
-        {
-          name: 'description',
-          type: 'textarea',
-          cssClass: 'minAlertMessage',
-          placeholder: this.translate.instant("SERVICESFORM.alertConsultationDescriptionPlaceholder")
-        },
-      ],
-      buttons: [
-        {
-          text: this.translate.instant("SERVICESFORM.alertConsultationBtnCancel"),
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log("gg")
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: async (res) => {
-            let postData = {
-              "ListServicesId": ans.GuidListSevicesId,
-              "Description": res.description,
-              "ReverseCommunication": res.reverseCommunication,
-              "UsersId": localStorage.getItem("user_id")
-            }
-            const token = localStorage.getItem('token');
-            const headers = new HttpHeaders({
-              Authorization: 'Bearer ' + token
-            });
-            const loading = await this.loadingCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSending") });
-            await loading.present();
-            this.http.post(this.url + "/addconsultationRequests", postData, { headers }).subscribe(
-              async () => {
-                const toast = await this.toastCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSendingTrue"), duration: 2000, color: 'dark' })
-                await toast.present();
-                loading.dismiss();
-              },
-              async () => {
-                const alert = await this.alertCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingSendingErr"), buttons: ['OK'] });
-                loading.dismiss();
-                await alert.present();
-              }
-            )
-            console.log(postData);
-            console.log('Confirm Ok');
-          }
-        }
-      ]
-    }).then(res => res.present())
+    this.router.navigateByUrl("/apply-service");
+    this.detail.setDetailSerivceInsert({
+      listId: ans.GuidListSevicesId,
+      description : ans.Description
+    })
   }
 
   toggleSection(index) {

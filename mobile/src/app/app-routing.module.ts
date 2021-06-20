@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'moredetailsinfo',
     loadChildren: () => import('./pages/moredetailsinfo/moredetailsinfo.module').then( m => m.MoredetailsinfoPageModule)
+  },  {
+    path: 'apply-service',
+    loadChildren: () => import('./pages/apply-service/apply-service.module').then( m => m.ApplyServicePageModule)
   },
+
 
 
 

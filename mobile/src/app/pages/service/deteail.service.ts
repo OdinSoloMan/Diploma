@@ -8,16 +8,25 @@ export class DeteailService {
   constructor() { }
 
   data: string;
+  detailSerivceInsert: any;
 
   setData(data) {
-      this.data = data;
+    this.data = data;
   }
 
-  getData(){
-     return this.data;
+  getData() {
+    return this.data;
   }
 
-  getURL(){
+  getURL() {
     return this.url;
- }
+  }
+
+  getDetailSerivceInsert() {
+    return this.detailSerivceInsert;
+  }
+
+  setDetailSerivceInsert(detail) {
+    this.detailSerivceInsert = detail;
+  }
 }

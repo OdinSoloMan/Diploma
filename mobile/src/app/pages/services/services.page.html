@@ -22,20 +22,6 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- <ion-list *ngFor="let e of services">
-    <ion-item-divider>
-      <ion-label>{{e.Name}}</ion-label>
-    </ion-item-divider>
-    <div *ngIf="e.ListServices != null">
-      <ion-item *ngFor="let g of e.ListServices">
-        <ion-label>{{g.Description}}</ion-label>
-        <ion-button (click)="onCreateRequst(g)" expand="block" fill="clear" shape="round">
-          Click me
-        </ion-button>
-      </ion-item>
-    </div>
-  </ion-list> -->
-
   <ion-list
     *ngFor="let item of servicesInformation; let i = index"
     class="accordion-list"
@@ -60,26 +46,10 @@
     <div *ngIf="item.ListServices && item.open">
       <ion-item *ngFor="let g of item.ListServices">
         <p>{{g.Description}}</p>
-        <ion-button (click)="onCreateRequst(g)" expand="block">
+        <ion-button (click)="onCreateRequst(g)" expand="block" slot="end">
           {{ 'SERVICESFORM.btn_apply' | translate}}
         </ion-button>
       </ion-item>
-      <!-- <ion-list
-        *ngFor="let child of item.ListServices; let j = index;"
-        linex="none"
-        class="child-list"
-      >
-        <ion-item
-          tappable
-          (click)="toggleItem(i, j)"
-          *ngIf="child.Description"
-          [ngClass]="{'child-active': child.open, 'child': !child.open}"
-        >
-        <ion-icon slot="start" name="add" *ngIf="!child.open"></ion-icon>
-        <ion-icon slot="start" name="close" *ngIf="child.open"></ion-icon>
-        <ion-label> {{child.Description}} </ion-label>
-        </ion-item>
-      </ion-list> -->
     </div>
     <ion-item *ngIf="item.ListServices.length === 0 && item.open">
       <ion-label class="ion-text-center"

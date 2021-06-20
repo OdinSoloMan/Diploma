@@ -21,7 +21,7 @@ export class AddEditConsultationrequestComponent implements OnInit {
   form = new FormGroup({
     description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]),
     message: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]),
-    reverseCommunication: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(50)]),
+    reverseCommunication: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
     isVerified: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(5), Validators.pattern('(true|false)?')]),
     usersId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),
     listServicesId: new FormControl('', [Validators.required, Validators.minLength(36), Validators.maxLength(36), Validators.pattern('[\\da-zA-Z]{8}-([\\da-zA-Z]{4}-){3}[\\da-zA-Z]{12}')]),

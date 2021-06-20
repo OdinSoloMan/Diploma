@@ -90,16 +90,9 @@
     "SERVICESFORM": {
         "messageLoading": "Загрузка услуг...",
         "messageLoadingErr": "Загрузка не удалась...",
-        "messageLoadingSending": "Отправка заявки...",
-        "messageLoadingSendingTrue": "Заявка отправлена",
-        "messageLoadingSendingErr": "Произошла ошибка",
         "title": "Услуги",
         "btn_apply": "Записаться",
-        "infoNotServices": "Извините, здесь ничего нет!",
-        "alertConsultationHeader": "Записаться на консультацию ",
-        "alertConsultationContactPlaceholder": "Как связаться",
-        "alertConsultationDescriptionPlaceholder": "Описание",
-        "alertConsultationBtnCancel": "Отмена"
+        "infoNotServices": "Извините, здесь ничего нет!"
     },
     "HELPFULINFOFORM": {
         "title": "Документация",
@@ -206,7 +199,7 @@
                 "passwordIsNULL": "Пароль обязательное поле.",
                 "passwordIsMinLenght": "Минимум 6 знаков.",
                 "passwordIsMaxLenght": "Максимум 45 знаков.",
-                "passwordCoincide" : "Пароли должны совпадать."
+                "passwordCoincide": "Пароли должны совпадать."
             }
         },
         "messageBusy": {
@@ -236,5 +229,30 @@
         "label_userInfo": "Личная инф.",
         "label_settings": "Настройки",
         "label_exit": "Выход"
+    },
+    "APPLYSERVICE": {
+        "title" : "Запись",
+        "name": "Название услуги:",
+        "consultationHeader": "Записаться на консультацию ",
+        "consultationContactPlaceholder": "Способ связи",
+        "consultationDescriptionPlaceholder": "Описание",
+        "consultationBtnCancel": "Отмена",
+        "consultationBtnSubmit" : "Отправить заявку",
+        "messageError": {
+            "description": {
+                "descriptionIsNULL": "Описание обязательное поле.",
+                "descriptionIsMinLenght": "Минимум 5 знаков.",
+                "descriptionIsMaxLenght": "Максимум 150 знаков."
+            },
+            "reverseCommunication": {
+                "reverseCommunicationIsNULL": "Способ связи обязательное поле.",
+                "reverseCommunicationIsMinLenght": "Минимум 6 знаков.",
+                "reverseCommunicationIsMaxLenght": "Максимум 50 знаков.",
+                "reverseCommunicationCoincide": "Номер телефона (11 знаков) или почта"
+            }
+        },
+        "messageLoadingSending": "Отправка заявки...",
+        "messageLoadingSendingTrue": "Заявка отправлена",
+        "messageLoadingSendingErr": "Произошла ошибка"
     }
 }
