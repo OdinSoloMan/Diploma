@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class ServicesPage implements OnInit {
   services: Services[];
   userAnswer: any;
+  isNullInfo = true;
 
   servicesInformation: any[];
   automaticClose = false;
@@ -32,7 +33,9 @@ export class ServicesPage implements OnInit {
     this.service.getAll().subscribe(res => {
       this.servicesInformation = res;
       console.log(this.servicesInformation);
-      //this.servicesInformation[0].open = true;
+      if (this.servicesInformation.length === 0) {
+        this.isNullInfo = false;
+      }
     })
   }
   url = this.detail.getURL() + '/consultationRequests';

@@ -231,13 +231,13 @@
         "label_exit": "Выход"
     },
     "APPLYSERVICE": {
-        "title" : "Запись",
+        "title": "Запись",
         "name": "Название услуги:",
         "consultationHeader": "Записаться на консультацию ",
         "consultationContactPlaceholder": "Способ связи",
         "consultationDescriptionPlaceholder": "Описание",
         "consultationBtnCancel": "Отмена",
-        "consultationBtnSubmit" : "Отправить заявку",
+        "consultationBtnSubmit": "Отправить заявку",
         "messageError": {
             "description": {
                 "descriptionIsNULL": "Описание обязательное поле.",
@@ -254,5 +254,15 @@
         "messageLoadingSending": "Отправка заявки...",
         "messageLoadingSendingTrue": "Заявка отправлена",
         "messageLoadingSendingErr": "Произошла ошибка"
+    },
+    "DATATIME": {
+        "cansel": "Отмена",
+        "done": "Готово"
+    },
+    "BUTTONTEXT": {
+        "backbutton" : "Назад"
+    },
+    "INFO": {
+        "notFound": "Ничего не найдено"
     }
 }

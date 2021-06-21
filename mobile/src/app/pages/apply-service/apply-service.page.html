@@ -2,20 +2,18 @@
   <ion-toolbar>
     <ion-title>{{ 'APPLYSERVICE.title' | translate}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/services"></ion-back-button>
+      <ion-back-button
+        defaultHref="/services"
+        [text]="('BUTTONTEXT.backbutton' | translate)"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-item style="text-align: center" lines="none">
-    <ion-textarea readonly class="header" auto-grow style="margin: 0 auto"
-      >{{ 'APPLYSERVICE.name' | translate}} {{name}}.</ion-textarea
-    >
-  </ion-item> -->
   <form [formGroup]="form" (submit)="onSubmit()">
     <ion-item>
-      <ion-label position="floating"
+      <ion-label position="stacked"
         >{{ 'APPLYSERVICE.consultationContactPlaceholder' |
         translate}}</ion-label
       >
@@ -26,7 +24,10 @@
         value="[data.reverseCommunication]"
       ></ion-input>
     </ion-item>
-    <div class="messageError" style="max-height: 36px !important; min-height: 36px !important;">
+    <div
+      class="messageError"
+      style="max-height: 36px !important; min-height: 36px !important"
+    >
       <div
         *ngIf="
       (form.get('reverseCommunication').touched || form.get('reverseCommunication').dirty) &&
@@ -60,7 +61,7 @@
       </div>
     </div>
     <ion-item>
-      <ion-label position="floating"
+      <ion-label position="stacked"
         >{{ 'APPLYSERVICE.consultationDescriptionPlaceholder' |
         translate}}</ion-label
       >

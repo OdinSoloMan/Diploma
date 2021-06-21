@@ -24,7 +24,7 @@
   <ion-list *ngIf="segment === 'list1'">
     <form [formGroup]="form" (submit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelTitle' | translate}}</ion-label
         >
         <ion-input
@@ -61,12 +61,14 @@
         </div>
       </div>
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelData' | translate}}</ion-label
         >
         <ion-datetime
           type="datetime-local"
           required
+          [doneText]="'DATATIME.done' | translate"
+          [cancelText]="'DATATIME.cansel' | translate"
           formControlName="dataNew"
         ></ion-datetime>
       </ion-item>
@@ -88,7 +90,7 @@
         </div>
       </div>
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.NEWS.labelDescription' |
           translate}}</ion-label
         >
@@ -143,7 +145,7 @@
   <ion-list *ngIf="segment === 'list2'">
     <form [formGroup]="form1" (submit)="onSubmit1()">
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelTitle' | translate}}</ion-label
         >
         <ion-input
@@ -181,12 +183,14 @@
         </div>
       </div>
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelData' | translate}}</ion-label
         >
         <ion-datetime
           type="datetime-local"
           required
+          [doneText]="'DATATIME.done' | translate"
+          [cancelText]="'DATATIME.cansel' | translate"
           formControlName="plannedStartDate"
         ></ion-datetime>
       </ion-item>
@@ -210,7 +214,7 @@
         </div>
       </div>
       <ion-item>
-        <ion-label position="floating"
+        <ion-label position="stacked"
           >{{ 'SUGGESTNEWSOREVENTFORM.EVENT.labelDescription' |
           translate}}</ion-label
         >

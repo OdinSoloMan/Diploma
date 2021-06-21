@@ -3,6 +3,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { News, NewsService } from '../service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-news',
@@ -12,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class NewsPage implements OnInit {
   news: News[];
   refresh = true;
+  isNullInfo = true;
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
@@ -22,7 +24,6 @@ export class NewsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("test")
     this.activatedRoute.data.subscribe(() => {
       this.initData();
     });
@@ -34,24 +35,39 @@ export class NewsPage implements OnInit {
       const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("NEWSFORM.messageLoading") });
       await loading.present();
 
-      this.service.getAll().subscribe(
-        async response => {
-          this.news = response;
-          console.log(response);
-          loading.dismiss();
-        },
-        async (error) => {
-          if (error.status == 401) {
+      this.service.getAll()
+        .pipe(timeout(60000))
+        .subscribe(
+          async response => {
+            this.news = response;
+            console.log(response);
+            console.log(response.length)
+            loading.dismiss();
+            if (this.news.length === 0) {
+              this.isNullInfo = false;
+            }
+          },
+          async (error) => {
             const alert = await this.alertCtrl.create({ message: this.tranlate.instant("NEWSFORM.messageLoadingErr"), buttons: ['OK'] });
             await alert.present();
             loading.dismiss();
-            localStorage.removeItem("token");
-            localStorage.removeItem("user_id");
-            this.router.navigateByUrl("login");
-            this.refresh = true;
+            if (error.status == 401) {
+              localStorage.removeItem("token");
+              localStorage.removeItem("user_id");
+              this.router.navigateByUrl("login");
+              this.refresh = true;
+            }
           }
-        }
-      )
+        )
     }
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 }

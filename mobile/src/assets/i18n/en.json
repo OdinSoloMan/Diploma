@@ -232,13 +232,13 @@
         "label_exit": "Exit"
     },
     "APPLYSERVICE": {
-        "title" : "Recording",
+        "title": "Recording",
         "name": "Service name:",
         "consultationHeader": "Sign up for a consultation ",
         "consultationContactPlaceholder": "Communication method",
         "consultationDescriptionPlaceholder": "Description",
         "consultationBtnCancel": "Cancel",
-        "consultationBtnSubmit" : "Send a request",
+        "consultationBtnSubmit": "Send a request",
         "messageError": {
             "description": {
                 "descriptionIsNULL": "Description is required.",
@@ -255,5 +255,15 @@
         "messageLoadingSending": "Sending a ticket...",
         "messageLoadingSendingTrue": "Application has been sent",
         "messageLoadingSendingErr": "An error has occurred"
+    },
+    "DATATIME": {
+        "cansel": "Cancel",
+        "done": "Done"
+    },
+    "BUTTONTEXT": {
+        "backbutton" : "Back"
+    },
+    "INFO": {
+        "notFound": "Nothing found"
     }
 }
