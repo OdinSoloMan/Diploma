@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../auth.service';
+import { ApiService } from 'src/app/pages/service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import { AuthService } from '../auth.service';
 export class LoginPage implements OnInit {
   src_logo: any;
   constructor(
-    private authService: AuthService,
+    private api: ApiService,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private router: Router,
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("LOGINFORM.messageLoading") });
     await loading.present();
 
-    this.authService.login(this.form.value).subscribe(
+    this.api.login(this.form.value).subscribe(
       async response => {
         localStorage.setItem('token', response["token"]);
         localStorage.setItem('user_id', response["guid"])

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../auth.service';
+import { ApiService } from 'src/app/pages/service/api.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ import { AuthService } from '../auth.service';
 export class RegisterPage {
   messageIsErrorCombo: any;
   constructor(
-    private authService: AuthService,
+    private api: ApiService,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
@@ -35,7 +35,7 @@ export class RegisterPage {
   async onSubmit() {
     const loading = await this.loadingCtrl.create({ message: this.translate.instant("REGISTRATIONFORM.messageLoading") });
     await loading.present();
-    this.authService.register(this.form.value).subscribe(
+    this.api.register(this.form.value).subscribe(
       async () => {
         // если успешно
         const toast = await this.toastCtrl.create({ message: this.translate.instant("REGISTRATIONFORM.messageCreateUsersTrue"), duration: 2000, color: 'dark' })

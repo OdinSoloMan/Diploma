@@ -96,7 +96,7 @@
           ? 'is-invalid'
           : '' || form.get('telephone').hasError('maxlength')
           ? 'is-invalid'
-          : '' || form.get('telephone').hasError('telephone')
+          : '' || form.get('telephone').hasError('pattern')
           ? 'is-invalid'
           : '' ||
             ((form.get('telephone').touched || form.get('telephone').dirty) &&

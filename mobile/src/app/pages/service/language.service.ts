@@ -17,18 +17,18 @@ export class LanguageService {
     //this.storage.create()
     //let language = this.translate.getBrowserCultureLang() === "ru-RU" ? "ru": "en"
     //this.translate.setDefaultLang(language);
-    console.log("fff",val)
-    if(val === "ru"){
-      
-    this.translate.setDefaultLang("ru")
+    console.log("fff", val)
+    if (val === "ru") {
+
+      this.translate.setDefaultLang("ru")
       this.selected = "ru";
-    this.setLanguage("ru");
-  } else {
-    
-    this.translate.setDefaultLang("en")
-    this.selected = "en";
-    this.setLanguage("en");
-  }
+      this.setLanguage("ru");
+    } else {
+
+      this.translate.setDefaultLang("en")
+      this.selected = "en";
+      this.setLanguage("en");
+    }
 
     // this.storage.get(LNG_KEY).then(val => {
     //   if (val) {

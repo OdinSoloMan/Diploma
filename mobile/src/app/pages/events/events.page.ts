@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { timeout } from 'rxjs/operators';
-import { Event, EventService } from '../service/event.service';
+import { ApiService, Event } from '../service/api.service';
 
 @Component({
   selector: 'app-events',
@@ -11,12 +11,12 @@ import { Event, EventService } from '../service/event.service';
 })
 export class EventsPage implements OnInit {
   textForm: any;
-  events: Event[];
+  events: Event[]
   isNullInfo = true;
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private service: EventService,
+    private api: ApiService,
     private translate: TranslateService,
   ) { }
 
@@ -24,7 +24,7 @@ export class EventsPage implements OnInit {
     const loading = await this.loadingCtrl.create({ message: this.translate.instant("EVENTSFORM.messageLoading") });
     await loading.present();
 
-    this.service.getAll()
+    this.api.getAllEvents()
     .pipe(timeout(60000))
     .subscribe(
       async response => {

@@ -2,9 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController, AlertController, LoadingController } from '@ionic/angular';
-import { User, UsersinfoService } from '../service/usersinfo.service';
-import { DeteailService } from '../service/deteail.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService, User } from '../service/api.service';
 
 @Component({
   selector: 'app-infousers',
@@ -21,11 +20,11 @@ export class InfousersPage implements OnInit {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private service: UsersinfoService,
-    private detail: DeteailService,
+    private api: ApiService,
+    private detailURL: ApiService,
     private translate: TranslateService,
   ) { }
-  url = this.detail.getURL() + '/users';
+  url = this.detailURL.getURL() + '/users';
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.pattern('[a-zA-ZА-Яа-я_ ]*')]),
@@ -128,7 +127,7 @@ export class InfousersPage implements OnInit {
     const loading = await this.loadingCtrl.create({ message: this.translate.instant('INFOUSERFORM.loadingingInfo') });
     await loading.present();
 
-    this.service.readUserId().subscribe(
+    this.api.readUserId().subscribe(
       async response => {
         this.infousers = [response];
         this.form.setValue({

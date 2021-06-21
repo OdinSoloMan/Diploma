@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DeteailService {
-  url: any = "https://192.168.1.67:45455"
+ 
   constructor() { }
 
   data: string;
@@ -16,10 +16,6 @@ export class DeteailService {
 
   getData() {
     return this.data;
-  }
-
-  getURL() {
-    return this.url;
   }
 
   getDetailSerivceInsert() {

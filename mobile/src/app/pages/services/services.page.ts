@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { Services, ServicesService } from '../service/services.service';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { DeteailService } from '../service/deteail.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { ApiService, Services } from '../service/api.service';
 
 @Component({
   selector: 'app-services',
@@ -21,33 +20,24 @@ export class ServicesPage implements OnInit {
 
   constructor(
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private service: ServicesService,
-    private http: HttpClient,
+    private api: ApiService,
     private detail: DeteailService,
     private translate: TranslateService,
     private router: Router,
-    private deteail: DeteailService,
-  ) {
-    this.service.getAll().subscribe(res => {
-      this.servicesInformation = res;
-      console.log(this.servicesInformation);
-      if (this.servicesInformation.length === 0) {
-        this.isNullInfo = false;
-      }
-    })
-  }
-  url = this.detail.getURL() + '/consultationRequests';
+  ) { }
 
   async ngOnInit() {
     const loading = await this.loadingCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoading") });
     await loading.present();
-    this.service.getAll().subscribe(
+    this.api.getAllServices().subscribe(
       async response => {
-        this.services = response;
+        this.servicesInformation = response;
         console.log(response);
         loading.dismiss();
+        if (this.servicesInformation.length === 0) {
+          this.isNullInfo = false;
+        }
       },
       async () => {
         const alert = await this.alertCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingErr"), buttons: ['OK'] });
@@ -61,7 +51,7 @@ export class ServicesPage implements OnInit {
     this.router.navigateByUrl("/apply-service");
     this.detail.setDetailSerivceInsert({
       listId: ans.GuidListSevicesId,
-      description : ans.Description
+      description: ans.Description
     })
   }
 

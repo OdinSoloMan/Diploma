@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from '../service/api.service';
 import { DeteailService } from '../service/deteail.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class ApplyServicePage implements OnInit {
   name: any;
   constructor(
     private detail: DeteailService,
+    private detailURL : ApiService,
     private translate: TranslateService,
     private loadingCtrl: LoadingController,
     private http: HttpClient,
@@ -32,7 +34,7 @@ export class ApplyServicePage implements OnInit {
     console.log(this.detail.getDetailSerivceInsert())
     this.name = this.detail.getDetailSerivceInsert().description
   }
-  url = this.detail.getURL() + '/consultationRequests';
+  url = this.detailURL.getURL() + '/consultationRequests';
   async onSubmit() {
     //this.form.controls["newTitle"].value,
     let postData = {

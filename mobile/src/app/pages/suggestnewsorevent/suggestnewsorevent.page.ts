@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { DeteailService } from '../service/deteail.service';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-suggestnewsorevent',
@@ -16,11 +16,11 @@ export class SuggestnewsoreventPage implements OnInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private detail: DeteailService,
+    private detailURL: ApiService,
   ) { }
 
-  url = this.detail.getURL() + '/news';
-  url1 = this.detail.getURL() + '/events';
+  url = this.detailURL.getURL() + '/news';
+  url1 = this.detailURL.getURL() + '/events';
 
   ngOnInit() { }
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { News, NewsService } from '../service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { timeout } from 'rxjs/operators';
+import { ApiService, News } from '../service/api.service';
 
 @Component({
   selector: 'app-news',
@@ -17,7 +17,7 @@ export class NewsPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private service: NewsService,
+    private api: ApiService,
     private router: Router,
     private tranlate: TranslateService,
     private activatedRoute: ActivatedRoute
@@ -35,7 +35,7 @@ export class NewsPage implements OnInit {
       const loading = await this.loadingCtrl.create({ message: this.tranlate.instant("NEWSFORM.messageLoading") });
       await loading.present();
 
-      this.service.getAll()
+      this.api.getAllNews()
         .pipe(timeout(60000))
         .subscribe(
           async response => {
@@ -57,6 +57,7 @@ export class NewsPage implements OnInit {
               this.router.navigateByUrl("login");
               this.refresh = true;
             }
+            console.log('error', error)
           }
         )
     }

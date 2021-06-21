@@ -18,29 +18,30 @@ export class AppComponent {
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('user_id') && localStorage.getItem('token')) {
       this.router.navigateByUrl('/news');
     }
     else {
-      this.router.navigateByUrl('login');
+      localStorage.removeItem('user_id')
+      localStorage.removeItem('token')
+      this.router.navigateByUrl('/login');
     }
-    console.log(localStorage.getItem('theme'));
-    if (localStorage.getItem("fontSize") == null) {
+    if (localStorage.getItem("language") === null) {
+      localStorage.setItem("language", "ru")
+      this.languageService.setInitialAppLanguage(localStorage.getItem("language").toString());
+    } else {
+      this.languageService.setInitialAppLanguage(localStorage.getItem("language").toString());
+    }
+    if (localStorage.getItem("fontSize") === null) {
       localStorage.setItem("fontSize", "20");
     }
-    if (localStorage.getItem('theme') == null) {
+    if (localStorage.getItem('theme') === null || localStorage.getItem('theme') !== "dark") {
       localStorage.setItem("theme", "light");
-      this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
+      this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"))
     }
-    if (localStorage.getItem('theme') == "dark") {
-      this.renderer.setAttribute(document.body, 'class', 'dark fontSize' + localStorage.getItem("fontSize"));
+    else {
+      localStorage.setItem("theme", "dark");
+      this.renderer.setAttribute(document.body, 'class', 'dark fontSize' + localStorage.getItem("fontSize"))
     }
-    if (localStorage.getItem('theme') == "light") {
-      this.renderer.setAttribute(document.body, 'class', 'light fontSize' + localStorage.getItem("fontSize"));
-    }
-    if (localStorage.getItem("language") == null) {
-      localStorage.setItem("language", "ru")
-    }
-    this.languageService.setInitialAppLanguage(localStorage.getItem("language").toString());
   }
 }
