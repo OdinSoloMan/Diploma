@@ -152,4 +152,10 @@ export class InfousersPage implements OnInit {
   segmentChanged(ev: any) {
     this.segment = ev.detail.value;
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ngOnInit()
+    event.target.complete();
+  }
 }

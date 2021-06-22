@@ -8,6 +8,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-item lines="none" *ngIf="!isNullInfo">
+    <ion-label class="ion-text-center">{{infoTextError}}</ion-label>
+  </ion-item>
   <ion-card *ngFor="let event of events">
     <ion-img
       [src]="event.imageEvents"
@@ -19,7 +25,4 @@
     </ion-card-header>
     <ion-card-content>{{event.descriptionOfTheEvent}} </ion-card-content>
   </ion-card>
-  <ion-item lines="none" *ngIf="!isNullInfo">
-    <ion-label class="ion-text-center">{{'INFO.notFound' | translate}}</ion-label>
-  </ion-item>
 </ion-content>

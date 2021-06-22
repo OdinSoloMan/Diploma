@@ -14,7 +14,7 @@
   <form [formGroup]="form" (submit)="onSubmit()">
     <ion-item>
       <ion-label position="stacked"
-        >{{ 'APPLYSERVICE.consultationContactPlaceholder' |
+        >{{ 'APPLYSERVICE.consultationContact' |
         translate}}</ion-label
       >
       <ion-input
@@ -22,6 +22,7 @@
         required
         formControlName="reverseCommunication"
         value="[data.reverseCommunication]"
+        [placeholder]="'APPLYSERVICE.consultationContactPlaceholder' | translate"
       ></ion-input>
     </ion-item>
     <div
@@ -62,7 +63,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked"
-        >{{ 'APPLYSERVICE.consultationDescriptionPlaceholder' |
+        >{{ 'APPLYSERVICE.consultationDescription' |
         translate}}</ion-label
       >
       <ion-textarea
@@ -72,6 +73,7 @@
         required
         formControlName="description"
         value="[data.description]"
+        [placeholder]="'APPLYSERVICE.consultationDescriptionPlaceholder' | translate"
       ></ion-textarea>
     </ion-item>
     <div class="messageError">

@@ -2,7 +2,9 @@
     "LOGINFORM": {
         "title": "Вход",
         "email": "Почта",
+        "emaiPlaceholder": "Введите почту",
         "password": "Пароль",
+        "passwordPlaceholder": "Введите пароль",
         "btn_login": "Войти",
         "btn_registration": "Регистрация",
         "messageError": {
@@ -24,11 +26,17 @@
     "REGISTRATIONFORM": {
         "title": "Регистрация",
         "lableFIO": "ФИО",
+        "lableFIOPlaceholder": "Введите ФИО",
         "email": "Почта",
+        "emaiPlaceholder": "Введите почту",
         "telephone": "Телефон",
+        "telephonePlaceholder": "Введите телефон",
         "position": "Должность",
+        "positionPlaceholder": "Введите должность",
         "typeOfEnterprise": "Тип предприятия",
+        "typeOfEnterprisePlaceholder": "Введите тип предприятия",
         "password": "Пароль",
+        "passwordPlaceholder": "Введите пароль",
         "btn_registration": "Регистрация",
         "messageError": {
             "fullName": {
@@ -108,6 +116,7 @@
             "labelTitle": "Заголовок",
             "labelTitlePlaceholder": "Введите заголовок новости...",
             "labelData": "Дата",
+            "labelDataPlaceholder": "Выберите дату",
             "labelDescription": "Описание",
             "labelDescriptionPlaceholder": "Введите описание новости...",
             "btn_suggest": "Предложить новость"
@@ -117,6 +126,7 @@
             "labelTitle": "Заголовок",
             "labelTitlePlaceholder": "Введите заголовок мероприятия...",
             "labelData": "Дата",
+            "labelDataPlaceholder": "Выберите дату",
             "labelDescription": "Описание",
             "labelDescriptionPlaceholder": "Введите описание мероприятия...",
             "btn_suggest": "Предложить мероприятие"
@@ -152,14 +162,20 @@
         "PERSONAL": {
             "label": "Общая",
             "FIO": "ФИО",
+            "lableFIOPlaceholder": "Введите ФИО",
             "email": "Почта",
+            "emaiPlaceholder": "Введите почту",
             "telephone": "Телефон",
+            "telephonePlaceholder": "Введите телефон",
             "position": "Должность",
+            "positionPlaceholder": "Введите должность",
             "typeOfEnterprise": "Тип предприятия",
+            "typeOfEnterprisePlaceholder": "Введите тип предприятия",
             "btn_updateInfoUser": "Обновить"
         },
         "PASSWORD": {
             "label": "Пароль",
+            "passwordPlaceholder": "Введите новый пароль",
             "label_password": "Пароль",
             "label_confirmPassword": "Повторить пароль",
             "btn_updatePassword": "Изменить пароль"
@@ -202,6 +218,7 @@
                 "passwordCoincide": "Пароли должны совпадать."
             }
         },
+        "messageLoadingErr": "Ошибка, ",
         "messageBusy": {
             "email": "Ошибка почта ",
             "telephone": "Ошибка телефон ",
@@ -234,8 +251,10 @@
         "title": "Запись",
         "name": "Название услуги:",
         "consultationHeader": "Записаться на консультацию ",
-        "consultationContactPlaceholder": "Способ связи",
-        "consultationDescriptionPlaceholder": "Описание",
+        "consultationContact": "Способ связи",
+        "consultationContactPlaceholder": "Введите способ связи",
+        "consultationDescription": "Описание",
+        "consultationDescriptionPlaceholder": "Введите описание",
         "consultationBtnCancel": "Отмена",
         "consultationBtnSubmit": "Отправить заявку",
         "messageError": {
@@ -260,9 +279,10 @@
         "done": "Готово"
     },
     "BUTTONTEXT": {
-        "backbutton" : "Назад"
+        "backbutton": "Назад"
     },
     "INFO": {
-        "notFound": "Ничего не найдено"
+        "notFound": "Ничего не найдено",
+        "errorRefresh": "Ошибка при обновление"
     }
 }

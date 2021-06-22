@@ -2,7 +2,10 @@
   <ion-toolbar>
     <ion-title>{{ 'REGISTRATIONFORM.title' | translate}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home" [text]="('BUTTONTEXT.backbutton' | translate)"></ion-back-button>
+      <ion-back-button
+        defaultHref="home"
+        [text]="('BUTTONTEXT.backbutton' | translate)"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +16,12 @@
       <ion-label position="stacked"
         >{{ 'REGISTRATIONFORM.lableFIO' | translate}}</ion-label
       >
-      <ion-input type="text" required formControlName="fullName"></ion-input>
+      <ion-input
+        type="text"
+        required
+        formControlName="fullName"
+        [placeholder]="'REGISTRATIONFORM.lableFIOPlaceholder' | translate"
+      ></ion-input>
     </ion-item>
     <div class="messageError">
       <div
@@ -49,7 +57,12 @@
       <ion-label position="stacked"
         >{{ 'REGISTRATIONFORM.email' | translate}}</ion-label
       >
-      <ion-input type="text" required formControlName="email"></ion-input>
+      <ion-input
+        type="text"
+        required
+        formControlName="email"
+        [placeholder]="'REGISTRATIONFORM.emaiPlaceholder' | translate"
+      ></ion-input>
     </ion-item>
     <div class="messageError">
       <div
@@ -84,7 +97,12 @@
       <ion-label position="stacked"
         >{{ 'REGISTRATIONFORM.telephone' | translate}}</ion-label
       >
-      <ion-input type="text" required formControlName="telephone"></ion-input>
+      <ion-input
+        type="text"
+        required
+        formControlName="telephone"
+        [placeholder]="'REGISTRATIONFORM.telephonePlaceholder' | translate"
+      ></ion-input>
     </ion-item>
     <div class="messageError">
       <div
@@ -120,7 +138,12 @@
       <ion-label position="stacked"
         >{{ 'REGISTRATIONFORM.position' | translate}}</ion-label
       >
-      <ion-input type="text" required formControlName="position"></ion-input>
+      <ion-input
+        type="text"
+        required
+        formControlName="position"
+        [placeholder]="'REGISTRATIONFORM.positionPlaceholder' | translate"
+      ></ion-input>
     </ion-item>
     <div class="messageError">
       <div
@@ -160,6 +183,7 @@
         type="text"
         required
         formControlName="typeOfEnterprise"
+        [placeholder]="'REGISTRATIONFORM.typeOfEnterprisePlaceholder' | translate"
       ></ion-input>
     </ion-item>
     <div class="messageError">
@@ -205,6 +229,7 @@
         type="password"
         required
         formControlName="password"
+        [placeholder]="'REGISTRATIONFORM.passwordPlaceholder' | translate"
       ></ion-input>
     </ion-item>
     <div class="messageError">

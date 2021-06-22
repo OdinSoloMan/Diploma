@@ -15,7 +15,12 @@
         <ion-label position="stacked"
           >{{ 'LOGINFORM.email' | translate}}</ion-label
         >
-        <ion-input type="text" required formControlName="email"></ion-input>
+        <ion-input
+          type="text"
+          required
+          formControlName="email"
+          [placeholder]="'LOGINFORM.emaiPlaceholder' | translate"
+        ></ion-input>
       </ion-item>
       <div class="messageError">
         <div
@@ -54,6 +59,7 @@
           type="password"
           required
           formControlName="password"
+          [placeholder]="'LOGINFORM.passwordPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">

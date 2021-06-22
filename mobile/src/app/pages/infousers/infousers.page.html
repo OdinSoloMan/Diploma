@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-segment (ionChange)="segmentChanged($event)" value="list1">
     <ion-segment-button value="list1">
       <ion-label> {{ 'INFOUSERFORM.PERSONAL.label' | translate}} </ion-label>
@@ -28,6 +31,7 @@
           required
           formControlName="fullName"
           value="[data.fullName]"
+          [placeholder]="'INFOUSERFORM.PERSONAL.lableFIOPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -69,6 +73,7 @@
           required
           formControlName="email"
           value="[data.email]"
+          [placeholder]="'INFOUSERFORM.PERSONAL.emaiPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -109,6 +114,7 @@
           required
           formControlName="telephone"
           value="[data.telephone]"
+          [placeholder]="'INFOUSERFORM.PERSONAL.telephonePlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -151,6 +157,7 @@
           required
           formControlName="position"
           value="[data.position]"
+          [placeholder]="'INFOUSERFORM.PERSONAL.positionPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -192,6 +199,7 @@
           required
           formControlName="typeOfEnterprise"
           value="[data.typeOfEnterprise]"
+          [placeholder]="'INFOUSERFORM.PERSONAL.typeOfEnterprisePlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -250,6 +258,7 @@
           type="password"
           required
           formControlName="password"
+          [placeholder]="'INFOUSERFORM.PASSWORD.passwordPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">
@@ -288,6 +297,7 @@
           required
           formControlName="confirmPassword"
           autocapitalize="off"
+          [placeholder]="'INFOUSERFORM.PASSWORD.passwordPlaceholder' | translate"
         ></ion-input>
       </ion-item>
       <div class="messageError">

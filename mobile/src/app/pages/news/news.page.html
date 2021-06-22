@@ -9,13 +9,11 @@
 
 <ion-content class="ion-padding">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="chevron-down-circle-outline"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-item lines="none" *ngIf="!isNullInfo">
+    <ion-label class="ion-text-center">{{infoTextError}}</ion-label>
+  </ion-item>
   <ion-card *ngFor="let new of news">
     <ion-img
       [src]="new.imageNew"
@@ -27,9 +25,4 @@
     </ion-card-header>
     <ion-card-content>{{new.newDescription}} </ion-card-content>
   </ion-card>
-  <ion-item lines="none" *ngIf="!isNullInfo">
-    <ion-label class="ion-text-center"
-      >{{'INFO.notFound' | translate}}</ion-label
-    >
-  </ion-item>
 </ion-content>

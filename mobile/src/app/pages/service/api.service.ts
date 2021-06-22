@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DeteailService } from './deteail.service';
 
 export interface User {
   guidUsersId?: string;

@@ -14,6 +14,7 @@ export class ServicesPage implements OnInit {
   services: Services[];
   userAnswer: any;
   isNullInfo = true;
+  infoTextError = "";
 
   servicesInformation: any[];
   automaticClose = false;
@@ -37,12 +38,31 @@ export class ServicesPage implements OnInit {
         loading.dismiss();
         if (this.servicesInformation.length === 0) {
           this.isNullInfo = false;
+          this.infoTextError = this.translate.instant("INFO.notFound")
+        }
+        else {
+          this.isNullInfo = true;
+          this.infoTextError = "";
         }
       },
-      async () => {
+      async (error) => {
         const alert = await this.alertCtrl.create({ message: this.translate.instant("SERVICESFORM.messageLoadingErr"), buttons: ['OK'] });
         await alert.present();
         loading.dismiss();
+
+        this.isNullInfo = false;
+        this.infoTextError = this.translate.instant("INFO.notFound")
+
+        if (error.status == 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user_id");
+          this.router.navigateByUrl("login");
+          this.infoTextError = "";
+        } else {
+          this.isNullInfo = false;
+          this.infoTextError = this.translate.instant("INFO.errorRefresh")
+        }
+        console.log('error', error)
       }
     )
   }
@@ -68,5 +88,11 @@ export class ServicesPage implements OnInit {
 
   toggleItem(index, childIndex) {
     this.servicesInformation[index].children[childIndex].open != this.servicesInformation[index].children[childIndex].open
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ngOnInit()
+    event.target.complete();
   }
 }
